@@ -1,0 +1,2 @@
+This is the link for the webpage that had the code to use bluetooth send and receive user input from another bluetooth connected device.
+https://technologisttips.com/raspberry-pi-bluetooth/
