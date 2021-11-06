@@ -1,2 +1,18 @@
-This is the link for the webpage that had the code to use bluetooth send and receive user input from another bluetooth connected device.
-https://technologisttips.com/raspberry-pi-bluetooth/
+#This is the link for the webpage that had the code to use bluetooth send and receive user input from another bluetooth connected device.
+#https://technologisttips.com/raspberry-pi-bluetooth/
+
+//////////////////////////////////////////////////////////
+
+#must install these 2 libraries and then reboot the RBpi
+sudo apt-get install bluetooth bluez
+sudo apt-get install python-bluz
+sudo reboot
+
+//////////////////////////////////////////////////////////
+
+#Here is an example of how we can implement functions based off of recived commands from another device
+if(recvdata =="A"):
+my_function()
+#I could immplement this with a GUI and buttons on the GUI that when they are pressed can activate certain function with the drone.
+
+///////////////////////////////////////////////////////////
