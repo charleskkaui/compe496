@@ -15,4 +15,10 @@ if(recvdata =="A"):
 my_function()
 #I could immplement this with a GUI and buttons on the GUI that when they are pressed can activate certain function with the drone.
 
+
+https://maker.pro/raspberry-pi/tutorial/how-to-interface-pi-noir-v2-camera-with-raspberry-pi
+https://appdividend.com/2020/06/26/python-cv2-videocapture-how-to-load-video-in-python/#:~:text=To%20capture%20a%20video%20in%20Python%2C%20use%20the,camera%2C%201%20for%20the%20second%20camera%20so%20on.
+https://www.raspberrypi.com/documentation/accessories/camera.html#preparing-the-software
+https://raspberrypi.stackexchange.com/questions/14047/camera-problems-green-tint-and-long-delays-after-snapshot
+https://randomnerdtutorials.com/guide-to-raspberry-pi-camera-v2-module/#:~:text=In%20the%20Desktop%20environment%2C%20go%20to%20the%20Raspberry,should%20see%20the%20Raspberry%20Pi%20software%20configuration%20tool.
 ///////////////////////////////////////////////////////////
