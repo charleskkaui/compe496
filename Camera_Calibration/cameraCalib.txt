@@ -1,0 +1,122 @@
+pi@raspberrypi:~/how_do_drones_work/opencv $ python3 cameracalib.py  camera_01 jpg 9 6 25
+31
+Reading image  camera_01/snapshot_640_480_27.jpg
+Pattern found! Press ESC to skip or ENTER to accept
+Image accepted
+Reading image  camera_01/snapshot_640_480_13.jpg
+Pattern found! Press ESC to skip or ENTER to accept
+Image accepted
+Reading image  camera_01/snapshot_640_480_12.jpg
+Pattern found! Press ESC to skip or ENTER to accept
+Image accepted
+Reading image  camera_01/snapshot_640_480_4.jpg
+Pattern found! Press ESC to skip or ENTER to accept
+Image accepted
+Reading image  camera_01/snapshot_640_480_10.jpg
+Pattern found! Press ESC to skip or ENTER to accept
+Image accepted
+Reading image  camera_01/snapshot_640_480_26.jpg
+Pattern found! Press ESC to skip or ENTER to accept
+Image accepted
+Reading image  camera_01/snapshot_640_480_17.jpg
+Pattern found! Press ESC to skip or ENTER to accept
+Image accepted
+Reading image  camera_01/snapshot_640_480_29.jpg
+Pattern found! Press ESC to skip or ENTER to accept
+Image accepted
+Reading image  camera_01/snapshot_640_480_5.jpg
+Pattern found! Press ESC to skip or ENTER to accept
+Image accepted
+Reading image  camera_01/snapshot_640_480_14.jpg
+Pattern found! Press ESC to skip or ENTER to accept
+Image accepted
+Reading image  camera_01/snapshot_640_480_21.jpg
+Pattern found! Press ESC to skip or ENTER to accept
+Image accepted
+Reading image  camera_01/snapshot_640_480_24.jpg
+Pattern found! Press ESC to skip or ENTER to accept
+Image accepted
+Reading image  camera_01/snapshot_640_480_9.jpg
+Pattern found! Press ESC to skip or ENTER to accept
+Image accepted
+Reading image  camera_01/snapshot_640_480_0.jpg
+Pattern found! Press ESC to skip or ENTER to accept
+Image accepted
+Reading image  camera_01/snapshot_640_480_11.jpg
+Pattern found! Press ESC to skip or ENTER to accept
+Image accepted
+Reading image  camera_01/snapshot_640_480_22.jpg
+Pattern found! Press ESC to skip or ENTER to accept
+Image accepted
+Reading image  camera_01/snapshot_640_480_7.jpg
+Pattern found! Press ESC to skip or ENTER to accept
+Image accepted
+Reading image  camera_01/snapshot_640_480_20.jpg
+Pattern found! Press ESC to skip or ENTER to accept
+Image accepted
+Reading image  camera_01/snapshot_640_480_16.jpg
+Pattern found! Press ESC to skip or ENTER to accept
+Image accepted
+Reading image  camera_01/snapshot_640_480_28.jpg
+Pattern found! Press ESC to skip or ENTER to accept
+Image accepted
+Reading image  camera_01/snapshot_640_480_23.jpg
+Pattern found! Press ESC to skip or ENTER to accept
+Image accepted
+Reading image  camera_01/snapshot_640_480_8.jpg
+Pattern found! Press ESC to skip or ENTER to accept
+Image accepted
+Reading image  camera_01/snapshot_640_480_3.jpg
+Pattern found! Press ESC to skip or ENTER to accept
+Image accepted
+Reading image  camera_01/snapshot_640_480_18.jpg
+Pattern found! Press ESC to skip or ENTER to accept
+Image accepted
+Reading image  camera_01/snapshot_640_480_6.jpg
+Pattern found! Press ESC to skip or ENTER to accept
+Image accepted
+Reading image  camera_01/snapshot_640_480_30.jpg
+Pattern found! Press ESC to skip or ENTER to accept
+Image accepted
+Reading image  camera_01/snapshot_640_480_2.jpg
+Pattern found! Press ESC to skip or ENTER to accept
+Image accepted
+Reading image  camera_01/snapshot_640_480_19.jpg
+Pattern found! Press ESC to skip or ENTER to accept
+Image accepted
+Reading image  camera_01/snapshot_640_480_1.jpg
+Pattern found! Press ESC to skip or ENTER to accept
+Image accepted
+Reading image  camera_01/snapshot_640_480_25.jpg
+Pattern found! Press ESC to skip or ENTER to accept
+Image accepted
+Reading image  camera_01/snapshot_640_480_15.jpg
+Pattern found! Press ESC to skip or ENTER to accept
+Image accepted
+Found 31 good images
+Image to undistort:  camera_01/snapshot_640_480_13.jpg
+ROI:  113 36 466 355
+Calibrated picture saved as calibresult.png
+Calibration Matrix: 
+[[1.24653237e+03 0.00000000e+00 2.96694037e+02]
+ [0.00000000e+00 1.24331119e+03 2.50031070e+02]
+ [0.00000000e+00 0.00000000e+00 1.00000000e+00]]
+Disortion:  [[-2.06277667e-01  1.44998883e+01  1.20698093e-02 -3.25786622e-04
+  -2.18427857e+02]]
+total error:  0.038303017996242784
+
+
+FAILURE OUTPUT
+Image to undistort:  camera_01/snapshot_640_480_24.jpg
+ROI:  241 15 234 228
+Calibrated picture saved as calibresult.png
+Calibration Matrix: 
+[[1.24759415e+03 0.00000000e+00 3.01485736e+02]
+ [0.00000000e+00 1.24427819e+03 2.50114730e+02]
+ [0.00000000e+00 0.00000000e+00 1.00000000e+00]]
+Disortion:  [[-2.15644686e-01  1.47431434e+01  1.21676980e-02  1.41069337e-03
+  -2.18130225e+02]]
+Traceback (most recent call last):
+  File "/home/pi/how_do_drones_work/opencv/cameracalib.py", line 149, in <module>
+    for i in xrange(len(objpoints)):
+NameError: name 'xrange' is not defined

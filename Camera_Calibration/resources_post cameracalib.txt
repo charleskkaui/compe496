@@ -1,0 +1,6 @@
+https://github.com/roboticslab-uc3m/installation-guides/blob/master/install-opencv.md
+
+https://github.com/opencv/opencv/tree/4.5.4
+
+https://github.com/opencv/opencv_contrib
+
