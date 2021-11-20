@@ -18,7 +18,7 @@ def main():
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT,480)
     cap.set(cv2.CAP_PROP_FPS,90)
     #cap.set(cv2.CAP_PROP_HUE,5)
-    cap.set(cv2.CAP_PROP_EXPOSURE,5)
+    cap.set(cv2.CAP_PROP_EXPOSURE,95)
 
 
     
