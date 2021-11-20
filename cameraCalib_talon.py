@@ -16,9 +16,9 @@ def main():
     #SET THE CAMERA SIZE 1080P OR 720P OR 640X480
     cap.set(cv2.CAP_PROP_FRAME_WIDTH,640)
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT,480)
-    cap.set(cv2.CAP_PROP_FPS,90)
-    #cap.set(cv2.CAP_PROP_HUE,5)
-    cap.set(cv2.CAP_PROP_EXPOSURE,95)
+    cap.set(cv2.CAP_PROP_FPS,95)
+    cap.set(cv2.CAP_PROP_HUE,95)
+    #cap.set(cv2.CAP_PROP_EXPOSURE,95)
 
 
     
@@ -28,7 +28,7 @@ def main():
         # read camera frame
         ret, frame = cap.read()
 
-        cv2.imshow('Video Feed',frame)
+        cv2.imshow('Chocobo going ot the store',frame)
         key = cv2.waitKey(1) & 0xFF
         if(key == ord('q')):
             cap.release()
