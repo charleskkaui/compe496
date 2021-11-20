@@ -32,7 +32,7 @@ def main():
 
         
 
-        cv2.imshow('Raw',raw)
+        cv2.imshow('Raw',rawfootage)
         cv2.imshow('Color',mycolor)
         cv2.imshow('Grey',mycolor2)
         key = cv2.waitKey(1) & 0xFF
