@@ -16,9 +16,9 @@ def main():
     #SET THE CAMERA SIZE 1080P OR 720P OR 640X480
     cap.set(cv2.CAP_PROP_FRAME_WIDTH,640)
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT,480)
-    #cap.set(cv2.CAP_PROP_FPS,30)
+    cap.set(cv2.CAP_PROP_FPS,90)
     #cap.set(cv2.CAP_PROP_HUE,5)
-    #cap.set(cv2.CAP_PROP_EXPOSURE,5)
+    cap.set(cv2.CAP_PROP_EXPOSURE,5)
 
 
     
