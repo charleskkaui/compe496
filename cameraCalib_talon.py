@@ -4,7 +4,6 @@ import cv2.aruco as aruco
 import sys
 import time
 import math
-import libcamera
 
 id_to_find = 75
 aruco_marker_size = 10.3 #(in cm)
@@ -13,23 +12,27 @@ def main():
 
     #CAPTURE THE CAMERA?
     libcamera-hello
-    ircam = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(0)
 
     #SET THE CAMERA SIZE 1080P OR 720P OR 640X480
-    ircam.set(cv2.CAP_PROP_FRAME_WIDTH,640)
-    ircam.set(cv2.CAP_PROP_FRAME_HEIGHT,480)
+    cap.set(cv2.CAP_PROP_FRAME_WIDTH,1920)
+    cap.set(cv2.CAP_PROP_FRAME_HEIGHT,1080)
+    #cap.set(cv2.CAP_PROP_FPS,30)
+    #cap.set(cv2.CAP_PROP_HUE,5)
+    cap.set(cv2.CAP_PROP_EXPOSURE,5)
+
 
     
 
     while True:
 
         # read camera frame
-        ret,frame = ircam.read()
+        ret,frame = cap.read()
 
         cv2.imshow('frame',frame)
         key = cv2.waitKey(1) & 0xFF
         if(key == ord('q')):
-            ircam.release()
+            cap.release()
             cv2.destroyAllWindows()
             break
 
