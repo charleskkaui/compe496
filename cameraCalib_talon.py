@@ -11,7 +11,6 @@ aruco_marker_size = 10.3 #(in cm)
 def main():
 
     #CAPTURE THE CAMERA?
-    libcamera-hello
     cap = cv2.VideoCapture(0)
 
     #SET THE CAMERA SIZE 1080P OR 720P OR 640X480
