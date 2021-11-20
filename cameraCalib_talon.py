@@ -14,10 +14,10 @@ def main():
     cap = cv2.VideoCapture(0)
 
     #SET THE CAMERA SIZE 1080P OR 720P OR 640X480
-    cap.set(cv2.CAP_PROP_FRAME_WIDTH,640)
-    cap.set(cv2.CAP_PROP_FRAME_HEIGHT,480)
+    cap.set(cv2.CAP_PROP_FRAME_WIDTH,1920)
+    cap.set(cv2.CAP_PROP_FRAME_HEIGHT,1080)
     #cap.set(cv2.CAP_PROP_FPS,95)
-    cap.set(cv2.CAP_PROP_BRIGHTNESS,500)
+    cap.set(cv2.CAP_PROP_BRIGHTNESS,50000)
     #cap.set(cv2.CAP_PROP_EXPOSURE,95)
 
 
