@@ -29,12 +29,16 @@ def main():
         ret, rawfootage = cap.read()
         mycolor = cv2.cvtColor(rawfootage, cv2.COLOR_BGR2RGB)
         mycolor2 = cv2.cvtColor(rawfootage, cv2.COLOR_BGR2GRAY)
+        mycolor3 = cv2.cvtColor(rawfootage, cv2.COLOR_BGR2HSV)
+        mycolor4 = cv2.cvtColor(rawfootage, cv2.COLOR_BGRA2RGBA)
 
         
 
         cv2.imshow('Raw',rawfootage)
-        cv2.imshow('Color',mycolor)
-        cv2.imshow('Grey',mycolor2)
+        cv2.imshow('BGR to RGB',mycolor)
+        cv2.imshow('BGR to Gray',mycolor2)
+        cv2.imshow('BGR to HSV',mycolor3)
+        cv2.imshow('BGRA to RGBA',mycolor4)
         key = cv2.waitKey(1) & 0xFF
         if(key == ord('q')):
             cap.release()
