@@ -26,9 +26,9 @@ def main():
     while True:
 
         # read camera frame
-        ret,frame = cap.read()
+        ret, frame = cap.read()
 
-        cv2.imshow('frame',frame)
+        cv2.imshow('Video Feed',frame)
         key = cv2.waitKey(1) & 0xFF
         if(key == ord('q')):
             cap.release()
