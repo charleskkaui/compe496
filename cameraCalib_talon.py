@@ -19,7 +19,7 @@ def main():
     #cap.set(cv2.CAP_PROP_FPS,95)
     #cap.set(cv2.CAP_PROP_BRIGHTNESS,50000)
     #cap.set(cv2.CAP_PROP_EXPOSURE,95)
-    cap.set(cv2.CAP_PROP_CONVERT_RGB,True)
+    cap.set(cv2.CAP_PROP_CONVERT_RGB,1)
 
 
 
