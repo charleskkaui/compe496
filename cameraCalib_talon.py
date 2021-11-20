@@ -4,7 +4,8 @@ import cv2.aruco as aruco
 import sys
 import time
 import math
-import picamera
+from picamera import PiCamera
+from picamera.array import PiRGBArray
 
 id_to_find = 75
 aruco_marker_size = 10.3 #(in cm)
