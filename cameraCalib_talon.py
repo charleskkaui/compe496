@@ -18,7 +18,7 @@ def main():
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT,1080)
     #cap.set(cv2.CAP_PROP_FPS,30)
     #cap.set(cv2.CAP_PROP_HUE,5)
-    cap.set(cv2.CAP_PROP_EXPOSURE,5)
+    #cap.set(cv2.CAP_PROP_EXPOSURE,5)
 
 
     
@@ -34,10 +34,6 @@ def main():
             cap.release()
             cv2.destroyAllWindows()
             break
-
-
-
-
 
 
 if __name__ == "__main__":
