@@ -26,9 +26,15 @@ def main():
     while True:
 
         # read camera frame
-        ret, frame = cap.read()
+        ret, rawfootage = cap.read()
+        mycolor = cv2.cvtColor(rawfootage, cv2.COLOR_BGR2RGB)
+        mycolor2 = cv2.cvtColor(rawfootage, cv2.COLOR_BGR2GRAY)
 
-        cv2.imshow('Chocobo going ot the store',frame)
+        
+
+        cv2.imshow('Raw',raw)
+        cv2.imshow('Color',mycolor)
+        cv2.imshow('Grey',mycolor2)
         key = cv2.waitKey(1) & 0xFF
         if(key == ord('q')):
             cap.release()
