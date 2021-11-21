@@ -9,7 +9,7 @@ def save_snaps(width=0, height=0, name="snapshot", folder=".", raspi=False):
     if raspi:
         os.system('sudo modprobe bcm2835-v4l2')
 
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(0, cv2.CAP_V4L2)
     cv2.VideoWriter_fourcc('F','F','V','1')
 
     if width > 0 and height > 0:
