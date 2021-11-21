@@ -62,7 +62,7 @@ def main():
             break
     
 
-    #oldCode()
+    oldCode()
 
 
 if __name__ == "__main__":

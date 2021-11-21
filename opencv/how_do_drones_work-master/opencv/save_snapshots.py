@@ -1,28 +1,8 @@
-"""
-Saves a series of snapshots with the current camera as snapshot_<width>_<height>_<nnn>.jpg
-
-Arguments:
-    --f <output folder>     default: current folder
-    --n <file name>         default: snapshot
-    --w <width px>          default: none
-    --h <height px>         default: none
-
-Buttons:
-    q           - quit
-    space bar   - save the snapshot
-    
-  
-"""
-
 import cv2
 import time
 import sys
 import argparse
 import os
-
-__author__ = "Tiziano Fiorenzani"
-__date__ = "01/06/2018"
-
 
 def save_snaps(width=0, height=0, name="snapshot", folder=".", raspi=False):
 
@@ -30,6 +10,8 @@ def save_snaps(width=0, height=0, name="snapshot", folder=".", raspi=False):
         os.system('sudo modprobe bcm2835-v4l2')
 
     cap = cv2.VideoCapture(0)
+    cv2.VideoWriter_fourcc('F','F','V','1')
+
     if width > 0 and height > 0:
         print("Setting the custom Width and Height")
         cap.set(cv2.CAP_PROP_FRAME_WIDTH, width)
