@@ -40,8 +40,8 @@ import cv2.aruco as aruco
 import sys, time, math
 
 #--- Define Tag
-id_to_find  = 72
-marker_size  = 10 #- [cm]
+id_to_find  = 75
+marker_size  = 10.3 #- [cm]
 
 
 #------------------------------------------------------------------------------
@@ -99,8 +99,8 @@ parameters  = aruco.DetectorParameters_create()
 #--- Capture the videocamera (this may also be a video or a picture)
 cap = cv2.VideoCapture(0)
 #-- Set the camera size as the one it was calibrated with
-cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
-cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
 
 #-- Font for the text in the image
 font = cv2.FONT_HERSHEY_PLAIN
