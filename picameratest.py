@@ -1,6 +1,6 @@
 
-from picamera.array import PiRGBArray
-from picamera import PiCamera
+import picamera.array as PiRGBArray
+import picamera as PiCamera
 import cv2
 
 camera = PiCamera()
