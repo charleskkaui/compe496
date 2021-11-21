@@ -1,35 +1,3 @@
-Skip to content
-Search or jump to…
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@charleskkaui 
-jeremygblake
-/
-opencv
-Public
-forked from opencv/opencv
-0
-0
-49.1k
-Code
-Pull requests
-Actions
-Projects
-Wiki
-Security
-Insights
-opencv/samples/python/facedetect.py /
-@alalek
-alalek fix pylint warnings
-…
-Latest commit 0e40c8a on Oct 16, 2019
- History
- 1 contributor
-Executable File  79 lines (60 sloc)  2.18 KB
-   
 #!/usr/bin/env python
 
 '''
@@ -108,16 +76,3 @@ if __name__ == '__main__':
     print(__doc__)
     main()
     cv.destroyAllWindows()
-© 2021 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
-Loading complete
