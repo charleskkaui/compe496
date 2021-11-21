@@ -167,7 +167,8 @@ while True:
 
 
     #--- Display the frame
-    cv2.imshow('frame', frame)
+    frame_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    cv2.imshow('ArUco Test', frame_rgb)
 
     #--- use 'q' to quit
     key = cv2.waitKey(1) & 0xFF
