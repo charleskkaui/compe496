@@ -8,6 +8,8 @@ import math
 id_to_find = 75
 aruco_marker_size = 10.3 #(in cm)
 
+cap = cv2.VideoCapture(0)
+
 def oldCode():
     while True:
     
@@ -34,7 +36,7 @@ def oldCode():
 def main():
 
     #CAPTURE THE CAMERA?
-    cap = cv2.VideoCapture(0)
+    
     #camera = PiCamera()
     #camera.resolution(640,480)
     #camera.framerate = 30
