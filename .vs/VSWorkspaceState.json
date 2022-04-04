@@ -1,8 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Spring"
+    "\\Spring",
+    "\\Spring\\Final Codes",
+    "\\Spring\\Final Codes\\Drone",
+    "\\Spring\\Test Codes"
   ],
-  "SelectedNode": "\\Spring\\COMPE_496_DroneTesting_DroneKit_00.py",
+  "SelectedNode": "\\Spring\\Test Codes\\COMPE_496_DroneTesting_DroneKit_00.py",
   "PreviewInSolutionExplorer": false
 }
