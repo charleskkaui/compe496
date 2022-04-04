@@ -33,6 +33,8 @@ import sys, time, math
 id_to_find  = 72
 marker_size  = 10 #- [cm]
 
+DURATION = 5
+
 
 #------------------------------------------------------------------------------
 #------- ROTATIONS https://www.learnopencv.com/rotation-matrix-to-euler-angles/
@@ -83,6 +85,7 @@ parameters  = aruco.DetectorParameters_create()
 
 #--- Capture the videocamera (this may also be a video or a picture)
 cap = cv2.VideoCapture(0)
+
 #-- Set the camera size as the one it was calibrated with
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
@@ -147,9 +150,11 @@ while True:
         cv2.putText(frame, str_attitude, (0, 250), font, 1, (0, 255, 0), 2, cv2.LINE_AA)
 
         #-- Get the Velocity Vectors for X and Y assuming DURATION for t. v=d/t
-        distance_vector[0] = abs(pos_camera[0]-tvec[0])
-        distance_vector[1] = abs(pos_camera[1]-tvec[1])
-        distance_vector[2] = abs(pos_camera[2]-tvec[2])
+        distance_vector_x[0] = abs(pos_camera[0]-tvec[0])
+        distance_vector_y[1] = abs(pos_camera[1]-tvec[1])
+        distance_vector_z[2] = abs(pos_camera[2]-tvec[2])
+        distance_vector = math.sqrt(math.pow(distance_vector_x,2) + math.pow(distance_vector_y,2))
+        #if distance_vector 
         distance_vector_disp = "Drone must travel: x=%4.0f  y=%4.0f  z=%4.0f"%(distance_vector[0], distance_vector[1], distance_vector[2])
         cv2.putText(frame, distance_vector_disp, (0, 150), font, 1, (0, 255, 0), 2, cv2.LINE_AA)
 
