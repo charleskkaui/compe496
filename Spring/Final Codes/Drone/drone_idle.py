@@ -1,5 +1,5 @@
 import sys
-from bluedot.btcomm import BluetoothServer
+from bluedot.btcomm import BluetoothServer #speaking = client server = listen
 
 def data_received(data):
     print(data)
@@ -18,4 +18,3 @@ while True:
         sys.exit(0)
     else:
         print("DRONE_IDLE")
-        
