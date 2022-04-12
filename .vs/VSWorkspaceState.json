@@ -3,9 +3,11 @@
     "",
     "\\Spring",
     "\\Spring\\Final Codes",
+    "\\Spring\\Final Codes\\Base",
     "\\Spring\\Final Codes\\Drone",
-    "\\Spring\\Test Codes"
+    "\\Spring\\Test Codes",
+    "\\Spring\\Test Codes\\BluCommChainTest"
   ],
-  "SelectedNode": "\\Spring\\Test Codes\\COMPE_496_DroneTesting_DroneKit_00.py",
+  "SelectedNode": "\\Spring\\Test Codes\\BluCommChainTest\\com4.py",
   "PreviewInSolutionExplorer": false
 }
