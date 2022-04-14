@@ -30,8 +30,8 @@ import cv2.aruco as aruco
 import sys, time, math
 
 #--- Define Tag
-id_to_find  = 72
-marker_size  = 10 #- [cm]
+id_to_find  = 100
+marker_size  = 6.35 #- [cm]
 
 DURATION = 5
 
