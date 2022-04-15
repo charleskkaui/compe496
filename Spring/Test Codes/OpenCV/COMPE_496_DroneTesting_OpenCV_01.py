@@ -126,8 +126,8 @@ def main():
             distance_vector_x = (pos_camera[0]-tvec[0])
             distance_vector_y = (pos_camera[1]-tvec[1])
             distance_vector_z = (pos_camera[2]-tvec[2])
-            myfile.write(distance_vector_x+","+distance_vector_y+","+distance_vector_z+"\n")
-        
+            myfile.write(np.array2string(distance_vector_x)+","+np.array2string(distance_vector_y)+","+np.array2string(distance_vector_z)+"\n")
+            
             distance_vector_disp = "Raw Drone Travel Values: x=%4.0f  y=%4.0f  z=%4.0f"%(distance_vector_x, distance_vector_y, distance_vector_z)
             cv2.putText(frame, distance_vector_disp, (0, 100), font, 1, (0, 255, 0), 2, cv2.LINE_AA)
         
