@@ -33,7 +33,7 @@ def main():
     import cv2
     import cv2.aruco as aruco
     import sys, time, math
-    from datetime import date
+    import datetime
     import os.path
 
     #creting file for data
