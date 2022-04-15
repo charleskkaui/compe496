@@ -154,7 +154,7 @@ def main():
         
 
         #--- Display the frame
-        #cv2.imshow('frame', frame)
+        cv2.imshow('frame', frame)
         print(average_vector)
 
         #--- use 'q' to quit
