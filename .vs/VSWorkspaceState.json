@@ -6,8 +6,9 @@
     "\\Spring\\Final Codes\\Base",
     "\\Spring\\Final Codes\\Drone",
     "\\Spring\\Test Codes",
-    "\\Spring\\Test Codes\\BluCommChainTest"
+    "\\Spring\\Test Codes\\BluCommChainTest",
+    "\\Spring\\Test Codes\\OpenCV"
   ],
-  "SelectedNode": "\\Spring\\Test Codes\\COMPE_496_DroneTesting_OpenCV_00.py",
+  "SelectedNode": "\\Spring\\Test Codes\\BluCommChainTest\\com1.py",
   "PreviewInSolutionExplorer": false
 }

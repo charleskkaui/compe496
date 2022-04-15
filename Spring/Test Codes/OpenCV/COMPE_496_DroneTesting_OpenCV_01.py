@@ -33,7 +33,19 @@ def main():
     import cv2
     import cv2.aruco as aruco
     import sys, time, math
+    from datetime import datetime
+    import os.path
 
+    #creting file for data
+    now = datetime.now
+    save_path = ""
+    file_name = "DistanceVector_"+now.year+"_"+now.month+"_"+now.day+"_"+now.hour+"_"+now.minute+".txt"
+    complete_filename = os.path.join(save_path,file_name)
+    
+    try:
+        myfile = open(complete_filename,'x')
+    except:
+        exit("The File cannot be created")
 
     #--- Define Tag
     id_to_find  = 238
@@ -117,8 +129,6 @@ def main():
             distance_vector_disp = "Raw Drone Travel Values: x=%4.0f  y=%4.0f  z=%4.0f"%(distance_vector_x, distance_vector_y, distance_vector_z)
             cv2.putText(frame, distance_vector_disp, (0, 100), font, 1, (0, 255, 0), 2, cv2.LINE_AA)
         
-        
-        
             if count >= 19:
                 arr = np.sort(distance_x_arr)
                 average_x = np.average(arr[4:14])
@@ -127,8 +137,6 @@ def main():
                 arr = np.sort(distance_z_arr)
                 average_z = np.average(arr[4:14])
                 average_vector = (average_x,average_y,average_z)
-            
-            
                 count = 0
                 distance_x_arr[count] = distance_vector_x
                 distance_y_arr[count] = distance_vector_y
