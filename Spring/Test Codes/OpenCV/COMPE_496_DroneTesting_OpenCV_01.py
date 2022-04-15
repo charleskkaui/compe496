@@ -1,3 +1,9 @@
+import numpy as np
+import cv2
+import cv2.aruco as aruco
+import sys, time, math
+from datetime import datetime
+import os.path
 
 # Checks if a matrix is a valid rotation matrix.
 def isRotationMatrix(R):
@@ -29,12 +35,7 @@ def rotationMatrixToEulerAngles(R):
     return np.array([x, y, z])
 
 def main():
-    import numpy as np
-    import cv2
-    import cv2.aruco as aruco
-    import sys, time, math
-    from datetime import datetime
-    import os.path
+    
 
     #creating file for data
     now = datetime.now()
