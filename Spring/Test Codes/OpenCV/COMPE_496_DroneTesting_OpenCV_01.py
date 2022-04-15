@@ -33,13 +33,13 @@ def main():
     import cv2
     import cv2.aruco as aruco
     import sys, time, math
-    from datetime import datetime
+    from datetime import date
     import os.path
 
     #creting file for data
-    now = datetime.now
+    now = datetime.now()
     save_path = ""
-    file_name = "DistanceVector_"+now.year+"_"+now.month+"_"+now.day+"_"+now.hour+"_"+now.minute+".txt"
+    file_name = "DistanceVector_"+now.strftime("%Y")+"_"+now.strftime("%m")+"_"+now.strftime("%d")+"_"+now.strftime("%H")+"_"+now.strftime("%M")+".txt"
     complete_filename = os.path.join(save_path,file_name)
     
     try:
