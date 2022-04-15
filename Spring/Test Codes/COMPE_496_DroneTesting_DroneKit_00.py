@@ -90,7 +90,6 @@ def main():
     #fly_spin(vehicle,-HEADING)
 
     send_global_velocity(0, VELOCITY, 0, DURATION)
-
     land_now(vehicle)
     disarm(vehicle)
 

@@ -1,14 +1,16 @@
 from bluedot.btcomm import BluetoothClient
 from signal import pause
 import time
-
-SLEEP_TIME = 30 #time is in seconds
+import sys
 
 def data_received(data):
     print(data)
+    c.send("TX Received")
 
-c = BluetoothClient("raspberrypi", data_received)
-time.sleep(SLEEP_TIME)
-c.send("U")
-print("TERMINATING_IDLE")
-sys.exit(0)
+c = BluetoothClient("raspberry", data_received)
+
+while True:
+    time.sleep(10)
+    c.send("A")
+    time.sleep(10)
+    c.send("B")

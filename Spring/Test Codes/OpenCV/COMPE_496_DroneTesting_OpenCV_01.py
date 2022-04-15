@@ -156,8 +156,8 @@ def main():
         #WHEN THE ARUCO IS NOT IN VIEW VALUES SHOULD READ XXX or osmeshit        
 
         #--- Display the frame
-        cv2.imshow('frame', frame)
-        print(average_vector)
+        #cv2.imshow('frame', frame)
+        #print(average_vector)
 
         #--- use 'q' to quit
         key = cv2.waitKey(1) & 0xFF
