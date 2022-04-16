@@ -4,16 +4,16 @@ import time,sys,argparse,math
 
 #sim_vehicle.py -v ArduCopter -f quad --map --console -L SDSU
 CONNECTION_BAUDRATE = 57600
-CONNECTION_STRING = '127.0301:14550' #COnnection String for the Drone
+CONNECTION_STRING = '/dev/ttyAMA1' #COnnection String for the Drone
 CONNECTION_STRING_DRONEKITSITL = 'udp:127.0.0.1:14551' #Connection String for the Simulation
-VELOCITY = 10
-DURATION = 10
+VELOCITY = 1
+DURATION = 1
 HEADING = 180
-ALTITUDE = 10
+ALTITUDE = 1
 
 def connect_drone():
     print("CONNECTING...")
-    return connect(CONNECTION_STRING_DRONEKITSITL, wait_ready=True)#, baud=BAUDRATE)
+    return connect(CONNECTION_STRING, wait_ready=True, baud=CONNECTION_BAUDRATE)
     #connect() utilizes another function vehicle.wait_ready() which prevents the return of connect() until the connection is confirmed 
 
 def arm(vehicle):
@@ -32,18 +32,15 @@ def disarm(vehicle):
     print("DRONE DISARMED")
 
 def take_off_now(vehicle,TargetAltitude):
-    print("ARMING DRONE")
-    print("DRONE ARMED")
-    arm(vehicle)
-    time.sleep(1)
     vehicle.simple_takeoff(TargetAltitude)
-    while vehicle.location.global_relative_frame.alt<=TargetAltitude*0.95:
+    while vehicle.location.global_relative_frame.alt<=TargetAltitude*0.70:
         print (" Altitude: ", vehicle.location.global_relative_frame.alt)
         time.sleep(5)
     print("ALTITUDE REACHED")
 
 def land_now(vehicle):
     print("Im supposed to land")
+    vehicle.mode = "LAND"
 
 def fly_go(vehicle,velocity_x, velocity_y, velocity_z, duration):
     msg = vehicle.message_factory.set_position_target_local_ned_encode(
@@ -80,18 +77,27 @@ def fly_spin(vehicle,heading, relative=False):
 
 def main():
     vehicle = connect_drone()
+    arm(vehicle)
     take_off_now(vehicle,ALTITUDE)
-    
+    vehicle.mode = "LOITER"
+
     #fly_go(vehicle,VELOCITY,0,0,DURATION)
     #fly_go(vehicle,-VELOCITY,0,0,DURATION)
     #fly_spin(vehicle,HEADING)
     #fly_go(vehicle,0,VELOCITY,0,DURATION)
     #fly_go(vehicle,0,-VELOCITY,0,DURATION)
     #fly_spin(vehicle,-HEADING)
+<<<<<<< HEAD
+    time.sleep(5)
+    #send_global_velocity(0, VELOCITY, 0, DURATION)
+
+=======
 
     send_global_velocity(0, VELOCITY, 0, DURATION)
+>>>>>>> 6f0a0994c5275fa55e028a497518761292ad6a97
     land_now(vehicle)
     disarm(vehicle)
+    print("End of Script")
 
 
 
