@@ -87,9 +87,14 @@ def main():
     #fly_go(vehicle,0,VELOCITY,0,DURATION)
     #fly_go(vehicle,0,-VELOCITY,0,DURATION)
     #fly_spin(vehicle,-HEADING)
+<<<<<<< HEAD
     time.sleep(5)
     #send_global_velocity(0, VELOCITY, 0, DURATION)
 
+=======
+
+    send_global_velocity(0, VELOCITY, 0, DURATION)
+>>>>>>> 6f0a0994c5275fa55e028a497518761292ad6a97
     land_now(vehicle)
     disarm(vehicle)
     print("End of Script")

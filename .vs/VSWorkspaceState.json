@@ -7,8 +7,9 @@
     "\\Spring\\Final Codes\\Drone",
     "\\Spring\\Test Codes",
     "\\Spring\\Test Codes\\BluCommChainTest",
-    "\\Spring\\Test Codes\\OpenCV"
+    "\\Spring\\Test Codes\\OpenCV",
+    "\\Spring\\Test Codes\\OpenCV\\TestData"
   ],
-  "SelectedNode": "\\Spring\\Test Codes\\BluCommChainTest\\com1.py",
+  "SelectedNode": "\\Spring\\Final Codes\\Base\\base_idle.py",
   "PreviewInSolutionExplorer": false
 }

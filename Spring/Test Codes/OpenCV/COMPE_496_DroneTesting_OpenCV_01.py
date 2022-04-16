@@ -157,7 +157,11 @@ def main():
 
         #--- Display the frame
         #cv2.imshow('frame', frame)
+<<<<<<< HEAD
         print(average_vector)
+=======
+        #print(average_vector)
+>>>>>>> 6f0a0994c5275fa55e028a497518761292ad6a97
 
         #--- use 'q' to quit
         key = cv2.waitKey(1) & 0xFF
