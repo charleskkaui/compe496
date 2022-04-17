@@ -24,13 +24,13 @@ GPIO.setup(RELAY_04,GPIO.OUT)
 
 def data_received(data):
     global received
-    print(data)
     received = data
     time.sleep(1)
-    s.send("TX Received")
+    s.send("0")
 
 def latch():
     print("I am Latching")
+    s.send("Base Received: "+received)
     GPIO.output(RELAY_01,0)
     GPIO.output(RELAY_02,0)
     time.sleep(1)
@@ -39,6 +39,7 @@ def latch():
 
 def unlatch():
     print("I am Unlatching")                    
+    s.send("Base Received: "+received)
     GPIO.output(RELAY_04,0)            
     GPIO.output(RELAY_03,0)            
     time.sleep(1)
@@ -60,20 +61,16 @@ def main():
         #COPY CODE TO CHECK SENSORS HERE
         ################################
         ################################
-        if(SENSOR_01 == GPIO.LOW and Sensor_02 == GPIO.LOW ):
+        if(GPIO.input(SENSOR_01) == GPIO.LOW and GPIO.input(Sensor_02) == GPIO.LOW ):
                 sensors = 1
         else:
                 sensors = 0
             
-
         if (received == "A" and sensors): #WE ARE LATCHING
             latch()
-            received = "0"
         elif (received == "B"):
             unlatch()
-            received = "0"
         else:
-            print("Idle")
             time.sleep(1)
 
 if __name__ == "__main__":
