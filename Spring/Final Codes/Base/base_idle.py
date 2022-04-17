@@ -23,6 +23,7 @@ GPIO.setup(RELAY_03,GPIO.OUT)
 GPIO.setup(RELAY_04,GPIO.OUT)
 
 def data_received(data):
+    global received
     print(data)
     received = data
     time.sleep(1)
@@ -38,11 +39,11 @@ def latch():
 
 def unlatch():
     print("I am Unlatching")                    
-    GPIO.output(RELAY_01,0)            
-    GPIO.output(RELAY_02,0)            
+    GPIO.output(RELAY_04,0)            
+    GPIO.output(RELAY_03,0)            
     time.sleep(1)
-    GPIO.output(RELAY_03,1)             
-    GPIO.output(RELAY_04,1)
+    GPIO.output(RELAY_02,1)             
+    GPIO.output(RELAY_01,1)
 
 def main():
     
@@ -65,7 +66,7 @@ def main():
                 sensors = 0
             
 
-        if (received == "A"): #WE ARE LATCHING
+        if (received == "A" and sensors): #WE ARE LATCHING
             latch()
             received = "0"
         elif (received == "B"):
