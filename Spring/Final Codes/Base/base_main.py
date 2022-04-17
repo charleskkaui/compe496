@@ -61,7 +61,7 @@ def main():
         #COPY CODE TO CHECK SENSORS HERE
         ################################
         ################################
-        if(GPIO.input(SENSOR_01) == GPIO.LOW and GPIO.input(Sensor_02) == GPIO.LOW ):
+        if(GPIO.input(SENSOR_01) == GPIO.LOW and GPIO.input(SENSOR_02) == GPIO.LOW ):
                 sensors = 1
         else:
                 sensors = 0
