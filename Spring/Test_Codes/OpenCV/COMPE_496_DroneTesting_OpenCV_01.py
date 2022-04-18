@@ -37,10 +37,9 @@ try:
 
     def main():
     
-
         #creating file for data
         now = datetime.now()
-        save_path = "/home/pi/compe496/Spring/Test Codes/OpenCV/TestData"
+        save_path = "/home/pi/compe496/Spring/Test_Codes/OpenCV/TestData"
         file_name = "DistanceVector_"+now.strftime("%Y")+"_"+now.strftime("%m")+"_"+now.strftime("%d")+"_"+now.strftime("%H")+"_"+now.strftime("%M")+".txt"
         complete_filename = os.path.join(save_path,file_name)
     
@@ -158,7 +157,7 @@ try:
 
             #--- Display the frame
             #cv2.imshow('frame', frame)
-            #print(average_vector)
+            print(average_vector)
 
             #--- use 'q' to quit
             key = cv2.waitKey(1) & 0xFF
@@ -171,11 +170,8 @@ try:
     if __name__ == "__main__":
         main()
 
-
 except KeyboardInterrupt:
     cap.release()
     cv2.destroyAllWindows()
     myfile.close()
     sys.exit()
-
-

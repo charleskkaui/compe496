@@ -2,14 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\Spring",
-    "\\Spring\\Final Codes",
-    "\\Spring\\Final Codes\\Base",
-    "\\Spring\\Final Codes\\Drone",
-    "\\Spring\\Test Codes",
-    "\\Spring\\Test Codes\\BluCommChainTest",
-    "\\Spring\\Test Codes\\OpenCV",
-    "\\Spring\\Test Codes\\OpenCV\\TestData"
+    "\\Spring\\Test_Codes"
   ],
-  "SelectedNode": "\\Spring\\Final Codes\\Base\\base_idle.py",
+  "SelectedNode": "\\Spring\\Test_Codes\\COMPE_496_DroneTesting_DroneKit_00.py",
   "PreviewInSolutionExplorer": false
 }
