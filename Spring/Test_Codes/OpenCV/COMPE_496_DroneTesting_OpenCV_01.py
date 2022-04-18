@@ -49,9 +49,9 @@ try:
             exit("The File cannot be created")
 
 
-        distance_vector_x = 0
-        distance_vector_y = 0
-        distance_vector_z = 0
+        distance_vector_x = np.zeros(1)
+        distance_vector_y = np.zeros(1)
+        distance_vector_z = np.zeros(1)
 
         #--- Define Tag
         id_to_find  = 238
