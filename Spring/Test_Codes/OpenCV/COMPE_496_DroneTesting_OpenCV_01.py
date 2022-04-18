@@ -162,9 +162,9 @@ try:
             #WHEN THE ARUCO IS NOT IN VIEW VALUES SHOULD READ XXX or osmeshit        
 
             #--- Display the frame
-            cv2.imshow('frame', frame)
+            #cv2.imshow('frame', frame)
             print(np.array2string(distance_vector_x)+","+np.array2string(distance_vector_y)+","+np.array2string(distance_vector_z)+"\n")
-            print(average_vector)
+            #print(average_vector)
 
             #--- use 'q' to quit
             key = cv2.waitKey(1) & 0xFF
