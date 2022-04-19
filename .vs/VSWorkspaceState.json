@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\Spring",
-    "\\Spring\\Test_Codes"
+    "\\Spring\\Test_Codes",
+    "\\Spring\\Test_Codes\\OpenCV"
   ],
-  "SelectedNode": "\\Spring\\Test_Codes\\COMPE_496_DroneTesting_DroneKit_00.py",
+  "SelectedNode": "\\Spring\\Test_Codes\\OpenCV\\COMPE_496_DroneTesting_OpenCV_01.py",
   "PreviewInSolutionExplorer": false
 }
