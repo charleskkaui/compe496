@@ -80,7 +80,7 @@ def main():
     arm(vehicle)
     #take_off_now(vehicle,ALTITUDE)
     #vehicle.mode = "LOITER"
-
+    time.sleep(2)
     fly_go(vehicle,1,0,0,2)
     #fly_go(vehicle,-VELOCITY,0,0,DURATION)
     #fly_spin(vehicle,HEADING)
