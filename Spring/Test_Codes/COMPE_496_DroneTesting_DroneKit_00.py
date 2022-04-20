@@ -78,8 +78,7 @@ def fly_spin(vehicle,heading, relative=False):
 def main():
     vehicle = connect_drone()
     arm(vehicle)
-    take_off_now(vehicle,2)
-    time.sleep(2)
+    take_off_now(vehicle,2)   
     #vehicle.mode = "LOITER"
     #fly_go(vehicle,1,0,0,2)
     #fly_go(vehicle,-VELOCITY,0,0,DURATION)
@@ -87,9 +86,8 @@ def main():
     #fly_go(vehicle,0,VELOCITY,0,DURATION)
     #fly_go(vehicle,0,-VELOCITY,0,DURATION)
     #fly_spin(vehicle,-HEADING)
-    time.sleep(2)
+    time.sleep(15)
     #send_global_velocity(0, VELOCITY, 0, DURATION)
-
     #send_global_velocity(0, VELOCITY, 0, DURATION)
     land_now(vehicle)
     disarm(vehicle)
