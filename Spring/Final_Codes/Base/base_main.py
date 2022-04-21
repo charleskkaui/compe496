@@ -52,10 +52,13 @@ def main():
     global s 
     global received 
 
+    latch()
+
     #INSTANTIATE BLUETOOTH
     s = BluetoothServer(data_received)
     
     received = "0"
+
     
     while True:
         #COPY CODE TO CHECK SENSORS HERE
