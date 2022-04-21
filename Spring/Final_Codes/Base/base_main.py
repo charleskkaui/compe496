@@ -59,12 +59,11 @@ def main():
     
     received = "0"
 
-    GPIO.output(RELAY_01,0)
-    GPIO.output(RELAY_02,0)
+    GPIO.output(RELAY_04,0)            
+    GPIO.output(RELAY_03,0)            
     time.sleep(1)
-    GPIO.output(RELAY_03,1)
-    GPIO.output(RELAY_04,1)
-
+    GPIO.output(RELAY_02,1)             
+    GPIO.output(RELAY_01,1)
     
     while True:
         #COPY CODE TO CHECK SENSORS HERE
