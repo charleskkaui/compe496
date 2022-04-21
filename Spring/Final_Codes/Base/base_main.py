@@ -52,12 +52,18 @@ def main():
     global s 
     global received 
 
-    latch()
+   
 
     #INSTANTIATE BLUETOOTH
     s = BluetoothServer(data_received)
     
     received = "0"
+
+    GPIO.output(RELAY_01,0)
+    GPIO.output(RELAY_02,0)
+    time.sleep(1)
+    GPIO.output(RELAY_03,1)
+    GPIO.output(RELAY_04,1)
 
     
     while True:
