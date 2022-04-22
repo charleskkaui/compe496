@@ -53,8 +53,8 @@ def main():
     distance_vector_z = np.zeros(1)
 
     #--- Define Tag
-    id_to_find  = 238
-    marker_size  = 6 #- [cm]
+    id_to_find  = 325
+    marker_size  = 8 #- [cm]
 
     DURATION = 5
 

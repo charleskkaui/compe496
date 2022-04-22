@@ -4,6 +4,9 @@ import cv2.aruco as aruco
 import sys, time, math
 from datetime import datetime
 import os.path
+from dronekit import connect, Command, LocationGlobal
+from pymavlink import mavutil
+import time,sys,argparse,math
 
 # Checks if a matrix is a valid rotation matrix.
 def isRotationMatrix(R):
@@ -34,7 +37,84 @@ def rotationMatrixToEulerAngles(R):
 
     return np.array([x, y, z])
 
+def connect_drone():
+    print("CONNECTING...")
+    return connect(CONNECTION_STRING, wait_ready=True, baud=CONNECTION_BAUDRATE)
+    #connect() utilizes another function vehicle.wait_ready() which prevents the return of connect() until the connection is confirmed 
+
+def arm(vehicle):
+    print("ARMING DRONE")
+    vehicle.mode = "GUIDED"
+    time.sleep(1)
+    vehicle.armed = True
+    time.sleep(1)
+    print("DRONE ARMED")
+
+def disarm(vehicle):
+    print("DISARMING DRONE")
+    time.sleep(1)
+    vehicle.armed = False
+    time.sleep(1)
+    print("DRONE DISARMED")
+
+def take_off_now(vehicle,TargetAltitude):
+    vehicle.simple_takeoff(TargetAltitude)
+    while vehicle.location.global_relative_frame.alt<=TargetAltitude*0.70:
+        print (" Altitude: ", vehicle.location.global_relative_frame.alt)
+        time.sleep(5)
+    print("ALTITUDE REACHED")
+
+def land_now(vehicle):
+    print("Im supposed to land")
+    vehicle.mode = "LAND"
+
+def fly_go(vehicle,velocity_x, velocity_y, velocity_z, duration):
+    msg = vehicle.message_factory.set_position_target_local_ned_encode(
+        0,
+        0, 0,
+        mavutil.mavlink.MAV_FRAME_LOCAL_NED, # frame
+        0b0000111111000111, # type_mask (only speeds enabled)
+        0, 0, 0,
+        velocity_x, velocity_y, velocity_z, # x, y, z velocity in m/s
+        0, 0, 0,
+        0, 0)
+
+    for x in range(0,duration):
+        vehicle.send_mavlink(msg)
+        time.sleep(1)
+
+def fly_spin(vehicle,heading, relative=False):
+    if relative:
+        is_relative=1 #yaw relative to direction of travel
+    else:
+        is_relative=0 #yaw is an absolute angle
+    # create the CONDITION_YAW command using command_long_encode()
+    msg = vehicle.message_factory.command_long_encode(
+        0, 0,    # target system, target component
+        mavutil.mavlink.MAV_CMD_CONDITION_YAW, #command
+        0, #confirmation
+        heading,    # param 1, yaw in degrees
+        0,          # param 2, yaw speed deg/s
+        1,          # param 3, direction -1 ccw, 1 cw
+        is_relative, # param 4, relative offset 1, absolute angle 0
+        0, 0, 0)    # param 5 ~ 7 not used
+    # send command to vehicle
+    vehicle.send_mavlink(msg)
+
 def main():
+
+    #sim_vehicle.py -v ArduCopter -f quad --map --console -L SDSU
+    CONNECTION_BAUDRATE = 57600
+    CONNECTION_STRING = '/dev/ttyAMA1' #COnnection String for the Drone
+    CONNECTION_STRING_DRONEKITSITL = 'udp:127.0.0.1:14551' #Connection String for the Simulation
+    VELOCITY = 1
+    DURATION = 1
+    HEADING = 180
+    ALTITUDE = 1
+
+    TARGET_X = 5
+    TARGET_Y = 9
+    TARGET_Z = 50
     
     #creating file for data
     now = datetime.now()
@@ -163,6 +243,17 @@ def main():
         #--- Display the frame
         cv2.imshow('frame', frame)
         print(np.array2string(distance_vector_x)+","+np.array2string(distance_vector_y)+","+np.array2string(distance_vector_z)+"\n")
+        
+        if distance_vector_x > TARGET_X + 2: 
+            fly_go(vehicle,1,0,0,1) #ROLL_FORWARD
+        elif distance_vector_x < TARGET_X - 2: 
+            fly_go(vehicle,-1,0,0,1) #ROLL BACKWARD GO BACK
+        elif distance_vector_y > TARGET_Y + 2: #IF WE ARE RIGHT
+            fly_go(vehicle,0,1,0,1) #PITCH FORWARD GO LEFT
+        elif distance_vector_y < TARGET_Y - 2: #IF WE ARE LEFT
+            fly_go(vehicle,0,-1,0,1) #PITCHBACKWARD GO RIGHT
+            
+
         #print(average_vector)
 
         #--- use 'q' to quit
