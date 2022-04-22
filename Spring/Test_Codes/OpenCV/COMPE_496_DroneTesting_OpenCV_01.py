@@ -91,7 +91,6 @@ def main():
     #-- Font for the text in the image
     font = cv2.FONT_HERSHEY_PLAIN
 
-
     while True:
 
         #-- Read the camera frame

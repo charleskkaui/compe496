@@ -112,7 +112,7 @@ def main():
     HEADING = 180
     ALTITUDE = 1
 
-    TARGET_X = 5
+    TARGET_X = 10
     TARGET_Y = 9
     TARGET_Z = 50
     
