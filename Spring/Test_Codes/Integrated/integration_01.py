@@ -252,7 +252,6 @@ def main():
         ###Z positive is down 
         ###(-7,6-110)
 
-        time.sleep(0.1)
         print("Precission: ", precission, end=" :")
         if distance_vector_z > TARGET_Z:
             #land_now(vehicle)
@@ -273,6 +272,8 @@ def main():
             else:
                 #fly_go(vehicle,0,0,1,1)
                 print("GO DOWN")
+                #time.sleep(1)
+                #precisssion -= 1
                 
 
         if  distance_vector_z > -500:
