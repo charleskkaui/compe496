@@ -275,7 +275,7 @@ def main():
                 #fly_go(vehicle,0,0,1,1)
                 print("GO DOWN")
                 precission -= 1
-                time.sleep(1)
+                #time.sleep(1)
 
         
 
