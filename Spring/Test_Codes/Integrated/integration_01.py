@@ -233,26 +233,48 @@ def main():
                 distance_y_arr[count] = distance_vector_y
                 distance_z_arr[count] = abs(distance_vector_z)
             
-            
             distance_vector_disp = "Drone must travel: x=%4.0f  y=%4.0f  z=%4.0f"%(average_vector[0],average_vector[1],average_vector[2])
             cv2.putText(frame, distance_vector_disp, (0, 150), font, 1, (0, 255, 0), 2, cv2.LINE_AA)
         
-                
+            
         #WHEN THE ARUCO IS NOT IN VIEW VALUES SHOULD READ XXX or osmeshit        
+
 
         #--- Display the frame
         cv2.imshow('frame', frame)
         print(np.array2string(distance_vector_x)+","+np.array2string(distance_vector_y)+","+np.array2string(distance_vector_z)+"\n")
         
+
+        ###X values go positive when drone goes left
+        ###X values go negative when drone goes right
+        ###Y forward positive
+        ###Y backward negative
+        ###Z negtive is up
+        ###Z positive is down 
+        ###(-7,6-110)
+
         if distance_vector_x > TARGET_X + 2: 
-            fly_go(vehicle,1,0,0,1) #ROLL_FORWARD
+            #fly_go(vehicle,1,0,0,1) #ROLL_FORWARD
+            print("GO RIGHT")
         elif distance_vector_x < TARGET_X - 2: 
-            fly_go(vehicle,-1,0,0,1) #ROLL BACKWARD GO BACK
+            #fly_go(vehicle,-1,0,0,1) #ROLL BACKWARD GO BACK
+            print("GO LEFT")
         elif distance_vector_y > TARGET_Y + 2: #IF WE ARE RIGHT
-            fly_go(vehicle,0,1,0,1) #PITCH FORWARD GO LEFT
+            #fly_go(vehicle,0,1,0,1) #PITCH FORWARD GO LEFT
+            print("GO BACK")
         elif distance_vector_y < TARGET_Y - 2: #IF WE ARE LEFT
-            fly_go(vehicle,0,-1,0,1) #PITCHBACKWARD GO RIGHT
-            
+            #fly_go(vehicle,0,-1,0,1) #PITCHBACKWARD GO RIGHT
+            print("GO FORWARD")
+        else:
+            #fly_go(vehicle,0,0,1,1)
+            print("GO DOWN")
+
+        if distance_vector_z < TARGET_Z:
+            #land_now(vehicle)
+            print("TIME TO LAND")
+        
+
+
 
         #print(average_vector)
 
