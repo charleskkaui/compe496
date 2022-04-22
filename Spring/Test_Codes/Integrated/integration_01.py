@@ -115,7 +115,7 @@ def main():
     TARGET_X = -7
     TARGET_Y = 6
     TARGET_Z = -110
-    TARGET_PRECISSION = 2
+    TARGET_PRECISSION = 7
     precission = 20
     
     #creating file for data
