@@ -253,7 +253,7 @@ def main():
         ###(-7,6-110)
 
         time.sleep(0.1)
-        print("Precission: " precission , end=" :")
+        print("Precission: " + precission , end=" :")
         if distance_vector_z > TARGET_Z:
             #land_now(vehicle)
             print("TIME TO LAND")
