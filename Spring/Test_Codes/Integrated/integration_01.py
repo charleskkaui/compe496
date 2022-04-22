@@ -273,10 +273,19 @@ def main():
             else:
                 #fly_go(vehicle,0,0,1,1)
                 print("GO DOWN")
-                if precission <= TARGET_PRECISSION:
-                    precission = TARGET_PRECISSION
-                else:
-                    precission -= 1
+                
+
+        if  distance_vector_z > -500:
+            precission = 30
+        elif distance_vector_z > -400:
+            precission = 25
+        elif distance_vector_z > -300:
+            precission = 20
+        elif distance_vector_z > -200:
+            precission = 15
+        else:
+            precission = 10
+                
 
                     ####GET THE PRECISSION TO SCALE DOWN WITH THE ALTITUDE
 
