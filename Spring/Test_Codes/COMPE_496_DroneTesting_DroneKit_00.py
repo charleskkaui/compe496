@@ -83,6 +83,7 @@ def main():
     #fly_go(vehicle,1,0,0,2)
     #fly_go(vehicle,-VELOCITY,0,0,DURATION)
     #fly_spin(vehicle,HEADING)
+    time.sleep(10)
     #fly_go(vehicle,0,VELOCITY,0,DURATION)
     #fly_go(vehicle,0,-VELOCITY,0,DURATION)
     #fly_spin(vehicle,-HEADING)
