@@ -119,7 +119,7 @@ def main():
     #creating file for data
     now = datetime.now()
     save_path = "/home/pi/compe496/Spring/Test_Codes/OpenCV/TestData"
-    file_name = "DistanceVector_"+now.strftime("%Y")+"_"+now.strftime("%m")+"_"+now.strftime("%d")+"_"+now.strftime("%H")+"_"+now.strftime("%M")+".txt"
+    file_name = "IntegrationTestData_"+now.strftime("%Y")+"_"+now.strftime("%m")+"_"+now.strftime("%d")+"_"+now.strftime("%H")+"_"+now.strftime("%M")+".txt"
     complete_filename = os.path.join(save_path,file_name)
     
     try:
