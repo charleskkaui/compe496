@@ -291,7 +291,7 @@ def main():
         #print(average_vector)
 
         #--- use 'q' to quit
-        key = cv2.wafitKey(1) & 0xFF
+        key = cv2.waitKey(1) & 0xFF
         if key == ord('q'):
             cap.release()
             cv2.destroyAllWindows()
