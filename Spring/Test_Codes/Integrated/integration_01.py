@@ -253,25 +253,26 @@ def main():
         ###Z positive is down 
         ###(-7,6-110)
 
-        if distance_vector_x > TARGET_X + 2: 
-            #fly_go(vehicle,1,0,0,1) #ROLL_FORWARD
-            print("GO RIGHT")
-        elif distance_vector_x < TARGET_X - 2: 
-            #fly_go(vehicle,-1,0,0,1) #ROLL BACKWARD GO BACK
-            print("GO LEFT")
-        elif distance_vector_y > TARGET_Y + 2: #IF WE ARE RIGHT
-            #fly_go(vehicle,0,1,0,1) #PITCH FORWARD GO LEFT
-            print("GO BACK")
-        elif distance_vector_y < TARGET_Y - 2: #IF WE ARE LEFT
-            #fly_go(vehicle,0,-1,0,1) #PITCHBACKWARD GO RIGHT
-            print("GO FORWARD")
-        else:
-            #fly_go(vehicle,0,0,1,1)
-            print("GO DOWN")
-
-        if distance_vector_z < TARGET_Z:
+        if distance_vector_z > TARGET_Z:
             #land_now(vehicle)
             print("TIME TO LAND")
+        else:
+            if distance_vector_x > TARGET_X + 2: 
+                #fly_go(vehicle,1,0,0,1) #ROLL_FORWARD
+                print("GO RIGHT")
+            elif distance_vector_x < TARGET_X - 2: 
+                #fly_go(vehicle,-1,0,0,1) #ROLL BACKWARD GO BACK
+                print("GO LEFT")
+            elif distance_vector_y > TARGET_Y + 2: #IF WE ARE RIGHT
+                #fly_go(vehicle,0,1,0,1) #PITCH FORWARD GO LEFT
+                print("GO BACK")
+            elif distance_vector_y < TARGET_Y - 2: #IF WE ARE LEFT
+                #fly_go(vehicle,0,-1,0,1) #PITCHBACKWARD GO RIGHT
+                print("GO FORWARD")
+            else:
+                #fly_go(vehicle,0,0,1,1)
+                print("GO DOWN")
+
         
 
 
