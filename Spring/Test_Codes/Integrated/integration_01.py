@@ -276,7 +276,7 @@ def main():
             else:
                 #fly_go(vehicle,0,0,1,1)
                 print("GO DOWN")
-                if precission < TARGET_PRECISSION:
+                if precission <= TARGET_PRECISSION:
                     precission = TARGET_PRECISSION
                 else:
                     precission -= 1
