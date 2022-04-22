@@ -112,9 +112,9 @@ def main():
     HEADING = 180
     ALTITUDE = 1
 
-    TARGET_X = 10
-    TARGET_Y = 9
-    TARGET_Z = 50
+    TARGET_X = -7
+    TARGET_Y = 6
+    TARGET_Z = -110
     
     #creating file for data
     now = datetime.now()
