@@ -238,15 +238,12 @@ def main():
             distance_vector_disp = "Drone must travel: x=%4.0f  y=%4.0f  z=%4.0f"%(average_vector[0],average_vector[1],average_vector[2])
             cv2.putText(frame, distance_vector_disp, (0, 150), font, 1, (0, 255, 0), 2, cv2.LINE_AA)
         
-            
         #WHEN THE ARUCO IS NOT IN VIEW VALUES SHOULD READ XXX or osmeshit        
-
 
         #--- Display the frame
         cv2.imshow('frame', frame)
         print(np.array2string(distance_vector_x)+","+np.array2string(distance_vector_y)+","+np.array2string(distance_vector_z)+"\n")
         
-
         ###X values go positive when drone goes left
         ###X values go negative when drone goes right
         ###Y forward positive
@@ -255,7 +252,7 @@ def main():
         ###Z positive is down 
         ###(-7,6-110)
 
-        time.sleep(0.5)
+        time.sleep(0.1)
 
         if distance_vector_z > TARGET_Z:
             #land_now(vehicle)
@@ -282,11 +279,6 @@ def main():
                     precission -= 1
 
                     ####GET THE PRECISSION TO SCALE DOWN WITH THE ALTITUDE
-                
-
-        
-
-
 
         #print(average_vector)
 
