@@ -256,6 +256,9 @@ def main():
         if distance_vector_z > TARGET_Z:
             #land_now(vehicle)
             print("TIME TO LAND")
+            cap.release()
+            cv2.destroyAllWindows()
+            myfile.close()
         else:
             if distance_vector_x > TARGET_X + precission: 
                 #fly_go(vehicle,1,0,0,1) #ROLL_FORWARD
@@ -288,7 +291,7 @@ def main():
             precission = 10
                 
 
-                    ####GET THE PRECISSION TO SCALE DOWN WITH THE ALTITUDE
+        ####GET THE PRECISSION TO SCALE DOWN WITH THE ALTITUDE
 
         #print(average_vector)
 
