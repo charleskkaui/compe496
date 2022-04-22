@@ -115,7 +115,7 @@ def main():
     TARGET_X = -7
     TARGET_Y = 6
     TARGET_Z = -110
-    
+    TARGET_PRECISSION = 2
     precission = 20
     
     #creating file for data
@@ -276,7 +276,12 @@ def main():
             else:
                 #fly_go(vehicle,0,0,1,1)
                 print("GO DOWN")
-                precission -= 1
+                if precission < TARGET_PRECISSION:
+                    precission = TARGET_PRECISSION
+                else:
+                    precission -= 1
+
+                    ####GET THE PRECISSION TO SCALE DOWN WITH THE ALTITUDE
                 
 
         
@@ -286,7 +291,7 @@ def main():
         #print(average_vector)
 
         #--- use 'q' to quit
-        key = cv2.waitKey(1) & 0xFF
+        key = cv2.wafitKey(1) & 0xFF
         if key == ord('q'):
             cap.release()
             cv2.destroyAllWindows()
