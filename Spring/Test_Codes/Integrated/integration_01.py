@@ -115,6 +115,7 @@ def main():
     TARGET_X = -7
     TARGET_Y = 6
     TARGET_Z = -110
+    PRECISSION = 5
     
     #creating file for data
     now = datetime.now()
@@ -257,16 +258,16 @@ def main():
             #land_now(vehicle)
             print("TIME TO LAND")
         else:
-            if distance_vector_x > TARGET_X + 2: 
+            if distance_vector_x > TARGET_X + PRECISSION: 
                 #fly_go(vehicle,1,0,0,1) #ROLL_FORWARD
                 print("GO RIGHT")
-            elif distance_vector_x < TARGET_X - 2: 
+            elif distance_vector_x < TARGET_X - PRECISSION: 
                 #fly_go(vehicle,-1,0,0,1) #ROLL BACKWARD GO BACK
                 print("GO LEFT")
-            elif distance_vector_y > TARGET_Y + 2: #IF WE ARE RIGHT
+            elif distance_vector_y > TARGET_Y + PRECISSION: #IF WE ARE RIGHT
                 #fly_go(vehicle,0,1,0,1) #PITCH FORWARD GO LEFT
                 print("GO BACK")
-            elif distance_vector_y < TARGET_Y - 2: #IF WE ARE LEFT
+            elif distance_vector_y < TARGET_Y - PRECISSION: #IF WE ARE LEFT
                 #fly_go(vehicle,0,-1,0,1) #PITCHBACKWARD GO RIGHT
                 print("GO FORWARD")
             else:
