@@ -131,7 +131,7 @@ def main():
     #vehicle.mode = "LOITER"
     fly_go(vehicle,0,0,0,1)
     fly_spin(vehicle,0,True)
-    time.sleep(5)
+    time.sleep(3)
     #fly_go(vehicle,0,1,0,1)
     #time.sleep(5)
     #vehicle.simple_goto(my_location_alt)
