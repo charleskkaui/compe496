@@ -112,6 +112,8 @@ def main():
     TARGET_PRECISSION = 7
     precission = 20
 
+    corrector = 0
+
     vehicle = connect_drone(CONNECTION_STRING,CONNECTION_BAUDRATE)
     
 
@@ -276,18 +278,23 @@ def main():
             else:
                 if distance_vector_x > TARGET_X + precission: 
                     fly_go(vehicle,0,-0.5,0,1) #ROLL_FORWARD
+                    corrector = 1
                     print("GO RIGHT")
                 elif distance_vector_x < TARGET_X - precission: 
                     fly_go(vehicle,0,0.5,0,1) #ROLL BACKWARD GO BACK
+                    corrector = 2
                     print("GO LEFT")
                 elif distance_vector_y > TARGET_Y + precission: #IF WE ARE RIGHT
                     fly_go(vehicle,0.5,0,0,1) #PITCH FORWARD GO LEFT
+                    corrector = 3
                     print("GO BACK")
                 elif distance_vector_y < TARGET_Y - precission: #IF WE ARE LEFT
                     fly_go(vehicle,-0.5,0,0,1) #PITCHBACKWARD GO RIGHT
+                    corrector = 4
                     print("GO FORWARD")
                 else:
                     fly_go(vehicle,0,0,1,1)
+                    corrector = 0
                     print("GO DOWN")
                     #time.sleep(1)
                     #precisssion -= 1
@@ -317,6 +324,21 @@ def main():
         
         
         #print(average_vector)
+
+        if corrector == 1: 
+            fly_go(vehicle,0,0.5,0,1) #ROLL_FORWARD
+            print("GO RIGHT")
+        elif corrector == 2: 
+            fly_go(vehicle,0,-0.5,0,1) #ROLL BACKWARD GO BACK
+            print("GO LEFT")
+        elif  corrector == 3: #IF WE ARE RIGHT
+            fly_go(vehicle,-0.5,0,0,1) #PITCH FORWARD GO LEFT
+            print("GO BACK")
+        elif corrector == 4: #IF WE ARE LEFT
+            fly_go(vehicle,0.5,0,0,1) #PITCHBACKWARD GO RIGHT
+            print("GO FORWARD")
+        else:
+            pass
         
         
         
