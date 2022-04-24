@@ -140,9 +140,9 @@ def main():
     distance_vector_x = np.zeros(1)
     distance_vector_y = np.zeros(1)
     distance_vector_z = np.zeros(1)
-    distance_x_arr = np.zeros(20)
-    distance_y_arr = np.zeros(20)
-    distance_z_arr = np.zeros(20)
+    distance_x_arr = np.zeros(10)
+    distance_y_arr = np.zeros(10)
+    distance_z_arr = np.zeros(10)
     count=0
     average_vector = (0,0,0)
     error_level = 0
@@ -224,13 +224,13 @@ def main():
             #distance_vector_disp = "Raw Drone Travel Values: x=%4.0f  y=%4.0f  z=%4.0f"%(distance_vector_x, distance_vector_y, distance_vector_z)
             #cv2.putText(frame, distance_vector_disp, (0, 100), font, 1, (0, 255, 0), 2, cv2.LINE_AA)
             
-            if count >= 19:
+            if count >= 9:
                 arr = np.sort(distance_x_arr)
-                average_x = np.average(arr[4:14])
+                average_x = np.average(arr[2:8])
                 arr = np.sort(distance_y_arr)
-                average_y = np.average(arr[4:14])
+                average_y = np.average(arr[2:8])
                 arr = np.sort(distance_z_arr)
-                average_z = np.average(arr[4:14])
+                average_z = np.average(arr[2:8])
                 average_vector = (average_x*-1,average_y,average_z*-1)
                 count = 0
                 distance_x_arr[count] = distance_vector_x
