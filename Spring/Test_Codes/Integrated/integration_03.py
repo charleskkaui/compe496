@@ -278,6 +278,7 @@ def main():
                         print("GO DOWN")
                     elif average_vector[2] >= zmin+precission+10:
                         velocityz = VELOCITY
+                        print("GO DOWN CUZ UP")
                     else:
                         velocityz = 0
 
