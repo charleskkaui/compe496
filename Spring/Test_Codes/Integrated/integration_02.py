@@ -116,11 +116,11 @@ def main():
     
 
 
-    print("\nSet new home location")
-    # Home location must be within 50km of EKF home location (or setting will fail silently)
-    # In this case, just set value to current location with an easily recognisable altitude (222)
-    my_location_alt = vehicle.location.global_frame
-    my_location_alt.alt = 2
+    #print("\nSet new home location")
+    ## Home location must be within 50km of EKF home location (or setting will fail silently)
+    ## In this case, just set value to current location with an easily recognisable altitude (222)
+    #my_location_alt = vehicle.location.global_frame
+    #my_location_alt.alt = 2
 
 
     arm(vehicle)
@@ -128,8 +128,8 @@ def main():
     #vehicle.mode = "LOITER"
     fly_go(vehicle,0,0,0,1)
     fly_spin(vehicle,0,True)
-    time.sleep(5)
-    vehicle.simple_goto(my_location_alt)
+    #time.sleep(5)
+    #vehicle.simple_goto(my_location_alt)
     
     #creating file for data
     now = datetime.now()
