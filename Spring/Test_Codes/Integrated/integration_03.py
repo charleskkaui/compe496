@@ -304,7 +304,7 @@ def main():
             if average_vector[2] != 0:
                 ###IF WE CANNOT FIND THE ARUCO WE SHOULD GO BACK THE LAST DIRECTION FOR 2s
                 if error_level == 0:
-                    print("LOST ARUCO ERROR LEVEL: ",error_level," cnt: ", error_level_0_cnt)
+                    print("LOST ARUCO ERROR LEVEL: ",error_level," cnt: ", error_level_0_cnt,end=" ")
                     #if error_level_0_cnt >= 2:
                     #    fly_go(vehicle,velocityx*-1,velocityy*-1,0,1)
                     #    error_level_0_cnt = 1
@@ -334,7 +334,7 @@ def main():
         #--- Display the frame
         #cv2.imshow('frame', frame)
         #print(np.array2string(distance_vector_x)+","+np.array2string(distance_vector_y)+","+np.array2string(distance_vector_z)+"\n")
-        print(average_vector)
+        print("\n",average_vector)
 
         #--- use 'q' to quit
         key = cv2.waitKey(1) & 0xFF
