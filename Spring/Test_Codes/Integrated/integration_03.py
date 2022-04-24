@@ -113,7 +113,7 @@ def main():
     #CONSTANTS_ARUCO_POSITION
     TARGET_X = 8
     TARGET_Y = 15
-    TARGET_Z = -115
+    TARGET_Z = -150
     #CONSTANTS_PRECISSION_LANDING
     TARGET_PRECISSION = 7
     precission = 20
@@ -285,15 +285,15 @@ def main():
                     
                 
                 if  average_vector[2] < -500:
-                    precission = 30
+                    precission = 35
                 elif average_vector[2] < -400:
-                    precission = 25
-                elif average_vector[2] < -300:
                     precission = 20
-                elif average_vector[2] < -200:
+                elif average_vector[2] < -300:
                     precission = 15
-                else:
+                elif average_vector[2] < -200:
                     precission = 10
+                else:
+                    precission = 5
 
                 if zmin > average_vector[2]:
                     zmin = average_vector[2]
