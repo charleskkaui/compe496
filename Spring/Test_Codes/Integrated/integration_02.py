@@ -302,13 +302,13 @@ def main():
                 
 
             if  distance_vector_z < -500:
-                precission = 50
-            elif distance_vector_z < -400:
                 precission = 40
-            elif distance_vector_z < -300:
+            elif distance_vector_z < -400:
                 precission = 30
-            elif distance_vector_z < -200:
+            elif distance_vector_z < -300:
                 precission = 20
+            elif distance_vector_z < -200:
+                precission = 10
             else:
                 precission = 10
                 
