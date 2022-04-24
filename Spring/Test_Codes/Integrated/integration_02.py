@@ -248,7 +248,62 @@ def main():
         #--- Display the frame
         cv2.imshow('frame', frame)
         print(np.array2string(distance_vector_x)+","+np.array2string(distance_vector_y)+","+np.array2string(distance_vector_z)+"\n")
+        
+        
         #print(average_vector)
+        
+        
+        ###X values go positive when drone goes left
+        ###X values go negative when drone goes right
+        ###Y forward positive
+        ###Y backward negative
+        ###Z negtive is up
+        ###Z positive is down 
+        ###(-7,6-110)
+
+        print("Precission: ", precission, end=" :")
+        if distance_vector_z > TARGET_Z:
+            #land_now(vehicle)
+            print("TIME TO LAND")
+            cap.release()
+            cv2.destroyAllWindows()
+            myfile.close()
+        else:
+            if distance_vector_x > TARGET_X + precission: 
+                #fly_go(vehicle,1,0,0,1) #ROLL_FORWARD
+                print("GO RIGHT")
+            elif distance_vector_x < TARGET_X - precission: 
+                #fly_go(vehicle,-1,0,0,1) #ROLL BACKWARD GO BACK
+                print("GO LEFT")
+            elif distance_vector_y > TARGET_Y + precission: #IF WE ARE RIGHT
+                #fly_go(vehicle,0,-1,0,1) #PITCH FORWARD GO LEFT
+                print("GO BACK")
+            elif distance_vector_y < TARGET_Y - precission: #IF WE ARE LEFT
+                #fly_go(vehicle,0,1,0,1) #PITCHBACKWARD GO RIGHT
+                print("GO FORWARD")
+            else:
+                #fly_go(vehicle,0,0,1,1)
+                print("GO DOWN")
+                #time.sleep(1)
+                #precisssion -= 1
+                
+
+        if  distance_vector_z < -500:
+            precission = 50
+        elif distance_vector_z < -400:
+            precission = 40
+        elif distance_vector_z < -300:
+            precission = 30
+        elif distance_vector_z < -200:
+            precission = 20
+        else:
+            precission = 10
+                
+
+        ####GET THE PRECISSION TO SCALE DOWN WITH THE ALTITUDE
+
+
+
 
         #--- use 'q' to quit
         key = cv2.waitKey(1) & 0xFF
