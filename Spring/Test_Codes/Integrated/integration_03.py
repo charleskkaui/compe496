@@ -276,7 +276,7 @@ def main():
                     if(velocityx == 0 and velocityy == 0):
                         velocityz = VELOCITY
                         print("GO DOWN")
-                    elif average_vector[2] >= zmin+precission+10:
+                    elif average_vector[2] > zmin-precission-5:
                         velocityz = VELOCITY
                         print("GO DOWN CUZ UP")
                     else:
