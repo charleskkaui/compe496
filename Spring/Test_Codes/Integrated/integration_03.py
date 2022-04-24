@@ -134,7 +134,6 @@ def main():
     except:
         exit("The File cannot be created")
 
-    
     velocityx = 0
     velocityy = 0
     velocityz = 0
@@ -146,6 +145,8 @@ def main():
     distance_z_arr = np.zeros(20)
     count=0
     average_vector = (-5,-5,-5)
+    error_level = 0
+    error_level_0_cnt = 2
 
 
 
@@ -244,35 +245,36 @@ def main():
             #cv2.putText(frame, distance_vector_disp, (0, 150), font, 1, (0, 255, 0), 2, cv2.LINE_AA)
         
             print("Precission: ", precission, end=" :")
-            if distance_vector_z > TARGET_Z:
+            if average_vector[2] > TARGET_Z:
                 print("TIME TO LAND")
-                #land_now(vehicle)
+                land_now(vehicle)
                 #cap.release()
                 #cv2.destroyAllWindows()
                 #myfile.close()
             else:
                 if average_vector[0] > TARGET_X + precission:
                     velocityy = VELOCITY
-                    print("GO RIGHT")
+                    print("GO RIGHT", end=" :")
                 elif average_vector[0] < TARGET_X - precission:
                     velocityy = -VELOCITY
-                    print("GO LEFT")
+                    print("GO LEFT", end=" :")
                 else:
                     velocityy = 0
-                    print("L/R OK")
+                    print("L/R OK", end=" :")
 
                 if average_vector[1] > TARGET_Y + precission:
                     velocityx = -VELOCITY
-                    print("GO BACK")
+                    print("GO BACK", end=" :")
                 elif average_vector[1] < TARGET_Y - precission:
                     velocityx = VELOCITY
-                    print("GO FORWARD")
+                    print("GO FORWARD", end=" :")
                 else:
                     velocityx = 0
-                    print("F/B OK")
+                    print("F/B OK", end=" :")
 
                 if(velocityx == 0 and velocityy == 0):
                     velocityz = VELOCITY
+                    print("GO DOWN")
                 elif average_vector[2] >= zmin+precission+10:
                     velocityz = VELOCITY
                 else:
@@ -300,6 +302,7 @@ def main():
         else:
             ###IF WE CANNOT FIND THE ARUCO WE SHOULD GO BACK THE LAST DIRECTION FOR 2s
             if error_level == 0:
+                print("LOST ARUCO ERROR LEVEL: ",error_level," cnt: ", error_level_0_cnt)
                 if error_level_0_cnt >= 2:
                     fly_go(vehicle,velocityx*-1,velocityy*-1,0,1)
                     error_level_0_cnt = 1
@@ -309,19 +312,21 @@ def main():
                 else:
                     fly_go(vehicle,velocityx,velocityy,velocityz,2)
                     error_level = 1
-            elif error_level == 1:
-                fly_go(vehicle,0,0,0,1)
-                if error_level_0_cnt < 2:
-                    error_cnt += 1
-                else: 
-                    error_level = 2
-            elif error_level == 2:
-                print("REALLY LOST...")
-                fly_go(vehicle,0,0,VELOCITY,1)
-                time.sleep(2)
-            elif error_level == 3:
-                print("SEARCHING FOR MARKER")
-                fly_go(vehicle,0,VELOCITY,0,1)
+                    print("LOST FOREVER")
+                    land_now(vehicle)
+            #elif error_level == 1:
+            #    fly_go(vehicle,0,0,0,1)
+            #    if error_level_0_cnt < 2:
+            #        error_cnt += 1
+            #    else: 
+            #        error_level = 2
+            #elif error_level == 2:
+            #    print("REALLY LOST...")
+            #    fly_go(vehicle,0,0,VELOCITY,1)
+            #    time.sleep(2)
+            #elif error_level == 3:
+            #    print("SEARCHING FOR MARKER")
+            #    fly_go(vehicle,0,VELOCITY,0,1)
 
 
         #--- Display the frame

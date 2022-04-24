@@ -23,3 +23,11 @@ while ids[0] != id_to_find:
         fly_go(vehicle,0,-0.5,0,1)
         durationtime += 1
         search_direction = 1
+
+        
+while durationtime >= currenttime:
+    if ids[0] == id_to_find:
+        im_not_lost = 1
+        break
+    else:
+        fly_go(vehicle,1,0,0,1)
