@@ -130,16 +130,12 @@ def main():
     # In this case, just set value to current location with an easily recognisable altitude (222)
     my_location_alt = vehicle.location.global_frame
     my_location_alt.alt = 2
-    vehicle.home_location = my_location_alt
-    print(" New Home Location (from attribute - altitude should be 222): %s" % vehicle.home_location)
-
+    
     #Confirm current value on vehicle by re-downloading commands
     cmds = vehicle.commands
     cmds.download()
     cmds.wait_ready()
     print(" New Home Location (from vehicle - altitude should be 222): %s" % vehicle.home_location)
-
-
 
     arm(vehicle)
     take_off_now(vehicle,3)   
@@ -147,7 +143,7 @@ def main():
     fly_go(vehicle,0,0,0,1)
     fly_spin(vehicle,0,True)
     time.sleep(5)
-    vehicle.simple_goto(vehicle.home_location)
+    vehicle.simple_goto(my_location_alt)
     
     #creating file for data
     now = datetime.now()
