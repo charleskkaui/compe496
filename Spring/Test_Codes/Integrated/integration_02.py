@@ -111,6 +111,13 @@ def main():
     TARGET_Z = -110
     TARGET_PRECISSION = 7
     precission = 20
+
+    vehicle = connect_drone(CONNECTION_STRING,CONNECTION_BAUDRATE)
+    arm(vehicle)
+    take_off_now(vehicle,2)   
+    #vehicle.mode = "LOITER"
+    fly_go(vehicle,0,0,0,1)
+    fly_spin(vehicle,0,True)
     
     #creating file for data
     now = datetime.now()
@@ -123,6 +130,7 @@ def main():
     except:
         exit("The File cannot be created")
 
+    
 
     distance_vector_x = np.zeros(1)
     distance_vector_y = np.zeros(1)
@@ -166,6 +174,8 @@ def main():
 
     #-- Font for the text in the image
     font = cv2.FONT_HERSHEY_PLAIN
+
+    
 
     while True:
 
