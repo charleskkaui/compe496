@@ -177,12 +177,8 @@ def main():
     arm(vehicle)
     take_off_now(vehicle,2)   
     #vehicle.mode = "LOITER"
-    time.sleep(2)
     fly_go(vehicle,0,0,0,1)
     fly_spin(vehicle,0,True)
-    time.sleep(5)
-
-
 
     while True:
 
