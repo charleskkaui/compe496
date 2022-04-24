@@ -257,7 +257,7 @@ def main():
                 distance_y_arr[count] = distance_vector_y
                 distance_z_arr[count] = abs(distance_vector_z)
             
-            
+        
             distance_vector_disp = "Drone must travel: x=%4.0f  y=%4.0f  z=%4.0f"%(average_vector[0],average_vector[1],average_vector[2])
             cv2.putText(frame, distance_vector_disp, (0, 150), font, 1, (0, 255, 0), 2, cv2.LINE_AA)
         
@@ -268,7 +268,7 @@ def main():
             #Z negtive is up
             ###Z positive is down 
             ###(-7,6-110)
-
+        
             print("Precission: ", precission, end=" :")
             if distance_vector_z > TARGET_Z:
                 print("TIME TO LAND")
@@ -315,7 +315,21 @@ def main():
 
             ####GET THE PRECISSION TO SCALE DOWN WITH THE ALTITUDE
 
-
+        else:
+            if corrector == 1: 
+                fly_go(vehicle,0,VELOCITY,0,1) #ROLL_FORWARD
+                print("LOST: GO LEFT")
+            elif corrector == 2: 
+                fly_go(vehicle,0,-VELOCITY,0,1) #ROLL BACKWARD GO BACK
+                print("LOST: GO RIGHT")
+            elif  corrector == 3: #IF WE ARE RIGHT
+                fly_go(vehicle,-VELOCITY,0,0,1) #PITCH FORWARD GO LEFT
+                print("LOST: GO FORWARD")
+            elif corrector == 4: #IF WE ARE LEFT
+                fly_go(vehicle,VELOCITY,0,0,1) #PITCHBACKWARD GO RIGHT
+                print("LOST: GO BACKWARD")
+            else:
+                pass
 
         #WHEN THE ARUCO IS NOT IN VIEW VALUES SHOULD READ XXX or osmeshit        
 
@@ -326,20 +340,7 @@ def main():
         
         #print(average_vector)
 
-        if corrector == 1: 
-            fly_go(vehicle,0,VELOCITY,0,1) #ROLL_FORWARD
-            print("LOST: GO LEFT")
-        elif corrector == 2: 
-            fly_go(vehicle,0,-VELOCITY,0,1) #ROLL BACKWARD GO BACK
-            print("LOST: GO RIGHT")
-        elif  corrector == 3: #IF WE ARE RIGHT
-            fly_go(vehicle,-VELOCITY,0,0,1) #PITCH FORWARD GO LEFT
-            print("LOST: GO FORWARD")
-        elif corrector == 4: #IF WE ARE LEFT
-            fly_go(vehicle,VELOCITY,0,0,1) #PITCHBACKWARD GO RIGHT
-            print("LOST: GO BACKWARD")
-        else:
-            pass
+        
         
         
         
