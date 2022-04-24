@@ -254,10 +254,10 @@ def main():
                     myfile.close()
                 else:
                     if average_vector[0] > TARGET_X + precission:
-                        velocityy = VELOCITY
+                        velocityy = -VELOCITY
                         print("GO RIGHT", end=" :")
                     elif average_vector[0] < TARGET_X - precission:
-                        velocityy = -VELOCITY
+                        velocityy = VELOCITY
                         print("GO LEFT", end=" :")
                     else:
                         velocityy = 0
