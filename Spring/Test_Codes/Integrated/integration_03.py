@@ -109,7 +109,7 @@ def main():
     CONNECTION_BAUDRATE = 57600
     CONNECTION_STRING = '/dev/ttyAMA1' #COnnection String for the Drone
     VELOCITY = 0.5
-    ALTITUDE_TAKEOFF = 1
+    ALTITUDE_TAKEOFF = 2
     #CONSTANTS_ARUCO_POSITION
     TARGET_X = -7
     TARGET_Y = 6
@@ -303,17 +303,17 @@ def main():
             ###IF WE CANNOT FIND THE ARUCO WE SHOULD GO BACK THE LAST DIRECTION FOR 2s
             if error_level == 0:
                 print("LOST ARUCO ERROR LEVEL: ",error_level," cnt: ", error_level_0_cnt)
-                if error_level_0_cnt >= 2:
-                    fly_go(vehicle,velocityx*-1,velocityy*-1,0,1)
-                    error_level_0_cnt = 1
-                elif error_level_0_cnt == 1:
-                    fly_go(vehicle,velocityx*-1,velocityy*-1,0,1)
-                    error_level_0_cnt = 0
-                else:
-                    fly_go(vehicle,velocityx,velocityy,velocityz,2)
-                    error_level = 1
-                    print("LOST FOREVER")
-                    land_now(vehicle)
+                #if error_level_0_cnt >= 2:
+                #    fly_go(vehicle,velocityx*-1,velocityy*-1,0,1)
+                #    error_level_0_cnt = 1
+                #elif error_level_0_cnt == 1:
+                #    fly_go(vehicle,velocityx*-1,velocityy*-1,0,1)
+                #    error_level_0_cnt = 0
+                #else:
+                #    fly_go(vehicle,velocityx,velocityy,velocityz,2)
+                #    error_level = 1
+                #    print("LOST FOREVER")
+                #    land_now(vehicle)
             #elif error_level == 1:
             #    fly_go(vehicle,0,0,0,1)
             #    if error_level_0_cnt < 2:
