@@ -119,7 +119,7 @@ def main():
     print("\nset new home location")
     # home location must be within 50km of ekf home location (or setting will fail silently)
     # in this case, just set value to current location with an easily recognisable altitude (222)
-    my_location_alt = vehicle.location.global_frame
+    my_location_alt = vehicle.location.global_relative_frame
     my_location_alt.alt = 2
 
 
