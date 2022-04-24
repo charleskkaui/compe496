@@ -278,19 +278,19 @@ def main():
                 #myfile.close()
             else:
                 if distance_vector_x > TARGET_X + precission: 
-                    fly_go(vehicle,0,-VELOCITY,0,1) #ROLL_FORWARD
+                    fly_go(vehicle,0,VELOCITY,0,1) #ROLL_FORWARD
                     corrector = 1
                     print("GO RIGHT")
                 elif distance_vector_x < TARGET_X - precission: 
-                    fly_go(vehicle,0,VELOCITY,0,1) #ROLL BACKWARD GO BACK
+                    fly_go(vehicle,0,-VELOCITY,0,1) #ROLL BACKWARD GO BACK
                     corrector = 2
                     print("GO LEFT")
                 elif distance_vector_y > TARGET_Y + precission: #IF WE ARE RIGHT
-                    fly_go(vehicle,VELOCITY,0,0,1) #PITCH FORWARD GO LEFT
+                    fly_go(vehicle,-VELOCITY,0,0,1) #PITCH FORWARD GO LEFT
                     corrector = 3
                     print("GO BACK")
                 elif distance_vector_y < TARGET_Y - precission: #IF WE ARE LEFT
-                    fly_go(vehicle,-VELOCITY,0,0,1) #PITCHBACKWARD GO RIGHT
+                    fly_go(vehicle,VELOCITY,0,0,1) #PITCHBACKWARD GO RIGHT
                     corrector = 4
                     print("GO FORWARD")
                 else:
@@ -317,16 +317,16 @@ def main():
 
         else:
             if corrector == 1: 
-                fly_go(vehicle,0,VELOCITY,0,1) #ROLL_FORWARD
+                fly_go(vehicle,0,-VELOCITY,0,1) #ROLL_FORWARD
                 print("LOST: GO LEFT")
             elif corrector == 2: 
-                fly_go(vehicle,0,-VELOCITY,0,1) #ROLL BACKWARD GO BACK
+                fly_go(vehicle,0,VELOCITY,0,1) #ROLL BACKWARD GO BACK
                 print("LOST: GO RIGHT")
             elif  corrector == 3: #IF WE ARE RIGHT
-                fly_go(vehicle,-VELOCITY,0,0,1) #PITCH FORWARD GO LEFT
+                fly_go(vehicle,VELOCITY,0,0,1) #PITCH FORWARD GO LEFT
                 print("LOST: GO FORWARD")
             elif corrector == 4: #IF WE ARE LEFT
-                fly_go(vehicle,VELOCITY,0,0,1) #PITCHBACKWARD GO RIGHT
+                fly_go(vehicle,-VELOCITY,0,0,1) #PITCHBACKWARD GO RIGHT
                 print("LOST: GO BACKWARD")
             else:
                 pass
