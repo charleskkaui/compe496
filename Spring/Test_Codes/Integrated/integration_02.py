@@ -270,16 +270,16 @@ def main():
             myfile.close()
         else:
             if distance_vector_x > TARGET_X + precission: 
-                fly_go(vehicle,1,0,0,1) #ROLL_FORWARD
+                fly_go(vehicle,0,1,0,1) #ROLL_FORWARD
                 print("GO RIGHT")
             elif distance_vector_x < TARGET_X - precission: 
-                fly_go(vehicle,-1,0,0,1) #ROLL BACKWARD GO BACK
+                fly_go(vehicle,0,-1,0,1) #ROLL BACKWARD GO BACK
                 print("GO LEFT")
             elif distance_vector_y > TARGET_Y + precission: #IF WE ARE RIGHT
-                fly_go(vehicle,0,-1,0,1) #PITCH FORWARD GO LEFT
+                fly_go(vehicle,-1,0,0,1) #PITCH FORWARD GO LEFT
                 print("GO BACK")
             elif distance_vector_y < TARGET_Y - precission: #IF WE ARE LEFT
-                fly_go(vehicle,0,1,0,1) #PITCHBACKWARD GO RIGHT
+                fly_go(vehicle,1,0,0,1) #PITCHBACKWARD GO RIGHT
                 print("GO FORWARD")
             else:
                 fly_go(vehicle,0,0,1,1)
