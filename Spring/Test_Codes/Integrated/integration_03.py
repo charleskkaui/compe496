@@ -249,8 +249,8 @@ def main():
                 if average_vector[2] > TARGET_Z or vehicle.mode == "LAND":
                     print("TIME TO LAND")
                     land_now(vehicle)
-                    #cap.release()
-                    #cv2.destroyAllWindows()
+                    cap.release()
+                    cv2.destroyAllWindows()
                     myfile.close()
                 else:
                     if average_vector[0] > TARGET_X + precission:
@@ -282,7 +282,7 @@ def main():
                         velocityz = 0
 
                     fly_go(vehicle,velocityx,velocityy,velocityz,1)
-                    time.sleep(5)
+                    
                 
                 if  average_vector[2] < -500:
                     precission = 30
