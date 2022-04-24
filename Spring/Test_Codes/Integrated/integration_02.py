@@ -132,7 +132,9 @@ def main():
     fly_go(vehicle,0,1,0,1)
     time.sleep(5)
     vehicle.simple_goto(my_location_alt)
-    
+    time.sleep(10)
+
+
     #creating file for data
     now = datetime.now()
     save_path = "/home/pi/compe496/Spring/Test_Codes/OpenCV/TestData"
