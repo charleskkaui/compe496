@@ -328,16 +328,16 @@ def main():
 
         if corrector == 1: 
             fly_go(vehicle,0,VELOCITY,0,1) #ROLL_FORWARD
-            print("GO LEFT")
+            print("LOST: GO LEFT")
         elif corrector == 2: 
             fly_go(vehicle,0,-VELOCITY,0,1) #ROLL BACKWARD GO BACK
-            print("GO RIGHT")
+            print("LOST: GO RIGHT")
         elif  corrector == 3: #IF WE ARE RIGHT
             fly_go(vehicle,-VELOCITY,0,0,1) #PITCH FORWARD GO LEFT
-            print("GO FORWARD")
+            print("LOST: GO FORWARD")
         elif corrector == 4: #IF WE ARE LEFT
             fly_go(vehicle,VELOCITY,0,0,1) #PITCHBACKWARD GO RIGHT
-            print("GO BACKWARD")
+            print("LOST: GO BACKWARD")
         else:
             pass
         
