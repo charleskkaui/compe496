@@ -146,6 +146,7 @@ def main():
     #vehicle.mode = "LOITER"
     fly_go(vehicle,0,0,0,1)
     fly_spin(vehicle,0,True)
+    vehicle.simple_goto(vehicle.home_location)
     
     #creating file for data
     now = datetime.now()
