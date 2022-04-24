@@ -248,10 +248,10 @@ def main():
                 print("Precission: ", precission, end=" :")
                 if average_vector[2] > TARGET_Z:
                     print("TIME TO LAND")
-                    #land_now(vehicle)
-                    #cap.release()
-                    #cv2.destroyAllWindows()
-                    #myfile.close()
+                    land_now(vehicle)
+                    cap.release()
+                    cv2.destroyAllWindows()
+                    myfile.close()
                 else:
                     if average_vector[0] > TARGET_X + precission:
                         velocityy = VELOCITY
