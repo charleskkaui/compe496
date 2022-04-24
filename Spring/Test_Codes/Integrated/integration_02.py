@@ -126,6 +126,12 @@ def main():
     #my_location_alt.alt = 2
 
 
+    ###############################
+    ###############################
+    #THE SPEED IS TOO LOW -ROB
+    ###############################
+    ###############################
+
     arm(vehicle)
     take_off_now(vehicle,1)   
     #vehicle.mode = "LOITER"
