@@ -84,13 +84,13 @@ def main():
     fly_go(vehicle,0,0,0,1)
     fly_spin(vehicle,0,True)
     time.sleep(5)
-    fly_go(vehicle,1,0,0,1)
+    fly_go(vehicle,1,0,0,1) #FORWARD
     time.sleep(2)
-    fly_go(vehicle,-1,0,0,1)
+    fly_go(vehicle,-1,0,0,1) #BACKWARD
     time.sleep(2)
-    fly_go(vehicle,0,1,0,1)
+    fly_go(vehicle,0,1,0,1) #RIGHT
     time.sleep(2)
-    fly_go(vehicle,0,-1,0,1)
+    fly_go(vehicle,0,-1,0,1) #LEFT
     time.sleep(2)
     #fly_go(vehicle,-VELOCITY,0,0,DURATION)
     #fly_spin(vehicle,HEADING)

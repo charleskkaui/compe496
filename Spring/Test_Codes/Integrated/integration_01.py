@@ -173,6 +173,15 @@ def main():
     #-- Font for the text in the image
     font = cv2.FONT_HERSHEY_PLAIN
 
+    vehicle = connect_drone()
+    arm(vehicle)
+    take_off_now(vehicle,2)   
+    #vehicle.mode = "LOITER"
+    time.sleep(2)
+    fly_go(vehicle,0,0,0,1)
+    fly_spin(vehicle,0,True)
+    time.sleep(5)
+
 
 
     while True:
@@ -268,10 +277,10 @@ def main():
                 #fly_go(vehicle,-1,0,0,1) #ROLL BACKWARD GO BACK
                 print("GO LEFT")
             elif distance_vector_y > TARGET_Y + precission: #IF WE ARE RIGHT
-                #fly_go(vehicle,0,1,0,1) #PITCH FORWARD GO LEFT
+                #fly_go(vehicle,0,-1,0,1) #PITCH FORWARD GO LEFT
                 print("GO BACK")
             elif distance_vector_y < TARGET_Y - precission: #IF WE ARE LEFT
-                #fly_go(vehicle,0,-1,0,1) #PITCHBACKWARD GO RIGHT
+                #fly_go(vehicle,0,1,0,1) #PITCHBACKWARD GO RIGHT
                 print("GO FORWARD")
             else:
                 #fly_go(vehicle,0,0,1,1)
