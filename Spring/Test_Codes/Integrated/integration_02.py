@@ -263,11 +263,11 @@ def main():
 
         print("Precission: ", precission, end=" :")
         if distance_vector_z > TARGET_Z:
-            #land_now(vehicle)
             print("TIME TO LAND")
-            cap.release()
-            cv2.destroyAllWindows()
-            myfile.close()
+            #land_now(vehicle)
+            #cap.release()
+            #cv2.destroyAllWindows()
+            #myfile.close()
         #else:
         #    if distance_vector_x > TARGET_X + precission: 
         #        fly_go(vehicle,1,0,0,1) #ROLL_FORWARD
