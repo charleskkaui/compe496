@@ -292,7 +292,7 @@ def main():
                 elif average_vector[2] < -200:
                     precission = 15
                 else:
-                    precission = 15
+                    precission = 10
 
                 if zmin > average_vector[2]:
                     zmin = average_vector[2]
