@@ -82,7 +82,7 @@ def main():
     #vehicle.mode = "LOITER"
     time.sleep(2)
     fly_go(vehicle,0,0,0,1)
-    fly_spin(vehicle,0,False)
+    fly_spin(vehicle,0,True)
     time.sleep(5)
     fly_go(vehicle,1,0,0,1)
     time.sleep(2)
