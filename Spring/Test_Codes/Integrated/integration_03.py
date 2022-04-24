@@ -250,7 +250,7 @@ def main():
                     print("TIME TO LAND")
                     land_now(vehicle)
                     cap.release()
-                    cv2.destroyAllWindows()
+                    #cv2.destroyAllWindows()
                     myfile.close()
                 else:
                     if average_vector[0] > TARGET_X + precission:
