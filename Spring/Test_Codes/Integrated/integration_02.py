@@ -114,28 +114,14 @@ def main():
 
     vehicle = connect_drone(CONNECTION_STRING,CONNECTION_BAUDRATE)
     
-     # Get Vehicle Home location - will be `None` until first set by autopilot
-    while not vehicle.home_location:
-        cmds = vehicle.commands
-        cmds.download()
-        cmds.wait_ready()
-        if not vehicle.home_location:
-            print(" Waiting for home location ...")
-    # We have a home location, so print it!        
-    print("\n Home location: %s" % vehicle.home_location)
-    # Set vehicle home_location, mode, and armed attributes (the only settable attributes)
+
 
     print("\nSet new home location")
     # Home location must be within 50km of EKF home location (or setting will fail silently)
     # In this case, just set value to current location with an easily recognisable altitude (222)
     my_location_alt = vehicle.location.global_frame
     my_location_alt.alt = 2
-    
-    #Confirm current value on vehicle by re-downloading commands
-    cmds = vehicle.commands
-    cmds.download()
-    cmds.wait_ready()
-    print(" New Home Location (from vehicle - altitude should be 222): %s" % vehicle.home_location)
+
 
     arm(vehicle)
     take_off_now(vehicle,3)   
