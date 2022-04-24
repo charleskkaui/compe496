@@ -37,7 +37,7 @@ def rotationMatrixToEulerAngles(R):
 
     return np.array([x, y, z])
 
-def connect_drone(CONNECTION_STRING):
+def connect_drone(CONNECTION_STRING,CONNECTION_BAUDRATE):
     print("CONNECTING...")
     return connect(CONNECTION_STRING, wait_ready=True, baud=CONNECTION_BAUDRATE)
     #connect() utilizes another function vehicle.wait_ready() which prevents the return of connect() until the connection is confirmed 
@@ -173,7 +173,7 @@ def main():
     #-- Font for the text in the image
     font = cv2.FONT_HERSHEY_PLAIN
 
-    vehicle = connect_drone(CONNECTION_STRING)
+    vehicle = connect_drone(CONNECTION_STRING,CONNECTION_BAUDRATE)
     arm(vehicle)
     take_off_now(vehicle,2)   
     #vehicle.mode = "LOITER"
