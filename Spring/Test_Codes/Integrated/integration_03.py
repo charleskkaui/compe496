@@ -111,9 +111,9 @@ def main():
     VELOCITY = 0.1
     ALTITUDE_TAKEOFF = 2
     #CONSTANTS_ARUCO_POSITION
-    TARGET_X = -7
-    TARGET_Y = 6
-    TARGET_Z = -90
+    TARGET_X = 8
+    TARGET_Y = 15
+    TARGET_Z = -115
     #CONSTANTS_PRECISSION_LANDING
     TARGET_PRECISSION = 7
     precission = 20
