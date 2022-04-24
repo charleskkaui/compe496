@@ -147,6 +147,7 @@ def main():
     average_vector = (-5,-5,-5)
     error_level = 0
     error_level_0_cnt = 2
+    zmin = -500
 
 
 
