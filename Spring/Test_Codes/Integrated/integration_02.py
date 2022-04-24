@@ -294,7 +294,7 @@ def main():
                     corrector = 4
                     print("GO FORWARD")
                 else:
-                    fly_go(vehicle,0,0,1,1)
+                    fly_go(vehicle,0,0,VELOCITY,1)
                     corrector = 0
                     print("GO DOWN")
                     #time.sleep(1)
@@ -302,15 +302,15 @@ def main():
                 
 
             if  distance_vector_z < -500:
-                precission = 40
-            elif distance_vector_z < -400:
                 precission = 30
-            elif distance_vector_z < -300:
+            elif distance_vector_z < -400:
                 precission = 20
+            elif distance_vector_z < -300:
+                precission = 10
             elif distance_vector_z < -200:
-                precission = 10
+                precission = 5
             else:
-                precission = 10
+                precission = 5
                 
 
             ####GET THE PRECISSION TO SCALE DOWN WITH THE ALTITUDE
