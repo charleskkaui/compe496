@@ -144,7 +144,7 @@ def main():
     distance_y_arr = np.zeros(20)
     distance_z_arr = np.zeros(20)
     count=0
-    average_vector = (-5,-5,-5)
+    average_vector = (0,0,0)
     error_level = 0
     error_level_0_cnt = 2
     zmin = -500
@@ -223,7 +223,7 @@ def main():
             
             #distance_vector_disp = "Raw Drone Travel Values: x=%4.0f  y=%4.0f  z=%4.0f"%(distance_vector_x, distance_vector_y, distance_vector_z)
             #cv2.putText(frame, distance_vector_disp, (0, 100), font, 1, (0, 255, 0), 2, cv2.LINE_AA)
-        
+            
             if count >= 19:
                 arr = np.sort(distance_x_arr)
                 average_x = np.average(arr[4:14])
@@ -244,90 +244,91 @@ def main():
         
             #distance_vector_disp = "Drone must travel: x=%4.0f  y=%4.0f  z=%4.0f"%(average_vector[0],average_vector[1],average_vector[2])
             #cv2.putText(frame, distance_vector_disp, (0, 150), font, 1, (0, 255, 0), 2, cv2.LINE_AA)
-        
-            print("Precission: ", precission, end=" :")
-            if average_vector[2] > TARGET_Z:
-                print("TIME TO LAND")
-                land_now(vehicle)
-                #cap.release()
-                #cv2.destroyAllWindows()
-                #myfile.close()
-            else:
-                if average_vector[0] > TARGET_X + precission:
-                    velocityy = VELOCITY
-                    print("GO RIGHT", end=" :")
-                elif average_vector[0] < TARGET_X - precission:
-                    velocityy = -VELOCITY
-                    print("GO LEFT", end=" :")
+            if average_vector[2] != 0:
+                print("Precission: ", precission, end=" :")
+                if average_vector[2] > TARGET_Z:
+                    print("TIME TO LAND")
+                    #land_now(vehicle)
+                    #cap.release()
+                    #cv2.destroyAllWindows()
+                    #myfile.close()
                 else:
-                    velocityy = 0
-                    print("L/R OK", end=" :")
+                    if average_vector[0] > TARGET_X + precission:
+                        velocityy = VELOCITY
+                        print("GO RIGHT", end=" :")
+                    elif average_vector[0] < TARGET_X - precission:
+                        velocityy = -VELOCITY
+                        print("GO LEFT", end=" :")
+                    else:
+                        velocityy = 0
+                        print("L/R OK", end=" :")
 
-                if average_vector[1] > TARGET_Y + precission:
-                    velocityx = -VELOCITY
-                    print("GO BACK", end=" :")
-                elif average_vector[1] < TARGET_Y - precission:
-                    velocityx = VELOCITY
-                    print("GO FORWARD", end=" :")
-                else:
-                    velocityx = 0
-                    print("F/B OK", end=" :")
+                    if average_vector[1] > TARGET_Y + precission:
+                        velocityx = -VELOCITY
+                        print("GO BACK", end=" :")
+                    elif average_vector[1] < TARGET_Y - precission:
+                        velocityx = VELOCITY
+                        print("GO FORWARD", end=" :")
+                    else:
+                        velocityx = 0
+                        print("F/B OK", end=" :")
 
-                if(velocityx == 0 and velocityy == 0):
-                    velocityz = VELOCITY
-                    print("GO DOWN")
-                elif average_vector[2] >= zmin+precission+10:
-                    velocityz = VELOCITY
-                else:
-                    velocityz = 0
+                    if(velocityx == 0 and velocityy == 0):
+                        velocityz = VELOCITY
+                        print("GO DOWN")
+                    elif average_vector[2] >= zmin+precission+10:
+                        velocityz = VELOCITY
+                    else:
+                        velocityz = 0
 
-                fly_go(vehicle,velocityx,velocityy,velocityz,1)
+                    fly_go(vehicle,velocityx,velocityy,velocityz,1)
                 
-            if  average_vector[2] < -500:
-                precission = 30
-            elif average_vector[2] < -400:
-                precission = 25
-            elif average_vector[2] < -300:
-                precission = 20
-            elif average_vector[2] < -200:
-                precission = 15
-            else:
-                precission = 15
+                if  average_vector[2] < -500:
+                    precission = 30
+                elif average_vector[2] < -400:
+                    precission = 25
+                elif average_vector[2] < -300:
+                    precission = 20
+                elif average_vector[2] < -200:
+                    precission = 15
+                else:
+                    precission = 15
 
-            if zmin > average_vector[2]:
-                zmin = average_vector[2]
+                if zmin > average_vector[2]:
+                    zmin = average_vector[2]
 
-            error_level = 0
-            error_level_0_cnt = 2
+                error_level = 0
+                error_level_0_cnt = 2
 
         else:
-            ###IF WE CANNOT FIND THE ARUCO WE SHOULD GO BACK THE LAST DIRECTION FOR 2s
-            if error_level == 0:
-                print("LOST ARUCO ERROR LEVEL: ",error_level," cnt: ", error_level_0_cnt)
-                #if error_level_0_cnt >= 2:
-                #    fly_go(vehicle,velocityx*-1,velocityy*-1,0,1)
-                #    error_level_0_cnt = 1
-                #elif error_level_0_cnt == 1:
-                #    fly_go(vehicle,velocityx*-1,velocityy*-1,0,1)
-                #    error_level_0_cnt = 0
-                #else:
-                #    fly_go(vehicle,velocityx,velocityy,velocityz,2)
-                #    error_level = 1
-                #    print("LOST FOREVER")
-                #    land_now(vehicle)
-            #elif error_level == 1:
-            #    fly_go(vehicle,0,0,0,1)
-            #    if error_level_0_cnt < 2:
-            #        error_cnt += 1
-            #    else: 
-            #        error_level = 2
-            #elif error_level == 2:
-            #    print("REALLY LOST...")
-            #    fly_go(vehicle,0,0,VELOCITY,1)
-            #    time.sleep(2)
-            #elif error_level == 3:
-            #    print("SEARCHING FOR MARKER")
-            #    fly_go(vehicle,0,VELOCITY,0,1)
+            if average_vector[2] != 0:
+                ###IF WE CANNOT FIND THE ARUCO WE SHOULD GO BACK THE LAST DIRECTION FOR 2s
+                if error_level == 0:
+                    print("LOST ARUCO ERROR LEVEL: ",error_level," cnt: ", error_level_0_cnt)
+                    #if error_level_0_cnt >= 2:
+                    #    fly_go(vehicle,velocityx*-1,velocityy*-1,0,1)
+                    #    error_level_0_cnt = 1
+                    #elif error_level_0_cnt == 1:
+                    #    fly_go(vehicle,velocityx*-1,velocityy*-1,0,1)
+                    #    error_level_0_cnt = 0
+                    #else:
+                    #    fly_go(vehicle,velocityx,velocityy,velocityz,2)
+                    #    error_level = 1
+                    #    print("LOST FOREVER")
+                    #    land_now(vehicle)
+                #elif error_level == 1:
+                #    fly_go(vehicle,0,0,0,1)
+                #    if error_level_0_cnt < 2:
+                #        error_cnt += 1
+                #    else: 
+                #        error_level = 2
+                #elif error_level == 2:
+                #    print("REALLY LOST...")
+                #    fly_go(vehicle,0,0,VELOCITY,1)
+                #    time.sleep(2)
+                #elif error_level == 3:
+                #    print("SEARCHING FOR MARKER")
+                #    fly_go(vehicle,0,VELOCITY,0,1)
 
 
         #--- Display the frame
