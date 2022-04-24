@@ -262,7 +262,7 @@ def main():
         ###(-7,6-110)
 
         print("Precission: ", precission, end=" :")
-        if distance_vector_z < TARGET_Z:
+        if distance_vector_z > TARGET_Z:
             print("TIME TO LAND")
             #land_now(vehicle)
             #cap.release()
