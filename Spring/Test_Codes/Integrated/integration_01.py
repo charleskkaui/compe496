@@ -174,6 +174,7 @@ def main():
     font = cv2.FONT_HERSHEY_PLAIN
 
 
+
     while True:
 
         #-- Read the camera frame
@@ -280,13 +281,13 @@ def main():
                 
 
         if  distance_vector_z < -500:
-            precission = 30
+            precission = 50
         elif distance_vector_z < -400:
-            precission = 25
+            precission = 40
         elif distance_vector_z < -300:
-            precission = 20
+            precission = 30
         elif distance_vector_z < -200:
-            precission = 15
+            precission = 20
         else:
             precission = 10
                 
