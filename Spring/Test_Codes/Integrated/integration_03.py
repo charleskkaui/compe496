@@ -231,7 +231,7 @@ def main():
                 average_y = np.average(arr[4:14])
                 arr = np.sort(distance_z_arr)
                 average_z = np.average(arr[4:14])
-                average_vector = (average_x,average_y,average_z)
+                average_vector = (average_x,average_y,average_z*-1)
                 count = 0
                 distance_x_arr[count] = distance_vector_x
                 distance_y_arr[count] = distance_vector_y
