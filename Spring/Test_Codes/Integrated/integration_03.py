@@ -286,7 +286,7 @@ def main():
                     
                 
                 if  average_vector[2] < -500:
-                    precission = 35
+                    precission = 25
                 elif average_vector[2] < -400:
                     precission = 20
                 elif average_vector[2] < -300:
