@@ -282,7 +282,8 @@ def main():
                     else:
                         velocityz = 0
 
-                    fly_go(vehicle,velocityx,velocityy,0,1)
+                    fly_go(vehicle,velocityx,velocityy,velocityz,1)
+                    time.sleep(1)
                     
                 
                 if  average_vector[2] < -500:
@@ -308,6 +309,7 @@ def main():
                 if error_level == 0:
                     print("LOST ARUCO ERROR LEVEL: ",error_level," cnt: ", error_level_0_cnt,end=" ")
                     fly_go(vehicle,velocityx*-1,velocityy*-1,0,1)
+                    time.sleep(1)
                     #if error_level_0_cnt >= 2:
                     #    fly_go(vehicle,velocityx*-1,velocityy*-1,0,1)
                     #    error_level_0_cnt = 1
