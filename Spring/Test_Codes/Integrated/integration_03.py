@@ -242,9 +242,9 @@ def main():
                 distance_y_arr[count] = distance_vector_y
                 distance_z_arr[count] = abs(distance_vector_z)
 
-            average_vector[0] = distance_vector_x
-            average_vector[1] = distance_vector_y
-            average_vector[2] = distance_vector_z
+            average_vector[0] = distance_vector_x.astype(np.float)
+            average_vector[1] = distance_vector_y.astype(np.float)
+            average_vector[2] = distance_vector_z.astype(np.float)
 
             print(average_vector[0] ,"is of type ",type(average_vector[0]))
 
