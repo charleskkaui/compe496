@@ -282,7 +282,7 @@ def main():
                     else:
                         velocityz = 0
 
-                    fly_go(vehicle,velocityx,velocityy,velocityz,1)
+                    fly_go(vehicle,velocityx,velocityy,0,1)
                     
                 
                 if  average_vector[2] < -500:
