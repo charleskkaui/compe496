@@ -289,10 +289,10 @@ def main():
                     else:
                         velocityz = 0
 
-                    if counter_slowitdown < 0:
+                    if counter_slowitdown < 1:
                         fly_go(vehicle,velocityx,velocityy,velocityz,1)
-                        fly_go(vehicle,0,0,0,1)
-                        counter_slowitdown = 10
+                        #fly_go(vehicle,0,0,0,1)
+                        counter_slowitdown = 5
                     else:
                         counter_slowitdown -= 1
                     
@@ -327,7 +327,7 @@ def main():
                 if error_level == 0:
                     print("LOST ARUCO ERROR LEVEL: ",error_level," cnt: ", error_level_0_cnt,end=" ")
                     #fly_go(vehicle,velocityx*-1,velocityy*-1,0,1)
-                    fly_go(vehicle,0,0,0,1)
+                    #fly_go(vehicle,0,0,0,1)
                     
                     #if error_level_0_cnt >= 2:
                     #    fly_go(vehicle,velocityx*-1,velocityy*-1,0,1)
