@@ -242,7 +242,9 @@ def main():
                 distance_y_arr[count] = distance_vector_y
                 distance_z_arr[count] = abs(distance_vector_z)
 
-            average_vector = (distance_vector_x,distance_vector_y,distance_vector_z)
+            average_vector[0] = distance_vector_x
+            average_vector[1] = distance_vector_y
+            average_vector[2] = distance_vector_z
 
         
             #distance_vector_disp = "Drone must travel: x=%4.0f  y=%4.0f  z=%4.0f"%(average_vector[0],average_vector[1],average_vector[2])
