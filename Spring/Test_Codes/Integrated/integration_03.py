@@ -296,13 +296,13 @@ def main():
                     
                 
                 if  average_vector[2] < -500:
-                    precission = 25
-                elif average_vector[2] < -400:
                     precission = 20
+                elif average_vector[2] < -400:
+                    precission = 25
                 elif average_vector[2] < -300:
-                    precission = 15
-                elif average_vector[2] < -200:
                     precission = 10
+                elif average_vector[2] < -200:
+                    precission = 5
                 else:
                     precission = 5
 
