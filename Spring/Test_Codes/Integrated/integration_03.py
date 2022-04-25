@@ -241,6 +241,9 @@ def main():
                 distance_x_arr[count] = distance_vector_x
                 distance_y_arr[count] = distance_vector_y
                 distance_z_arr[count] = abs(distance_vector_z)
+
+            average_vector = (distance_vector_x,distance_vector_y,distance_vector_z)
+
         
             #distance_vector_disp = "Drone must travel: x=%4.0f  y=%4.0f  z=%4.0f"%(average_vector[0],average_vector[1],average_vector[2])
             #cv2.putText(frame, distance_vector_disp, (0, 150), font, 1, (0, 255, 0), 2, cv2.LINE_AA)
