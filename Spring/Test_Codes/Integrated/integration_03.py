@@ -119,9 +119,9 @@ def main():
     precission = 20
     corrector = 0
 
-    #vehicle = connect_drone(CONNECTION_STRING,CONNECTION_BAUDRATE)
-    #arm(vehicle)
-    #take_off_now(vehicle,ALTITUDE_TAKEOFF)
+    vehicle = connect_drone(connection_string,connection_baudrate)
+    arm(vehicle)
+    take_off_now(vehicle,altitude_takeoff)
 
     #creating file for data
     now = datetime.now()
@@ -282,7 +282,7 @@ def main():
                     else:
                         velocityz = 0
 
-                    #fly_go(vehicle,velocityx,velocityy,velocityz,1)
+                    fly_go(vehicle,velocityx,velocityy,velocityz,1)
                     
                 
                 if  average_vector[2] < -500:
@@ -308,10 +308,10 @@ def main():
                 if error_level == 0:
                     print("LOST ARUCO ERROR LEVEL: ",error_level," cnt: ", error_level_0_cnt,end=" ")
                     if error_level_0_cnt >= 2:
-                        #fly_go(vehicle,velocityx*-1,velocityy*-1,0,1)
+                        fly_go(vehicle,velocityx*-1,velocityy*-1,0,1)
                         error_level_0_cnt = 1
                     elif error_level_0_cnt == 1:
-                        #fly_go(vehicle,velocityx*-1,velocityy*-1,0,1)
+                        fly_go(vehicle,velocityx*-1,velocityy*-1,0,1)
                         error_level_0_cnt = 0
                     #else:
                     #    fly_go(vehicle,velocityx,velocityy,velocityz,2)
@@ -334,7 +334,7 @@ def main():
 
 
         #--- Display the frame
-        cv2.imshow('frame', frame)
+        #cv2.imshow('frame', frame)
         #print(np.array2string(distance_vector_x)+","+np.array2string(distance_vector_y)+","+np.array2string(distance_vector_z)+"\n")
         print("\n",average_vector)
 
