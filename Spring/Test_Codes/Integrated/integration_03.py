@@ -246,7 +246,7 @@ def main():
             average_vector[1] = distance_vector_y.astype(np.float)
             average_vector[2] = distance_vector_z.astype(np.float)
 
-            print(average_vector[0] ,"is of type ",type(average_vector[0]))
+            #print(average_vector[0] ,"is of type ",type(average_vector[0]))
 
         
             #distance_vector_disp = "Drone must travel: x=%4.0f  y=%4.0f  z=%4.0f"%(average_vector[0],average_vector[1],average_vector[2])
@@ -281,10 +281,10 @@ def main():
                         print("F/B OK", end=" :")
 
                     if(velocityx == 0 and velocityy == 0):
-                        velocityz = VELOCITY
+                        velocityz = 0.1
                         print("GO DOWN")
                     elif average_vector[2] > zmin-precission-5:
-                        velocityz = VELOCITY
+                        velocityz = 0.1
                         print("GO DOWN CUZ UP")
                     else:
                         velocityz = 0
