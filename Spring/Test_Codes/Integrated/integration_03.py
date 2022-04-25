@@ -144,7 +144,9 @@ def main():
     distance_y_arr = np.zeros(10)
     distance_z_arr = np.zeros(10)
     count=0
-    #average_vector = (0,0,0)
+    average_vector[0] = 0
+    average_vector[1] =0
+    average_vector[2] =0
     error_level = 0
     error_level_0_cnt = 2
     zmin = -5000
