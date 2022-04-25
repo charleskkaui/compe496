@@ -298,7 +298,7 @@ def main():
                 else:
                     precission = 5
 
-                if zmin > average_vector[2]:
+                if zmin > average_vector[2] and average_vector[2] > -150:
                     zmin = average_vector[2]
 
                 error_level = 0
