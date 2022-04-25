@@ -119,9 +119,9 @@ def main():
     precission = 20
     corrector = 0
 
-    vehicle = connect_drone(connection_string,connection_baudrate)
+    vehicle = connect_drone(CONNECTION_STRING,CONNECTION_BAUDRATE)
     arm(vehicle)
-    take_off_now(vehicle,altitude_takeoff)
+    take_off_now(vehicle,ALTITUDE_TAKEOFF)
 
     #creating file for data
     now = datetime.now()
@@ -246,9 +246,9 @@ def main():
             #cv2.putText(frame, distance_vector_disp, (0, 150), font, 1, (0, 255, 0), 2, cv2.LINE_AA)
             if average_vector[2] != 0:
                 print("Precission: ", precission, end=" :")
-                if average_vector[2] > TARGET_Z:# or vehicle.mode == "LAND":
+                if average_vector[2] > TARGET_Z or vehicle.mode == "LAND":
                     print("TIME TO LAND")
-                    #land_now(vehicle)
+                    land_now(vehicle)
                     cap.release()
                     cv2.destroyAllWindows()
                     myfile.close()
