@@ -307,12 +307,13 @@ def main():
                 ###IF WE CANNOT FIND THE ARUCO WE SHOULD GO BACK THE LAST DIRECTION FOR 2s
                 if error_level == 0:
                     print("LOST ARUCO ERROR LEVEL: ",error_level," cnt: ", error_level_0_cnt,end=" ")
-                    if error_level_0_cnt >= 2:
-                        fly_go(vehicle,velocityx*-1,velocityy*-1,0,1)
-                        error_level_0_cnt = 1
-                    elif error_level_0_cnt == 1:
-                        fly_go(vehicle,velocityx*-1,velocityy*-1,0,1)
-                        error_level_0_cnt = 0
+                    fly_go(vehicle,velocityx*-1,velocityy*-1,0,1)
+                    #if error_level_0_cnt >= 2:
+                    #    fly_go(vehicle,velocityx*-1,velocityy*-1,0,1)
+                    #    error_level_0_cnt = 1
+                    #elif error_level_0_cnt == 1:
+                    #    fly_go(vehicle,velocityx*-1,velocityy*-1,0,1)
+                    #    error_level_0_cnt = 0
                     #else:
                     #    fly_go(vehicle,velocityx,velocityy,velocityz,2)
                     #    error_level = 1
