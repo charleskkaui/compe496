@@ -108,7 +108,7 @@ def main():
     #CONSTANTS_DRONE
     CONNECTION_BAUDRATE = 57600
     CONNECTION_STRING = '/dev/ttyAMA1' #COnnection String for the Drone
-    VELOCITY = 0.5
+    VELOCITY = 0.1
     ALTITUDE_TAKEOFF = 2
     #CONSTANTS_ARUCO_POSITION
     TARGET_X = 8
