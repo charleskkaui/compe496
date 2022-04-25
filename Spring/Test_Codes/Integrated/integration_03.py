@@ -148,6 +148,7 @@ def main():
     error_level = 0
     error_level_0_cnt = 2
     zmin = -5000
+    counter_slowitdown = 20
 
 
 
@@ -288,8 +289,12 @@ def main():
                     else:
                         velocityz = 0
 
-                    fly_go(vehicle,velocityx,velocityy,velocityz,1)
-                    fly_go(vehicle,0,0,0,1)
+                    if counter_slowitdown < 0:
+                        fly_go(vehicle,velocityx,velocityy,velocityz,1)
+                        fly_go(vehicle,0,0,0,1)
+                        counter_slowitdown = 10
+                    else:
+                        counter_slowitdown -= 1
                     
                     
                     
