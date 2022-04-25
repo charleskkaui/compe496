@@ -108,7 +108,7 @@ def main():
     #CONSTANTS_DRONE
     CONNECTION_BAUDRATE = 57600
     CONNECTION_STRING = '/dev/ttyAMA1' #COnnection String for the Drone
-    VELOCITY = 0.1
+    VELOCITY = 0.5
     ALTITUDE_TAKEOFF = 2
     #CONSTANTS_ARUCO_POSITION
     TARGET_X = 8
@@ -284,6 +284,7 @@ def main():
 
                     fly_go(vehicle,velocityx,velocityy,velocityz,1)
                     fly_go(vehicle,0,0,0,1)
+                    time.sleep(1)
                     
                     
                 
@@ -311,6 +312,7 @@ def main():
                     print("LOST ARUCO ERROR LEVEL: ",error_level," cnt: ", error_level_0_cnt,end=" ")
                     fly_go(vehicle,velocityx*-1,velocityy*-1,0,1)
                     fly_go(vehicle,0,0,0,1)
+                    time.sleep(1)
                     #if error_level_0_cnt >= 2:
                     #    fly_go(vehicle,velocityx*-1,velocityy*-1,0,1)
                     #    error_level_0_cnt = 1
