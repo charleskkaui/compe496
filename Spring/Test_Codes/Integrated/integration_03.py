@@ -297,14 +297,19 @@ def main():
                 
                 if  average_vector[2] < -500:
                     precission = 20
+                    VELOCITY = 0.3
                 elif average_vector[2] < -400:
                     precission = 25
+                    VELOCITY = 0.3
                 elif average_vector[2] < -300:
                     precission = 10
+                    VELOCITY = 0.2
                 elif average_vector[2] < -200:
                     precission = 5
+                    VELOCITY = 0.1
                 else:
                     precission = 5
+                    VELOCITY = 0.1
 
                 if zmin > average_vector[2] and average_vector[2] > -150:
                     zmin = average_vector[2]
