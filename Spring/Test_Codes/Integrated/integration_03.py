@@ -248,7 +248,6 @@ def main():
 
             #print(average_vector[0] ,"is of type ",type(average_vector[0]))
 
-        
             #distance_vector_disp = "Drone must travel: x=%4.0f  y=%4.0f  z=%4.0f"%(average_vector[0],average_vector[1],average_vector[2])
             #cv2.putText(frame, distance_vector_disp, (0, 150), font, 1, (0, 255, 0), 2, cv2.LINE_AA)
             if average_vector[2] != 0:
@@ -291,16 +290,16 @@ def main():
 
                     fly_go(vehicle,velocityx,velocityy,velocityz,1)
                     fly_go(vehicle,0,0,0,1)
-                    time.sleep(1)
+                    
                     
                     
                 
                 if  average_vector[2] < -500:
                     precission = 20
-                    VELOCITY = 0.3
+                    VELOCITY = 0.2
                 elif average_vector[2] < -400:
                     precission = 25
-                    VELOCITY = 0.3
+                    VELOCITY = 0.2
                 elif average_vector[2] < -300:
                     precission = 10
                     VELOCITY = 0.2
@@ -324,7 +323,7 @@ def main():
                     print("LOST ARUCO ERROR LEVEL: ",error_level," cnt: ", error_level_0_cnt,end=" ")
                     fly_go(vehicle,velocityx*-1,velocityy*-1,0,1)
                     fly_go(vehicle,0,0,0,1)
-                    time.sleep(1)
+                    
                     #if error_level_0_cnt >= 2:
                     #    fly_go(vehicle,velocityx*-1,velocityy*-1,0,1)
                     #    error_level_0_cnt = 1
