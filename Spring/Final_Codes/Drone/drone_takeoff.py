@@ -1,11 +1,10 @@
 from dronekit import connect, Command, LocationGlobal
 from pymavlink import mavutil
 import time,sys,argparse,math
+#ADD BLUETOOTH CLIENT
 
-#sim_vehicle.py -v ArduCopter -f quad --map --console -L SDSU
 CONNECTION_BAUDRATE = 57600
 CONNECTION_STRING = '127.0301:14550' #COnnection String for the Drone
-CONNECTION_STRING_DRONEKITSITL = 'udp:127.0.0.1:14551' #Connection String for the Simulation
 
 def connect_drone():
     print("CONNECTING...")
@@ -39,7 +38,18 @@ def take_off_now(vehicle,TargetAltitude):
     print("ALTITUDE REACHED")
 
 def main():
+    #DEFINE GLOBAL VARIABLES
+    global s 
+    global received 
+
+    #INSTANTIATE BLUETOOTH
+    s = BluetoothServer(data_received)
+    
+    received = "0"
+
     vehicle = connect_drone()
+
+
     take_off_now(vehicle,ALTITUDE)
 
 
