@@ -18,7 +18,6 @@ import sys
 global received
 
 def data_received(data):
-    global received
     received = data
     print(data)
 
