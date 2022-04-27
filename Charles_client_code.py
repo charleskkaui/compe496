@@ -27,7 +27,7 @@ while True:
     global received
     stuff = input()
     c.send(stuff)
-    while received == stuff:
+    while received != "received":
         c.send(stuff)
 
 
