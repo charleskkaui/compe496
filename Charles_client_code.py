@@ -25,11 +25,12 @@ c = BluetoothClient('raspberrypi-talon-base', data_received)
 
 while True:
     global received
-    stuff = input()
-    c.send(stuff)
-    while received != "received":
-        c.send(stuff)
-
+    message = input()
+    c.send(message)
+    if recieved == "Base Received":
+        pass
+    else:
+        c.send(message)
 
 
     #if BluetoothClient.connected:
