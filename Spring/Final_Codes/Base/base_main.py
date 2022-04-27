@@ -52,8 +52,6 @@ def main():
     global s 
     global received 
 
-   
-
     #INSTANTIATE BLUETOOTH
     s = BluetoothServer(data_received)
     
