@@ -15,6 +15,7 @@ import sys
 #          return None
     
 # port_ble_tablet = initiate_ble_serial_port()
+global received
 
 def data_received(data):
     global received
@@ -24,7 +25,6 @@ def data_received(data):
 c = BluetoothClient('raspberrypi-talon-base', data_received)
 
 while True:
-    global received
     message = input()
     c.send(message)
     if received == "Base Received":
