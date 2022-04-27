@@ -17,7 +17,7 @@ import sys
 # port_ble_tablet = initiate_ble_serial_port()
 
 def data_received(data):
-    global recieved
+    global received
     received = data
     print(data)
 
