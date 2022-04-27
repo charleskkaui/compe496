@@ -7,8 +7,9 @@
     "\\Spring\\Final_Codes\\Drone",
     "\\Spring\\Test_Codes",
     "\\Spring\\Test_Codes\\Integrated",
-    "\\Spring\\Test_Codes\\OpenCV"
+    "\\Spring\\Test_Codes\\OpenCV",
+    "\\Spring\\Test_Codes\\OpenCV\\TestData"
   ],
-  "SelectedNode": "\\Spring\\Final_Codes\\Base\\base_main.py",
+  "SelectedNode": "\\Spring\\Test_Codes\\Integrated",
   "PreviewInSolutionExplorer": false
 }

@@ -53,8 +53,8 @@ def main():
     distance_vector_z = np.zeros(1)
 
     #--- Define Tag
-    id_to_find  = 238
-    marker_size  = 6 #- [cm]
+    id_to_find  = 325
+    marker_size  = 8 #- [cm]
 
     DURATION = 5
 
@@ -90,7 +90,6 @@ def main():
 
     #-- Font for the text in the image
     font = cv2.FONT_HERSHEY_PLAIN
-
 
     while True:
 
@@ -161,7 +160,7 @@ def main():
         #WHEN THE ARUCO IS NOT IN VIEW VALUES SHOULD READ XXX or osmeshit        
 
         #--- Display the frame
-        #cv2.imshow('frame', frame)
+        cv2.imshow('frame', frame)
         print(np.array2string(distance_vector_x)+","+np.array2string(distance_vector_y)+","+np.array2string(distance_vector_z)+"\n")
         #print(average_vector)
 

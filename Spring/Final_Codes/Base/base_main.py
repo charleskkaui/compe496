@@ -25,12 +25,11 @@ GPIO.setup(RELAY_04,GPIO.OUT)
 def data_received(data):
     global received
     received = data
-    time.sleep(1)
-    s.send("0")
+    
 
 def latch():
     print("I am Latching")
-    s.send("Base Received: "+received)
+    s.send("Base Received")
     GPIO.output(RELAY_01,0)
     GPIO.output(RELAY_02,0)
     time.sleep(1)
@@ -39,7 +38,7 @@ def latch():
 
 def unlatch():
     print("I am Unlatching")                    
-    s.send("Base Received: "+received)
+    s.send("Base Received")
     GPIO.output(RELAY_04,0)            
     GPIO.output(RELAY_03,0)            
     time.sleep(1)
@@ -51,8 +50,6 @@ def main():
     #DEFINE GLOBAL VARIABLES
     global s 
     global received 
-
-   
 
     #INSTANTIATE BLUETOOTH
     s = BluetoothServer(data_received)
@@ -66,14 +63,16 @@ def main():
     GPIO.output(RELAY_01,1)
     
     while True:
-        #COPY CODE TO CHECK SENSORS HERE
-        ################################
-        ################################
         if(GPIO.input(SENSOR_01) == GPIO.LOW and GPIO.input(SENSOR_02) == GPIO.LOW ):
                 sensors = 1
         else:
                 sensors = 0
+<<<<<<< HEAD
         if (received == "A" and sensors): #WE ARE LATCHING
+=======
+            
+        if (received == "A" and sensors):
+>>>>>>> 25a03b1338eabcda2c928246bcf0e53fb696572c
             latch()
         elif (received == "B"):
             unlatch()

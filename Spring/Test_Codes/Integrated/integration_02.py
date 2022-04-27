@@ -6,7 +6,7 @@ from datetime import datetime
 import os.path
 from dronekit import connect, Command, LocationGlobal
 from pymavlink import mavutil
-import time,sys,argparse,math
+import argparse
 
 # Checks if a matrix is a valid rotation matrix.
 def isRotationMatrix(R):
@@ -103,25 +103,51 @@ def fly_spin(vehicle,heading, relative=False):
 
 def main():
 
-    #sim_vehicle.py -v ArduCopter -f quad --map --console -L SDSU
     CONNECTION_BAUDRATE = 57600
     CONNECTION_STRING = '/dev/ttyAMA1' #COnnection String for the Drone
-    CONNECTION_STRING_DRONEKITSITL = 'udp:127.0.0.1:14551' #Connection String for the Simulation
-    VELOCITY = 1
-    DURATION = 1
-    HEADING = 180
-    ALTITUDE = 1
 
     TARGET_X = -7
     TARGET_Y = 6
     TARGET_Z = -110
     TARGET_PRECISSION = 7
     precission = 20
+    VELOCITY = 0.1
+
+    corrector = 0
+
+    vehicle = connect_drone(CONNECTION_STRING,CONNECTION_BAUDRATE)
     
+
+
+    print("\nset new home location")
+    # home location must be within 50km of ekf home location (or setting will fail silently)
+    # in this case, just set value to current location with an easily recognisable altitude (222)
+    #my_location_alt = vehicle.location.global_relative_frame
+    #my_location_alt.alt = 2
+
+
+    ###############################
+    ###############################
+    #THE SPEED IS TOO LOW -ROB
+    ###############################
+    ###############################
+
+    arm(vehicle)
+    take_off_now(vehicle,1)   
+    #vehicle.mode = "LOITER"
+    fly_go(vehicle,0,0,0,1)
+    fly_spin(vehicle,0,True)
+    time.sleep(3)
+    #fly_go(vehicle,0,1,0,1)
+    #time.sleep(5)
+    #vehicle.simple_goto(my_location_alt)
+    #time.sleep(10)
+
+
     #creating file for data
     now = datetime.now()
     save_path = "/home/pi/compe496/Spring/Test_Codes/OpenCV/TestData"
-    file_name = "IntegrationTestData_"+now.strftime("%Y")+"_"+now.strftime("%m")+"_"+now.strftime("%d")+"_"+now.strftime("%H")+"_"+now.strftime("%M")+".txt"
+    file_name = "DistanceVector_"+now.strftime("%Y")+"_"+now.strftime("%m")+"_"+now.strftime("%d")+"_"+now.strftime("%H")+"_"+now.strftime("%M")+".txt"
     complete_filename = os.path.join(save_path,file_name)
     
     try:
@@ -129,6 +155,7 @@ def main():
     except:
         exit("The File cannot be created")
 
+    
 
     distance_vector_x = np.zeros(1)
     distance_vector_y = np.zeros(1)
@@ -173,12 +200,7 @@ def main():
     #-- Font for the text in the image
     font = cv2.FONT_HERSHEY_PLAIN
 
-    vehicle = connect_drone(CONNECTION_STRING,CONNECTION_BAUDRATE)
-    arm(vehicle)
-    take_off_now(vehicle,2)   
-    #vehicle.mode = "LOITER"
-    fly_go(vehicle,0,0,0,1)
-    fly_spin(vehicle,0,True)
+    
 
     while True:
 
@@ -186,7 +208,7 @@ def main():
         ret, frame = cap.read()
 
         #-- Convert in gray scale
-        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        gray    = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
         #-- Find all the aruco markers in the image
         corners, ids, rejected = aruco.detectMarkers(image=gray, dictionary=aruco_dict, parameters=parameters)#,
@@ -241,65 +263,96 @@ def main():
                 distance_y_arr[count] = distance_vector_y
                 distance_z_arr[count] = abs(distance_vector_z)
             
+        
             distance_vector_disp = "Drone must travel: x=%4.0f  y=%4.0f  z=%4.0f"%(average_vector[0],average_vector[1],average_vector[2])
             cv2.putText(frame, distance_vector_disp, (0, 150), font, 1, (0, 255, 0), 2, cv2.LINE_AA)
         
+            ###X values go positive when drone goes left
+            ###X values go negative when drone goes right
+            ###Y forward positive
+            ###Y backward negative
+            #Z negtive is up
+            ###Z positive is down 
+            ###(-7,6-110)
+        
+            print("Precission: ", precission, end=" :")
+            if distance_vector_z > TARGET_Z:
+                print("TIME TO LAND")
+                #land_now(vehicle)
+                #cap.release()
+                #cv2.destroyAllWindows()
+                #myfile.close()
+            else:
+                if distance_vector_x > TARGET_X + precission: 
+                    fly_go(vehicle,0,VELOCITY,0,1) #ROLL_FORWARD
+                    corrector = 1
+                    print("GO RIGHT")
+                elif distance_vector_x < TARGET_X - precission: 
+                    fly_go(vehicle,0,-VELOCITY,0,1) #ROLL BACKWARD GO BACK
+                    corrector = 2
+                    print("GO LEFT")
+                elif distance_vector_y > TARGET_Y + precission: #IF WE ARE RIGHT
+                    fly_go(vehicle,-VELOCITY,0,0,1) #PITCH FORWARD GO LEFT
+                    corrector = 3
+                    print("GO BACK")
+                elif distance_vector_y < TARGET_Y - precission: #IF WE ARE LEFT
+                    fly_go(vehicle,VELOCITY,0,0,1) #PITCHBACKWARD GO RIGHT
+                    corrector = 4
+                    print("GO FORWARD")
+                else:
+                    fly_go(vehicle,0,0,VELOCITY,1)
+                    corrector = 0
+                    print("GO DOWN")
+                    #time.sleep(1)
+                    #precisssion -= 1
+                
+
+            if  distance_vector_z < -500:
+                precission = 30
+            elif distance_vector_z < -400:
+                precission = 25
+            elif distance_vector_z < -300:
+                precission = 20
+            elif distance_vector_z < -200:
+                precission = 15
+            else:
+                precission = 15
+                
+
+            ####GET THE PRECISSION TO SCALE DOWN WITH THE ALTITUDE
+
+        else:
+            if corrector == 1: 
+                fly_go(vehicle,0,-VELOCITY,0,1) #ROLL_FORWARD
+                print("LOST: GO LEFT")
+            elif corrector == 2: 
+                fly_go(vehicle,0,VELOCITY,0,1) #ROLL BACKWARD GO BACK
+                print("LOST: GO RIGHT")
+            elif  corrector == 3: #IF WE ARE RIGHT
+                fly_go(vehicle,VELOCITY,0,0,1) #PITCH FORWARD GO LEFT
+                print("LOST: GO FORWARD")
+            elif corrector == 4: #IF WE ARE LEFT
+                fly_go(vehicle,-VELOCITY,0,0,1) #PITCHBACKWARD GO RIGHT
+                print("LOST: GO BACKWARD")
+            else:
+                pass
+
         #WHEN THE ARUCO IS NOT IN VIEW VALUES SHOULD READ XXX or osmeshit        
 
         #--- Display the frame
-        cv2.imshow('frame', frame)
+        #cv2.imshow('frame', frame)
         print(np.array2string(distance_vector_x)+","+np.array2string(distance_vector_y)+","+np.array2string(distance_vector_z)+"\n")
         
-        ###X values go positive when drone goes left
-        ###X values go negative when drone goes right
-        ###Y forward positive
-        ###Y backward negative
-        ###Z negtive is up
-        ###Z positive is down 
-        ###(-7,6-110)
-
-        print("Precission: ", precission, end=" :")
-        if distance_vector_z > TARGET_Z:
-            #land_now(vehicle)
-            print("TIME TO LAND")
-            cap.release()
-            cv2.destroyAllWindows()
-            myfile.close()
-        else:
-            if distance_vector_x > TARGET_X + precission: 
-                #fly_go(vehicle,1,0,0,1) #ROLL_FORWARD
-                print("GO RIGHT")
-            elif distance_vector_x < TARGET_X - precission: 
-                #fly_go(vehicle,-1,0,0,1) #ROLL BACKWARD GO BACK
-                print("GO LEFT")
-            elif distance_vector_y > TARGET_Y + precission: #IF WE ARE RIGHT
-                #fly_go(vehicle,0,-1,0,1) #PITCH FORWARD GO LEFT
-                print("GO BACK")
-            elif distance_vector_y < TARGET_Y - precission: #IF WE ARE LEFT
-                #fly_go(vehicle,0,1,0,1) #PITCHBACKWARD GO RIGHT
-                print("GO FORWARD")
-            else:
-                #fly_go(vehicle,0,0,1,1)
-                print("GO DOWN")
-                #time.sleep(1)
-                #precisssion -= 1
-                
-
-        if  distance_vector_z < -500:
-            precission = 50
-        elif distance_vector_z < -400:
-            precission = 40
-        elif distance_vector_z < -300:
-            precission = 30
-        elif distance_vector_z < -200:
-            precission = 20
-        else:
-            precission = 10
-                
-
-        ####GET THE PRECISSION TO SCALE DOWN WITH THE ALTITUDE
-
+        
         #print(average_vector)
+
+        
+        
+        
+        
+
+
+
 
         #--- use 'q' to quit
         key = cv2.waitKey(1) & 0xFF
