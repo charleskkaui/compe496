@@ -1,7 +1,6 @@
 from dronekit import connect, Command, LocationGlobal
 from pymavlink import mavutil
 import time,sys,argparse,math
-#ADD BLUETOOTH CLIENT
 
 def data_received(data):
     global received
@@ -19,11 +18,11 @@ def main():
     
     received = "0"
 
-    vehicle = connect_drone()
-
     while True:
-        if vehicle.armed == False:
+        if vehicle.armed:
+            s.send("B")
+        elif not vehicle.armed:
             s.send("A")
-        
+
 if __name__ == "__main__":
     main()
