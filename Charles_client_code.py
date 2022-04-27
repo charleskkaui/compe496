@@ -27,7 +27,7 @@ while True:
     global received
     message = input()
     c.send(message)
-    if recieved == "Base Received":
+    if received == "Base Received":
         pass
     else:
         c.send(message)
