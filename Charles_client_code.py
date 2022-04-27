@@ -15,9 +15,10 @@ import sys
 #          return None
     
 # port_ble_tablet = initiate_ble_serial_port()
-global received
+received = "Base Received"
 
 def data_received(data):
+    global received
     received = data
     print(data)
 
