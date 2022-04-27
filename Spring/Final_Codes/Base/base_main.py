@@ -67,12 +67,9 @@ def main():
                 sensors = 1
         else:
                 sensors = 0
-<<<<<<< HEAD
         if (received == "A" and sensors): #WE ARE LATCHING
-=======
             
         if (received == "A" and sensors):
->>>>>>> 25a03b1338eabcda2c928246bcf0e53fb696572c
             latch()
         elif (received == "B"):
             unlatch()
