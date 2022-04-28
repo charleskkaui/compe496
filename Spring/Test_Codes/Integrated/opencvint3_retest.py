@@ -122,6 +122,7 @@ def main():
     vehicle = connect_drone(CONNECTION_STRING,CONNECTION_BAUDRATE)
     arm(vehicle)
     take_off_now(vehicle,ALTITUDE_TAKEOFF)
+    vehicle.mode = "LOITER"
 
     #creating file for data
     now = datetime.now()
@@ -290,7 +291,7 @@ def main():
                         velocityz = 0
 
                     if counter_slowitdown < 1:
-                        fly_go(vehicle,velocityx,velocityy,velocityz,1)
+                        #fly_go(vehicle,velocityx,velocityy,velocityz,0)
                         #fly_go(vehicle,0,0,0,1)
                         counter_slowitdown = 5
                     else:
