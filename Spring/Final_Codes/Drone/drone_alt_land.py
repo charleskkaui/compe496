@@ -12,6 +12,9 @@ import time
 import sys
 
 global s
+global basestatus
+basestatus = 1
+
 
 def data_received(data):
     global s
