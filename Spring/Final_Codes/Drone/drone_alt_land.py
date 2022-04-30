@@ -12,9 +12,13 @@ def connect_drone(CONNECTION_STRING,CONNECTION_BAUDRATE):
         print("CONNECTING...")
         return connect(CONNECTION_STRING, wait_ready=True, baud=CONNECTION_BAUDRATE)
 
-#Callback function for the THR_MIN parameter
-#def armed_callback(self, attr_name, value):
-    #print(" PARAMETER CALLBACK:",attr_name,"changed to: " ,self.armed)
+def armed_listener(self, name, msg):
+    print(name," attribute is: ", msg)
+    if msg == True:
+        dronestatus = 1
+    else:
+        dronestatus = 0
+
 
 #CONSTANTS_DRONE
 CONNECTION_BAUDRATE = 57600
@@ -24,10 +28,8 @@ vehicle = connect_drone(CONNECTION_STRING,CONNECTION_BAUDRATE)
 print("We R Connected")
 
 @vehicle.on_attribute('armed')
-def armed_listener(self, name, msg):
-    global armFlag
-    print(name," attribute is: ", msg)
-    armFlag = msg
+
+        
 
 
 
