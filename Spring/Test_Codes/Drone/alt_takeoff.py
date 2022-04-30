@@ -40,6 +40,7 @@ def main():
         s.send(basestatus+dronestatus+takeoff)        
         while True:
             print("Waiting for flight Clearence...")
+            time.sleep(1)
             if not basestatus:
                 print("TAKING OFF")
                 quit()
