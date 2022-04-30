@@ -25,26 +25,17 @@ print("We R Connected")
 
 @vehicle.on_attribute('armed')
 def armed_listener(self, name, msg):
+    global armFlag
     print(name," attribute is: ", msg)
+    armFlag = msg
 
 
 
 def main():
-    #CONSTANTS_DRONE
-    #CONNECTION_BAUDRATE = 57600
-    #CONNECTION_STRING = '/dev/ttyAMA1'
 
-    #vehicle = connect_drone(CONNECTION_STRING,CONNECTION_BAUDRATE)
-    
-    #Add observer for the vehicle's armed parameter
-    #vehicle.parameters.on_attribute('armed')
-    #vehicle.parameters.add_attribute_listener('armed', armed_callback)
-
-    while True:
-        pass
     
 
-
+    pause()
 
 if __name__ == "__main__":
     main()
