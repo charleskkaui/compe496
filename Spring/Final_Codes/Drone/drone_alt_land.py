@@ -11,6 +11,8 @@ from signal import pause
 import time
 import sys
 
+global s
+
 def data_received(data):
     global s
     global dronestatus
