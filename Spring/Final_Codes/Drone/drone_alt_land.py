@@ -39,8 +39,10 @@ def armed_listener(self, name, msg):
     print(name," attribute is: ", msg)
     if msg == True:
         dronestatus = 1
+        s.send(basestatus+dronestatus)
     else:
         dronestatus = 0
+        s.send(basestatus+dronestatus)
 
 def main():
     pause()
