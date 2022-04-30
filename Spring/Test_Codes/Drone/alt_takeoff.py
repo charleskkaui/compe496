@@ -41,7 +41,7 @@ def main():
         while True:
             print("Waiting for flight Clearence...")
             time.sleep(1)
-            if not basestatus:
+            if basestatus == "0":
                 print("TAKING OFF")
                 quit()
     except KeyboardInterrupt:
