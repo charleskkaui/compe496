@@ -23,10 +23,12 @@ GPIO.setup(RELAY_03,GPIO.OUT)
 GPIO.setup(RELAY_04,GPIO.OUT)
 
 def data_received(data):
-    global basestatus
-    global dronestatus
     global s
+    global dronestatus
+    global basestatus
+    print(data)
     received = data
+    #basestatus = received[0]
     dronestatus = received[1]
     s.send(basestatus+dronestatus)
     

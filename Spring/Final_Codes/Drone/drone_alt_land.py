@@ -14,10 +14,15 @@ import sys
 received = "11"
 
 def data_received(data):
-    global received
+    global s
     global dronestatus
-    received = data
+    global basestatus
     print(data)
+    received = data
+    basestatus = received[0]
+    #dronestatus = received[1]
+    s.send(basestatus+dronestatus)
+    
 
 #Establishes connection to the drone.
 
