@@ -30,8 +30,9 @@ def main():
     vehicle.parameters.on_attribute('armed')
     vehicle.parameters.add_attribute_listener('armed', armed_callback)
 
-
-    pause()
+    while True:
+        pass
+    
 
 
 
