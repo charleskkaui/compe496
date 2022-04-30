@@ -35,6 +35,30 @@ def connect_drone(CONNECTION_STRING,CONNECTION_BAUDRATE):
         print("CONNECTING...")
         return connect(CONNECTION_STRING, wait_ready=True, baud=CONNECTION_BAUDRATE)
 
+
+def arm(vehicle):
+    vehicle.mode = "GUIDED"
+    #vehicle.is_armable  ##try or while or if
+    vehicle.armed = True
+    while(vehicle.armed == False):
+        print("ARMING DRONE...")
+        time.sleep(1)
+    print("DRONE ARMED")
+
+
+def take_off_now(vehicle,TargetAltitude):
+    print("Ascending...")
+    vehicle.simple_takeoff(TargetAltitude)
+    while vehicle.location.global_relative_frame.alt<=TargetAltitude*0.90:
+        print (" Altitude: ", vehicle.location.global_relative_frame.alt)
+        time.sleep(1)
+    #By defualt the drone wants to yaw into the direction of travel.
+    #Adjusting the yaw manually allows drone to sideward hover.
+    fly_go(vehicle,0,0,0,1)
+    fly_spin(vehicle,0,True)
+    time.sleep(1)
+    print("ALTITUDE REACHED: ",vehicle.location.global_relative_frame.alt)
+
 #CONSTANTS_DRONE
 CONNECTION_BAUDRATE = 57600
 CONNECTION_STRING = '/dev/ttyAMA1'
@@ -64,10 +88,12 @@ def main():
         takeoff = "1"
         s.send(basestatus+dronestatus+takeoff)        
         while True:
-            if not basestatus:
-                print("Waiting for flight Clearence")
-                armdrone()
-                takeoff()
+            print("Waiting for flight Clearence...")
+            time.sleep(1)
+            if basestatus == "0":
+                arm(vehicle)
+                take_off_now(vehicle,ALTITUDE_TAKEOFF)
+                vehicle.mode = "LOITER"
                 quit()
     except KeyboardInterrupt:
         quit()
