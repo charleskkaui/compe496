@@ -29,7 +29,7 @@ def main():
     vehicle.parameters.add_attribute_listener('armed', armed_callback)
 
 
-    #pause()
+    pause()
 
 
 
