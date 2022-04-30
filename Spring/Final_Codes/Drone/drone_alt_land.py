@@ -14,7 +14,7 @@ def connect_drone(CONNECTION_STRING,CONNECTION_BAUDRATE):
 
 #Callback function for the THR_MIN parameter
 def armed_callback(self, attr_name, value):
-    print(" PARAMETER CALLBACK: %s changed to: %s" % (attr_name, self.armed))
+    print(" PARAMETER CALLBACK:",attr_name,"changed to: " ,self.armed)
 
 
 
