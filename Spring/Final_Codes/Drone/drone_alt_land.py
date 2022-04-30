@@ -11,8 +11,6 @@ from signal import pause
 import time
 import sys
 
-received = "11"
-
 def data_received(data):
     global s
     global dronestatus
@@ -25,7 +23,6 @@ def data_received(data):
     
 
 #Establishes connection to the drone.
-
 def connect_drone(CONNECTION_STRING,CONNECTION_BAUDRATE):
         print("CONNECTING...")
         return connect(CONNECTION_STRING, wait_ready=True, baud=CONNECTION_BAUDRATE)

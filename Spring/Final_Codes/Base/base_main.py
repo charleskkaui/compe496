@@ -59,15 +59,12 @@ def main():
     global s
     global basestatus
     global dronestatus
+    dronestatus = 1
 
     #INSTANTIATE BLUETOOTH
     s = BluetoothServer(data_received)
 
-    GPIO.output(RELAY_04,0)            
-    GPIO.output(RELAY_03,0)            
-    time.sleep(1)
-    GPIO.output(RELAY_02,1)             
-    GPIO.output(RELAY_01,1)
+    unlatch()
     
     while True:
         if(GPIO.input(SENSOR_01) == GPIO.LOW and GPIO.input(SENSOR_02) == GPIO.LOW ):
