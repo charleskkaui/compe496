@@ -25,7 +25,7 @@ print("We R Connected")
 
 @vehicle.on_attribute('armed')
 def armed_listener(self, name, msg):
-    print('%s attribute is: %s') % (name, msg)
+    print(name," attribute is: ", msg)
 
 
 
