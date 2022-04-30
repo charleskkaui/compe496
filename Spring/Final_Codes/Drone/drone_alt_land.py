@@ -13,9 +13,18 @@ def connect_drone(CONNECTION_STRING,CONNECTION_BAUDRATE):
         return connect(CONNECTION_STRING, wait_ready=True, baud=CONNECTION_BAUDRATE)
 
 #Callback function for the THR_MIN parameter
-def armed_callback(self, attr_name, value):
-    print(" PARAMETER CALLBACK:",attr_name,"changed to: " ,self.armed)
+#def armed_callback(self, attr_name, value):
+    #print(" PARAMETER CALLBACK:",attr_name,"changed to: " ,self.armed)
 
+#CONSTANTS_DRONE
+CONNECTION_BAUDRATE = 57600
+CONNECTION_STRING = '/dev/ttyAMA1'
+
+vehicle = connect_drone(CONNECTION_STRING,CONNECTION_BAUDRATE)
+
+@vehicle.on_attribute('armed')
+def armed_listener(self, name, msg):
+    print('%s attribute is: %s') % (name, msg)
 
 
 
@@ -27,8 +36,8 @@ def main():
     vehicle = connect_drone(CONNECTION_STRING,CONNECTION_BAUDRATE)
     
     #Add observer for the vehicle's armed parameter
-    vehicle.parameters.on_attribute('armed')
-    vehicle.parameters.add_attribute_listener('armed', armed_callback)
+    #vehicle.parameters.on_attribute('armed')
+    #vehicle.parameters.add_attribute_listener('armed', armed_callback)
 
     while True:
         pass
