@@ -7,6 +7,7 @@ from pymavlink import mavutil
 from signal import pause
 
 #Establishes connection to the drone.
+@vehicle.parameters.on_attribute('armed')
 def connect_drone(CONNECTION_STRING,CONNECTION_BAUDRATE):
         print("CONNECTING...")
         return connect(CONNECTION_STRING, wait_ready=True, baud=CONNECTION_BAUDRATE)
