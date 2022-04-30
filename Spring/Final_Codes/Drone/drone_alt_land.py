@@ -27,7 +27,7 @@ def main():
     vehicle = connect_drone(CONNECTION_STRING,CONNECTION_BAUDRATE)
     
     #Add observer for the vehicle's armed parameter
-    @vehicle.parameters.on_attribute('armed')
+    vehicle.parameters.on_attribute('armed')
     vehicle.parameters.add_attribute_listener('armed', armed_callback)
 
 
