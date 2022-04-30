@@ -21,6 +21,7 @@ CONNECTION_BAUDRATE = 57600
 CONNECTION_STRING = '/dev/ttyAMA1'
 
 vehicle = connect_drone(CONNECTION_STRING,CONNECTION_BAUDRATE)
+print("We R Connected")
 
 @vehicle.on_attribute('armed')
 def armed_listener(self, name, msg):
@@ -30,10 +31,10 @@ def armed_listener(self, name, msg):
 
 def main():
     #CONSTANTS_DRONE
-    CONNECTION_BAUDRATE = 57600
-    CONNECTION_STRING = '/dev/ttyAMA1'
+    #CONNECTION_BAUDRATE = 57600
+    #CONNECTION_STRING = '/dev/ttyAMA1'
 
-    vehicle = connect_drone(CONNECTION_STRING,CONNECTION_BAUDRATE)
+    #vehicle = connect_drone(CONNECTION_STRING,CONNECTION_BAUDRATE)
     
     #Add observer for the vehicle's armed parameter
     #vehicle.parameters.on_attribute('armed')
