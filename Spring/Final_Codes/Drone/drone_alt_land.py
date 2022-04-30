@@ -23,6 +23,7 @@ def data_received(data):
     #dronestatus = received[1]
     s.send(basestatus+dronestatus)
     
+s = BluetoothClient('raspberrypi-talon-base', data_received)
 
 #Establishes connection to the drone.
 def connect_drone(CONNECTION_STRING,CONNECTION_BAUDRATE):
