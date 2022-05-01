@@ -44,13 +44,14 @@ print("We R Connected")
 def armed_listener(self, name, msg):
     global s
     global dronestatus
-    print(name," attribute is: ", msg)
-    if msg == "True":
+    mymsg = msg
+    print(name," attribute is: ", mymsg)
+    if mymsg == "True":
         dronestatus = "1"
         print("I am in the IF")
         print("Drone Befroe Send: ",basestatus+dronestatus)
         s.send(basestatus+dronestatus)
-    elif msg == "False":
+    elif mymsg == "False":
         print("I am in the ELIF")
         dronestatus = "0"
         print("Drone Befroe Send: ",basestatus+dronestatus)
