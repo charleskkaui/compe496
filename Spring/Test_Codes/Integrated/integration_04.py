@@ -173,13 +173,20 @@ def main():
     KD_X = 0
     KD_Y = 0
 
+    #Charles Kaui Code
+    distance_vector = [0,0,0]
+    last_error_x = 0
+    integral_x = 0
+    last_error_y = 0
+    integral_y = 0
+
     try:
         vehicle = connect_drone(CONNECTION_STRING,CONNECTION_BAUDRATE)
     
         #creating file for data
         now = datetime.now()
         save_path = "/home/pi/compe496/Spring/Test_Codes/OpenCV/TestData"
-        file_name = "DistanceVector_"+now.strftime("%Y")+"_"+now.strftime("%m")+"_"+now.strftime("%d")+"_"+now.strftime("%H")+"_"+now.strftime("%M")+".txt"
+        file_name = "PID_"+now.strftime("%Y")+"_"+now.strftime("%m")+"_"+now.strftime("%d")+"_"+now.strftime("%H")+"_"+now.strftime("%M")+".txt"
         complete_filename = os.path.join(save_path,file_name)
     
         try:
@@ -187,10 +194,6 @@ def main():
         except:
             exit("The File cannot be created")
             quit()
-    
-        #Charles Kaui Code
-        distance_vector = [0,0,0]
-
 
         #Following Section is Sourced from Tiziano
         #--- Define Tag
