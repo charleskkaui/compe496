@@ -14,8 +14,7 @@ import sys
 global s
 global basestatus
 global dronestatus
-basestatus = 1
-
+basestatus = "1"
 
 def data_received(data):
     global s
