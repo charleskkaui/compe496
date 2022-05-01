@@ -61,7 +61,10 @@ def armed_listener(self, name, msg):
 
 
 def main():
-    pause()
+    try:
+        pause()
+    except KeyboardInterrupt:
+        quit()
 if __name__ == "__main__":
     main()
         
