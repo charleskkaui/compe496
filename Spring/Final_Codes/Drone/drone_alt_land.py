@@ -23,8 +23,6 @@ def data_received(data):
     print(data)
     received = data
     basestatus = received[0]
-    #dronestatus = received[1]
-    #s.send(basestatus+dronestatus)
     
 s = BluetoothClient('raspberrypi-talon-base', data_received)
 
@@ -50,12 +48,6 @@ def armed_listener(self, name, msg):
     else:
         dronestatus = "0"
         s.send(basestatus+dronestatus)
-    #elif not msg:
-    #    dronestatus = "0"
-    #    s.send(basestatus+dronestatus)
-    #else:
-    #    pass
-
 
 def main():
     try:
