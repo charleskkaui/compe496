@@ -45,6 +45,8 @@ def armed_listener(self, name, msg):
     global s
     global dronestatus
     mymsg = msg
+    print("msg has type",type(msg))
+    print("mymsg has type",type(mymsg))
     print(name," attribute is: ", mymsg)
     if mymsg == "True":
         dronestatus = "1"
