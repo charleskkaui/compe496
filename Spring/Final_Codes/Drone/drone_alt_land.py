@@ -47,12 +47,14 @@ def armed_listener(self, name, msg):
     if msg:
         dronestatus = "1"
         s.send(basestatus+dronestatus)
-    elif not msg:
-        print("I am in the ELIF")
+    else:
         dronestatus = "0"
         s.send(basestatus+dronestatus)
-    else:
-        pass
+    #elif not msg:
+    #    dronestatus = "0"
+    #    s.send(basestatus+dronestatus)
+    #else:
+    #    pass
 
 
 def main():
