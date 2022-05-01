@@ -48,12 +48,12 @@ def armed_listener(self, name, msg):
     print("msg has type",type(msg))
     print("mymsg has type",type(mymsg))
     print(name," attribute is: ", mymsg)
-    if mymsg == "True":
+    if msg:
         dronestatus = "1"
         print("I am in the IF")
         print("Drone Befroe Send: ",basestatus+dronestatus)
         s.send(basestatus+dronestatus)
-    elif mymsg == "False":
+    elif not msg:
         print("I am in the ELIF")
         dronestatus = "0"
         print("Drone Befroe Send: ",basestatus+dronestatus)
