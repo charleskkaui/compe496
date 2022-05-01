@@ -42,6 +42,8 @@ print("We R Connected")
 
 @vehicle.on_attribute('armed')
 def armed_listener(self, name, msg):
+    global s
+    global dronestatus
     print(name," attribute is: ", msg)
     if msg == "True":
         dronestatus = 1
