@@ -47,13 +47,16 @@ def armed_listener(self, name, msg):
     print(name," attribute is: ", msg)
     if msg == "True":
         dronestatus = "1"
+        print("I am in the IF")
         print("Drone Befroe Send: ",basestatus+dronestatus)
         s.send(basestatus+dronestatus)
     elif msg == "False":
+        print("I am in the ELIF")
         dronestatus = "0"
         print("Drone Befroe Send: ",basestatus+dronestatus)
         s.send(basestatus+dronestatus)
     else:
+        print("I am in the else")
         pass
 
 
