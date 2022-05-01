@@ -43,7 +43,7 @@ print("We R Connected")
 @vehicle.on_attribute('armed')
 def armed_listener(self, name, msg):
     print(name," attribute is: ", msg)
-    if msg == True:
+    if msg == "True":
         dronestatus = 1
         s.send(basestatus+dronestatus)
     else:
