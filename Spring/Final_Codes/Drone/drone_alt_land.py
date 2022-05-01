@@ -24,7 +24,7 @@ def data_received(data):
     received = data
     basestatus = received[0]
     #dronestatus = received[1]
-    s.send(basestatus+dronestatus)
+    #s.send(basestatus+dronestatus)
     
 s = BluetoothClient('raspberrypi-talon-base', data_received)
 
