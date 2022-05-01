@@ -22,19 +22,32 @@ GPIO.setup(RELAY_02,GPIO.OUT)
 GPIO.setup(RELAY_03,GPIO.OUT)
 GPIO.setup(RELAY_04,GPIO.OUT)
 
+#DEFINE GLOBAL VARIABLES
+global s
+global dronestatus
+global basestatus
+global takeoff
+dronestatus = "1"
+takeoff = "0"
+
 def data_received(data):
     global s
     global dronestatus
     global basestatus
+    global takeoff
     print(data)
     received = data
     #basestatus = received[0]
     dronestatus = received[1]
-    s.send(basestatus+dronestatus)
+    takeoff = received[2]
+    #s.send(basestatus+dronestatus+takeoff)
     
 
 def latch():
+    global s
+    global dronestatus
     global basestatus
+    global takeoff
     print("I am Latching")
     basestatus = "1"
     GPIO.output(RELAY_01,0)
@@ -42,9 +55,14 @@ def latch():
     time.sleep(1)
     GPIO.output(RELAY_03,1)
     GPIO.output(RELAY_04,1)
+    time.sleep(15)
+    s.send(basestatus+dronestatus+takeoff)
 
 def unlatch():
+    global s
+    global dronestatus
     global basestatus
+    global takeoff
     print("I am Unlatching")
     basestatus = "0"
     GPIO.output(RELAY_04,0)            
@@ -52,14 +70,16 @@ def unlatch():
     time.sleep(1)
     GPIO.output(RELAY_02,1)             
     GPIO.output(RELAY_01,1)
+    time.sleep(15)
+    s.send(basestatus+dronestatus+takeoff)
 
 def main():
     
     #DEFINE GLOBAL VARIABLES
     global s
-    global basestatus
     global dronestatus
-    dronestatus = 1
+    global basestatus
+    global takeoff
 
     #INSTANTIATE BLUETOOTH
     s = BluetoothServer(data_received)
@@ -74,7 +94,7 @@ def main():
           
         if (dronestatus == "0" and sensors):
             latch()
-        elif (dronestatus == "1"):
+        elif (takeoff == "1" or dronestatus == "1"):
             unlatch()
         else:
             time.sleep(1)

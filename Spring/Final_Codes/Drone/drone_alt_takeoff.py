@@ -13,22 +13,20 @@ import sys
 
 global s
 global basestatus
-global dronestatus
 global takeoff
-takeoff = "0"
+global dronestatus
 basestatus = "1"
+takeoff = "0"
 dronestatus = "1"
 
 def data_received(data):
     global s
-    global dronestatus
     global basestatus
+    global dronestatus
     global takeoff
-    
     print(data)
     received = data
     basestatus = received[0]
-    takeoff = received[2]
     
 s = BluetoothClient('raspberrypi-talon-base', data_received)
 
@@ -47,7 +45,9 @@ print("We R Connected")
 @vehicle.on_attribute('armed')
 def armed_listener(self, name, msg):
     global s
+    global basestatus
     global dronestatus
+    global takeoff
     if msg:
         dronestatus = "1"
         s.send(basestatus+dronestatus+takeoff)
@@ -56,8 +56,19 @@ def armed_listener(self, name, msg):
         s.send(basestatus+dronestatus+takeoff)
 
 def main():
+    global s
+    global basestatus
+    global dronestatus
+    global takeoff
     try:
-        pause()
+        takeoff = "1"
+        s.send(basestatus+dronestatus+takeoff)        
+        while True:
+            if not basestatus:
+                print("Waiting for flight Clearence")
+                armdrone()
+                takeoff()
+                quit()
     except KeyboardInterrupt:
         quit()
 if __name__ == "__main__":
