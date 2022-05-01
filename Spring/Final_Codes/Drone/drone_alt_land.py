@@ -13,6 +13,7 @@ import sys
 
 global s
 global basestatus
+global dronestatus
 basestatus = 1
 
 
@@ -46,15 +47,14 @@ def armed_listener(self, name, msg):
     global dronestatus
     print(name," attribute is: ", msg)
     if msg == "True":
-        dronestatus = 1
+        dronestatus = "1"
         s.send(basestatus+dronestatus)
     else:
-        dronestatus = 0
+        dronestatus = "0"
         s.send(basestatus+dronestatus)
 
 def main():
     pause()
-
 if __name__ == "__main__":
     main()
         
