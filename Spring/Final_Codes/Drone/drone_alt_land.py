@@ -55,12 +55,15 @@ def armed_listener(self, name, msg):
         dronestatus = "0"
         s.send(basestatus+dronestatus+takeoff)
         time.sleep(5)
+        s.disconnect()
         quit()
 
 def main():
+    global s
     try:
         pause()
     except KeyboardInterrupt:
+        s.disconnect()
         quit()
 if __name__ == "__main__":
     main()
