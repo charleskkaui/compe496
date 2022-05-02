@@ -1,7 +1,13 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Spring",
+    "\\Spring\\Final_Codes",
+    "\\Spring\\Final_Codes\\Base",
+    "\\Spring\\Final_Codes\\Drone",
+    "\\Spring\\Test_Codes",
+    "\\Spring\\Test_Codes\\Integrated"
   ],
-  "SelectedNode": "\\C:\\Users\\charl\\Source\\Repos\\charleskkaui\\compe496",
+  "SelectedNode": "\\Spring\\Final_Codes\\Base\\base_main.py",
   "PreviewInSolutionExplorer": false
 }

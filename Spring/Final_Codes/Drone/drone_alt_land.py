@@ -54,9 +54,9 @@ def armed_listener(self, name, msg):
     else:
         dronestatus = "0"
         s.send(basestatus+dronestatus+takeoff)
-        time.sleep(5)
-        s.disconnect()
-        quit()
+        #time.sleep(5)
+        #s.disconnect()
+        #quit()
 
 def main():
     global s
@@ -65,6 +65,7 @@ def main():
     except KeyboardInterrupt:
         s.disconnect()
         quit()
+
 if __name__ == "__main__":
     main()
         
