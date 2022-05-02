@@ -172,6 +172,7 @@ def main():
     KI_Y = 0
     KD_X = 0
     KD_Y = 0
+    ERROR_THRESHOLD = 5
 
     #Charles Kaui Code
     distance_vector = [0,0,0]
@@ -273,7 +274,7 @@ def main():
                     speed_x, last_error_x, integral_x, derivative_x  = myPID(distance_vector[0], TARGET_X, last_error_x, integral_x, KP_X, KI_X, KD_X, SPEED_XY_MIN, SPEED_XY_MAX)
                     speed_y, last_error_y, integral_y, derivative_y  = myPID(distance_vector[1], TARGET_Y, last_error_y, integral_y, KP_Y, KI_Y, KD_Y, SPEED_XY_MIN, SPEED_XY_MAX)
             
-                    if abs(last_error_x) < error_threshold and abs(last_error_y) < error_threshold:
+                    if abs(last_error_x) < ERROR_THRESHOLD and abs(last_error_y) < ERROR_THRESHOLD:
                         speed_z = SPEED_Z_MAX
                     else:
                         speed_z = 0

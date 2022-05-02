@@ -290,7 +290,7 @@ def main():
                         velocityz = 0
 
                     if counter_slowitdown < 1:
-                        fly_go(vehicle,velocityx,velocityy,velocityz,1)
+                        #fly_go(vehicle,velocityx,velocityy,velocityz,0)
                         #fly_go(vehicle,0,0,0,1)
                         counter_slowitdown = 5
                     else:
@@ -356,7 +356,7 @@ def main():
 
 
         #--- Display the frame
-        #cv2.imshow('frame', frame)
+        cv2.imshow('frame', frame)
         #print(np.array2string(distance_vector_x)+","+np.array2string(distance_vector_y)+","+np.array2string(distance_vector_z)+"\n")
         print("\n",average_vector)
 
