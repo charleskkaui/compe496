@@ -94,6 +94,11 @@ def take_off_now(vehicle,TargetAltitude):
     time.sleep(1)
     print("ALTITUDE REACHED: ",vehicle.location.global_relative_frame.alt)
 
+
+    def land_now(vehicle):
+        print("LANDING...")
+        vehicle.mode = "LAND"
+
 #CONSTANTS_DRONE
 CONNECTION_BAUDRATE = 57600
 CONNECTION_STRING = '/dev/ttyAMA1'
@@ -130,8 +135,11 @@ def main():
             if basestatus == "0":
                 arm(vehicle)
                 take_off_now(vehicle,ALTITUDE_TAKEOFF)
-                vehicle.mode = "LOITER"
+                fly_go(vehicle,0.5,0,0,2)
+                fly_go(vehicle,0,0,0,1)
+                land_now(vehicle)
                 quit()
+
     except KeyboardInterrupt:
         quit()
 if __name__ == "__main__":
