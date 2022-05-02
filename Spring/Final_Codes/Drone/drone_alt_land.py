@@ -54,6 +54,8 @@ def armed_listener(self, name, msg):
     else:
         dronestatus = "0"
         s.send(basestatus+dronestatus+takeoff)
+        time.sleep(5)
+        quit()
 
 def main():
     try:

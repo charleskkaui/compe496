@@ -84,6 +84,8 @@ def main():
     global basestatus
     global dronestatus
     global takeoff
+    ALTITUDE_TAKEOFF = 2
+
     try:
         takeoff = "1"
         s.send(basestatus+dronestatus+takeoff)        
