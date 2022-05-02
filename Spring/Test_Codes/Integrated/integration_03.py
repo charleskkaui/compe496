@@ -257,7 +257,7 @@ def main():
                 if average_vector[2] != 0:
                     print("Precission: ", precission, end=" :")
                     if average_vector[2] > TARGET_Z or vehicle.mode.name == "LAND":
-                        print("TIME TO LAND")
+                        print("Close enough to target for landing")
                         land_now(vehicle)
                         cap.release()
                         cv2.destroyAllWindows()
@@ -295,7 +295,7 @@ def main():
                         if counter_slowitdown < 1:
                             fly_go(vehicle,velocityx,velocityy,velocityz,0)
                             #fly_go(vehicle,0,0,0,1)
-                            counter_slowitdown = 5
+                            counter_slowitdown = 20
                         else:
                             counter_slowitdown -= 1
                     
@@ -325,10 +325,11 @@ def main():
                     error_level_0_cnt = 2
 
             else:
-                if average_vector[2] != 0:
+                print("LOST ARUCO ERROR")
+                #if average_vector[2] != 0:
                     ###IF WE CANNOT FIND THE ARUCO WE SHOULD GO BACK THE LAST DIRECTION FOR 2s
-                    if error_level == 0:
-                        print("LOST ARUCO ERROR LEVEL: ",error_level," cnt: ", error_level_0_cnt,end=" ")
+                    #if error_level == 0:
+                        #print("LOST ARUCO ERROR")# LEVEL: ",error_level," cnt: ", error_level_0_cnt,end=" ")
                         #fly_go(vehicle,velocityx*-1,velocityy*-1,0,1)
                         #fly_go(vehicle,0,0,0,1)
                     
@@ -361,7 +362,7 @@ def main():
             #--- Display the frame
             #cv2.imshow('frame', frame)
             #print(np.array2string(distance_vector_x)+","+np.array2string(distance_vector_y)+","+np.array2string(distance_vector_z)+"\n")
-            print("\n",average_vector)
+            #print("\n",average_vector)
 
             #--- use 'q' to quit
             key = cv2.waitKey(1) & 0xFF
