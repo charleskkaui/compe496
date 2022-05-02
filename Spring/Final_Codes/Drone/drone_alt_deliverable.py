@@ -142,9 +142,9 @@ def take_off_now(vehicle,TargetAltitude):
     print("ALTITUDE REACHED: ",vehicle.location.global_relative_frame.alt)
 
 
-    def land_now(vehicle):
-        print("LANDING...")
-        vehicle.mode = "LAND"
+def land_now(vehicle):
+    print("LANDING...")
+    vehicle.mode = "LAND"
 
 
 def main():
@@ -153,7 +153,6 @@ def main():
     global dronestatus
     global takeoff
     global vehicle
-    
     
     try:
         while True:
