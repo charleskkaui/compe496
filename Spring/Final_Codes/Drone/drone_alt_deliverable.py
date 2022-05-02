@@ -5,7 +5,6 @@ from datetime import datetime
 from dronekit import connect, Command, LocationGlobal
 from pymavlink import mavutil
 from signal import pause
-
 from bluedot.btcomm import BluetoothClient
 from signal import pause
 import time
@@ -13,22 +12,72 @@ import sys
 
 global s
 global basestatus
-global takeoff
 global dronestatus
-basestatus = "1"
-takeoff = "0"
-dronestatus = "1"
+global takeoff
+takeoff = "2"
+basestatus = "2"
+dronestatus = "2"
+
+
+def base_takeoff(vehicle):
+    ALTITUDE_TAKEOFF = 2
+    try:
+        takeoff = "1"
+        s.send(basestatus+dronestatus+takeoff)        
+        while True:
+            print("Waiting for flight Clearence...")
+            time.sleep(1)
+            if basestatus == "0":
+                arm(vehicle)
+                take_off_now(vehicle,ALTITUDE_TAKEOFF)
+                fly_go(vehicle,0.5,0,0,2)
+                fly_go(vehicle,0,0,0,1)
+                land_now(vehicle)
+                s.disconnect()
+                quit()
+
+    except KeyboardInterrupt:
+        quit()
+
 
 def data_received(data):
     global s
-    global basestatus
     global dronestatus
+    global basestatus
     global takeoff
+    
     print(data)
     received = data
     basestatus = received[0]
+    #takeoff = received[2]
     
 s = BluetoothClient('raspberrypi-talon-base', data_received)
+
+#Establishes connection to the drone.
+def connect_drone(CONNECTION_STRING,CONNECTION_BAUDRATE):
+        print("CONNECTING...")
+        return connect(CONNECTION_STRING, wait_ready=True, baud=CONNECTION_BAUDRATE)
+
+#CONSTANTS_DRONE
+CONNECTION_BAUDRATE = 57600
+CONNECTION_STRING = '/dev/ttyAMA1'
+global vehicle
+vehicle = connect_drone(CONNECTION_STRING,CONNECTION_BAUDRATE)
+print("We R Connected")
+
+@vehicle.on_attribute('armed')
+def armed_listener(self, name, msg):
+    global s
+    global dronestatus
+    if msg:
+        dronestatus = "1"
+        s.send(basestatus+dronestatus+takeoff)
+    else:
+        dronestatus = "0"
+        s.send(basestatus+dronestatus+takeoff)
+        time.sleep(5)
+        s.disconnect()
+        quit()
 
 #Establishes connection to the drone.
 def connect_drone(CONNECTION_STRING,CONNECTION_BAUDRATE):
@@ -97,49 +146,23 @@ def take_off_now(vehicle,TargetAltitude):
         print("LANDING...")
         vehicle.mode = "LAND"
 
-#CONSTANTS_DRONE
-CONNECTION_BAUDRATE = 57600
-CONNECTION_STRING = '/dev/ttyAMA1'
-
-vehicle = connect_drone(CONNECTION_STRING,CONNECTION_BAUDRATE)
-print("Pi Connected to FC")
-
-@vehicle.on_attribute('armed')
-def armed_listener(self, name, msg):
-    global s
-    global basestatus
-    global dronestatus
-    global takeoff
-    if msg:
-        dronestatus = "1"
-        s.send(basestatus+dronestatus+takeoff)
-    else:
-        dronestatus = "0"
-        s.send(basestatus+dronestatus+takeoff)
 
 def main():
     global s
     global basestatus
     global dronestatus
     global takeoff
-    ALTITUDE_TAKEOFF = 2
-
+    global vehicle
+    
+    
     try:
-        takeoff = "1"
-        s.send(basestatus+dronestatus+takeoff)        
         while True:
-            print("Waiting for flight Clearence...")
-            time.sleep(1)
-            if basestatus == "0":
-                arm(vehicle)
-                take_off_now(vehicle,ALTITUDE_TAKEOFF)
-                fly_go(vehicle,0.5,0,0,2)
-                fly_go(vehicle,0,0,0,1)
-                land_now(vehicle)
-                s.disconnect()
+            if dronestatus == "0" and basestatus == "1":
+                time.sleep(5)
+                base_takeoff(vehicle)
                 quit()
-
     except KeyboardInterrupt:
+        s.disconnect()
         quit()
 if __name__ == "__main__":
     main()
