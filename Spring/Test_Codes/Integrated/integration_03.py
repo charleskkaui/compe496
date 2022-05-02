@@ -284,10 +284,10 @@ def main():
                             print("F/B OK", end=" :")
 
                         if(velocityx == 0 and velocityy == 0):
-                            velocityz = 0.1
+                            velocityz = 1
                             print("GO DOWN")
                         elif average_vector[2] > zmin-precission-5:
-                            velocityz = 0.1
+                            velocityz = 1
                             print("GO DOWN CUZ UP")
                         else:
                             velocityz = 0
