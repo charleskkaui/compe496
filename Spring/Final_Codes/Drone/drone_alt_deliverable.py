@@ -155,7 +155,6 @@ def main():
     
     try:
         while True:
-            print("im looping")
             if dronestatus == "0" and basestatus == "1":
                 time.sleep(5)
                 base_takeoff(vehicle)
