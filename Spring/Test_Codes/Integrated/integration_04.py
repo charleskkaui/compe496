@@ -7,7 +7,7 @@
 #The X and Y components of the sample is then fed into their own PID controllers.
 #Each PID recieves a distance vector component and outputs a calculated speed.
 #The speed components are then passed to the fly_go method.
-#The fly_go method accepts 3 velocity vector compoenents and a duration in seconds to perform the movement.
+#The fly_go method accepts 3 velocity vector components and a duration in seconds to perform the movement.
 #The fly_go method translates the input arguments into a mavlink message then sends the message to the flight controler of the drone.
 #The drone then performs the desired movment.
 #This process repeats until the drone is centered over the Aruco Marker.
