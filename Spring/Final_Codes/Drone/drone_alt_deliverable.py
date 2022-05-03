@@ -34,24 +34,22 @@ def data_received(data):
 s = BluetoothClient('raspberrypi-talon-base', data_received)
 
 def base_takeoff(vehicle):
+    global takeoff
+    global basestatus
     ALTITUDE_TAKEOFF = 2
-    try:
-        takeoff = "1"
-        s.send(basestatus+dronestatus+takeoff)        
-        while True:
-            print("Waiting for flight Clearence...")
-            time.sleep(1)
-            if basestatus == "0":
-                arm(vehicle)
-                take_off_now(vehicle,ALTITUDE_TAKEOFF)
-                fly_go(vehicle,0.5,0,0,2)
-                fly_go(vehicle,0,0,0,1)
-                land_now(vehicle)
-                s.disconnect()
-                quit()
-
-    except KeyboardInterrupt:
-        quit()
+    takeoff = "1"
+    s.send(basestatus+dronestatus+takeoff)        
+    while True:
+        print("Waiting for flight Clearence...")
+        time.sleep(1)
+        if basestatus == "0":
+            arm(vehicle)
+            take_off_now(vehicle,ALTITUDE_TAKEOFF)
+            fly_go(vehicle,2,0,0,2)
+            fly_go(vehicle,0,0,0,1)
+            land_now(vehicle)
+            s.disconnect()
+            quit()
 
     
 #Establishes connection to the drone.
@@ -72,9 +70,11 @@ def armed_listener(self, name, msg):
     global dronestatus
     if msg:
         dronestatus = "1"
+        print("Sending: ",basestatus+dronestatus+takeoff)
         s.send(basestatus+dronestatus+takeoff)
     else:
         dronestatus = "0"
+        print("Sending: ",basestatus+dronestatus+takeoff)
         s.send(basestatus+dronestatus+takeoff)
         time.sleep(5)
         s.disconnect()
@@ -155,6 +155,7 @@ def main():
     
     try:
         while True:
+            print("im looping")
             if dronestatus == "0" and basestatus == "1":
                 time.sleep(5)
                 base_takeoff(vehicle)
