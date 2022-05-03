@@ -18,6 +18,19 @@ takeoff = "2"
 basestatus = "2"
 dronestatus = "2"
 
+
+def data_received(data):
+    global s
+    global dronestatus
+    global basestatus
+    global takeoff
+    
+    print(data)
+    received = data
+    basestatus = received[0]
+    s.send(basestatus+dronestatus+takeoff)
+    
+
 s = BluetoothClient('raspberrypi-talon-base', data_received)
 
 def base_takeoff(vehicle):
@@ -40,17 +53,6 @@ def base_takeoff(vehicle):
     except KeyboardInterrupt:
         quit()
 
-def data_received(data):
-    global s
-    global dronestatus
-    global basestatus
-    global takeoff
-    
-    print(data)
-    received = data
-    basestatus = received[0]
-    s.send(basestatus+dronestatus+takeoff)
-    
     
 #Establishes connection to the drone.
 def connect_drone(CONNECTION_STRING,CONNECTION_BAUDRATE):
