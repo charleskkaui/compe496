@@ -24,7 +24,6 @@ def data_received(data):
     global dronestatus
     global basestatus
     global takeoff
-    
     print(data)
     received = data
     basestatus = received[0]
@@ -76,9 +75,9 @@ def armed_listener(self, name, msg):
         dronestatus = "0"
         print("Sending: ",basestatus+dronestatus+takeoff)
         s.send(basestatus+dronestatus+takeoff)
-        time.sleep(5)
-        s.disconnect()
-        quit()
+        #time.sleep(5)
+        #s.disconnect()
+        #quit()
 
 #Establishes connection to the drone.
 def connect_drone(CONNECTION_STRING,CONNECTION_BAUDRATE):
