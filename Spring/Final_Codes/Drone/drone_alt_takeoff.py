@@ -137,7 +137,7 @@ def main():
             if basestatus == "0":
                 arm(vehicle)
                 take_off_now(vehicle,ALTITUDE_TAKEOFF)
-                fly_go(vehicle,0.5,0,0,2)
+                fly_go(vehicle,2,0,0,2)
                 fly_go(vehicle,0,0,0,1)
                 land_now(vehicle)
                 s.disconnect()
