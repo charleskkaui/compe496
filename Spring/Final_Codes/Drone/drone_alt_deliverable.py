@@ -43,10 +43,11 @@ def base_takeoff(vehicle):
         time.sleep(1)
         if basestatus == "0":
             arm(vehicle)
-            take_off_now(vehicle,ALTITUDE_TAKEOFF)
-            fly_go(vehicle,2,0,0,2)
-            fly_go(vehicle,0,0,0,1)
-            land_now(vehicle)
+            #take_off_now(vehicle,ALTITUDE_TAKEOFF)
+            #fly_go(vehicle,2,0,0,2)
+            #fly_go(vehicle,0,0,0,1)
+            #land_now(vehicle)
+            print("Take off succseful")
             s.disconnect()
             quit()
 
@@ -156,7 +157,7 @@ def main():
         while True:
             if dronestatus == "0" and basestatus == "1":
                 time.sleep(5)
-                #base_takeoff(vehicle)
+                base_takeoff(vehicle)
                 print("Initiaite Take off!!!!!")
                 quit()
     except KeyboardInterrupt:
