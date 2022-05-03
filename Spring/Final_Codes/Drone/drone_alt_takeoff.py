@@ -97,6 +97,10 @@ def take_off_now(vehicle,TargetAltitude):
         print("LANDING...")
         vehicle.mode = "LAND"
 
+def land_now(vehicle):
+    print("LANDING...")
+    vehicle.mode = "LAND"
+
 #CONSTANTS_DRONE
 CONNECTION_BAUDRATE = 57600
 CONNECTION_STRING = '/dev/ttyAMA1'
