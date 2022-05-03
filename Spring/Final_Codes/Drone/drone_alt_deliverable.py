@@ -14,9 +14,9 @@ global s
 global basestatus
 global dronestatus
 global takeoff
-takeoff = "2"
-basestatus = "2"
-dronestatus = "2"
+takeoff = "0"
+basestatus = "1"
+dronestatus = "1"
 
 
 def data_received(data):

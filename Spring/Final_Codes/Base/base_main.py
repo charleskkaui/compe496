@@ -37,7 +37,6 @@ def data_received(data):
     global takeoff
     print(data)
     received = data
-    #basestatus = received[0]
     dronestatus = received[1]
     takeoff = received[2]
     
@@ -56,6 +55,7 @@ def latch():
     GPIO.output(RELAY_03,1)
     GPIO.output(RELAY_04,1)
     time.sleep(15)
+    print("Sending: ",basestatus+dronestatus+takeoff)
     s.send(basestatus+dronestatus+takeoff)
 
 def unlatch():
@@ -71,6 +71,7 @@ def unlatch():
     GPIO.output(RELAY_02,1)             
     GPIO.output(RELAY_01,1)
     time.sleep(15)
+    print("Sending: ",basestatus+dronestatus+takeoff)
     s.send(basestatus+dronestatus+takeoff)
 
 def main():
@@ -92,12 +93,13 @@ def main():
         else:
                 sensors = 0
           
-        if (dronestatus == "0" and sensors):
+        if (dronestatus == "0" and sensors and takeoff == "0"):
             latch()
         elif (takeoff == "1" or dronestatus == "1"):
             unlatch()
         else:
-            time.sleep(1)
+            time.sleep(2)
+            print("Sending: ",basestatus+dronestatus+takeoff)
             s.send(basestatus+dronestatus+takeoff)
 
 if __name__ == "__main__":
