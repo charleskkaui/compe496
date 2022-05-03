@@ -253,7 +253,7 @@ def main():
                 #cv2.putText(frame, distance_vector_disp, (0, 150), font, 1, (0, 255, 0), 2, cv2.LINE_AA)
                 if average_vector[2] != 0:
                     print("Precission: ", precission, end=" :")
-                    if average_vector[2] > TARGET_Z or vehicle.mode.name == "LAND":
+                    if average_vector[2] > TARGET_Z: # or vehicle.mode.name == "LAND":
                         print("Close enough to target for landing")
                         #land_now(vehicle)
                         cap.release()
