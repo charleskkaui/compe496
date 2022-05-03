@@ -157,7 +157,8 @@ def main():
         while True:
             if dronestatus == "0" and basestatus == "1":
                 time.sleep(5)
-                base_takeoff(vehicle)
+                #base_takeoff(vehicle)
+                print("Initiaite Take off!!!!!")
                 quit()
     except KeyboardInterrupt:
         s.disconnect()

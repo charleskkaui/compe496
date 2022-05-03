@@ -40,7 +40,7 @@ def data_received(data):
     #basestatus = received[0]
     dronestatus = received[1]
     takeoff = received[2]
-    #s.send(basestatus+dronestatus+takeoff)
+    
     
 
 def latch():
@@ -98,6 +98,7 @@ def main():
             unlatch()
         else:
             time.sleep(1)
+            s.send(basestatus+dronestatus+takeoff)
 
 if __name__ == "__main__":
     main()
