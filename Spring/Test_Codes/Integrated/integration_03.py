@@ -121,7 +121,7 @@ def main():
     precission = 20
     corrector = 0
 
-    DDflag = false
+    DDflag = False
 
     try:
         vehicle = connect_drone(CONNECTION_STRING,CONNECTION_BAUDRATE)
@@ -362,7 +362,7 @@ def main():
 
 
             #--- Display the frame
-            #cv2.imshow('frame', frame)
+            cv2.imshow('frame', frame)
             #print(np.array2string(distance_vector_x)+","+np.array2string(distance_vector_y)+","+np.array2string(distance_vector_z)+"\n")
             #print("\n",average_vector)
 
