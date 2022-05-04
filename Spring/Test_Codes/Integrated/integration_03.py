@@ -121,7 +121,7 @@ def main():
     precission = 20
     corrector = 0
 
-    DDflaf = false
+    DDflag = false
 
     try:
         vehicle = connect_drone(CONNECTION_STRING,CONNECTION_BAUDRATE)
