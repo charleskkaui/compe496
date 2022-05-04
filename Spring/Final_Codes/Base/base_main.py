@@ -22,64 +22,85 @@ GPIO.setup(RELAY_02,GPIO.OUT)
 GPIO.setup(RELAY_03,GPIO.OUT)
 GPIO.setup(RELAY_04,GPIO.OUT)
 
+#DEFINE GLOBAL VARIABLES
+global s
+global dronestatus
+global basestatus
+global takeoff
+dronestatus = "1"
+takeoff = "0"
+
 def data_received(data):
-    global received
+    global s
+    global dronestatus
+    global basestatus
+    global takeoff
+    print(data)
     received = data
-    time.sleep(1)
-    s.send("0")
+    dronestatus = received[1]
+    takeoff = received[2]
+    
+    
 
 def latch():
+    global s
+    global dronestatus
+    global basestatus
+    global takeoff
     print("I am Latching")
-    s.send("Base Received: "+received)
+    basestatus = "1"
     GPIO.output(RELAY_01,0)
     GPIO.output(RELAY_02,0)
     time.sleep(1)
     GPIO.output(RELAY_03,1)
     GPIO.output(RELAY_04,1)
+    time.sleep(15)
+    print("Sending: ",basestatus+dronestatus+takeoff)
+    s.send(basestatus+dronestatus+takeoff)
 
 def unlatch():
-    print("I am Unlatching")                    
-    s.send("Base Received: "+received)
+    global s
+    global dronestatus
+    global basestatus
+    global takeoff
+    print("I am Unlatching")
+    basestatus = "0"
     GPIO.output(RELAY_04,0)            
     GPIO.output(RELAY_03,0)            
     time.sleep(1)
     GPIO.output(RELAY_02,1)             
     GPIO.output(RELAY_01,1)
+    time.sleep(15)
+    print("Sending: ",basestatus+dronestatus+takeoff)
+    s.send(basestatus+dronestatus+takeoff)
 
 def main():
     
     #DEFINE GLOBAL VARIABLES
-    global s 
-    global received 
-
-   
+    global s
+    global dronestatus
+    global basestatus
+    global takeoff
 
     #INSTANTIATE BLUETOOTH
     s = BluetoothServer(data_received)
-    
-    received = "0"
 
-    GPIO.output(RELAY_04,0)            
-    GPIO.output(RELAY_03,0)            
-    time.sleep(1)
-    GPIO.output(RELAY_02,1)             
-    GPIO.output(RELAY_01,1)
+    unlatch()
     
     while True:
-        #COPY CODE TO CHECK SENSORS HERE
-        ################################
-        ################################
         if(GPIO.input(SENSOR_01) == GPIO.LOW and GPIO.input(SENSOR_02) == GPIO.LOW ):
                 sensors = 1
         else:
                 sensors = 0
-            
-        if (received == "A" and sensors): #WE ARE LATCHING
+          
+        if (dronestatus == "0" and sensors and takeoff == "0"):
             latch()
-        elif (received == "B"):
+        elif (takeoff == "1" or dronestatus == "1"):
             unlatch()
         else:
-            time.sleep(1)
+            time.sleep(2)
+            print("Sending: ",basestatus+dronestatus+takeoff)
+            s.send(basestatus+dronestatus+takeoff)
 
 if __name__ == "__main__":
     main()

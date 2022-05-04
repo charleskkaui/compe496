@@ -105,8 +105,6 @@ def fly_spin(vehicle,heading, relative=False):
     vehicle.send_mavlink(msg)
 
 def main():
-
-    
     #CONSTANTS_DRONE
     CONNECTION_BAUDRATE = 57600
     CONNECTION_STRING = '/dev/ttyAMA1' #COnnection String for the Drone
@@ -122,14 +120,14 @@ def main():
     corrector = 0
 
     try:
-        vehicle = connect_drone(CONNECTION_STRING,CONNECTION_BAUDRATE)
-        arm(vehicle)
-        take_off_now(vehicle,ALTITUDE_TAKEOFF)
+        #vehicle = connect_drone(CONNECTION_STRING,CONNECTION_BAUDRATE)
+        #arm(vehicle)
+        #take_off_now(vehicle,ALTITUDE_TAKEOFF)
 
         #creating file for data
         now = datetime.now()
         save_path = "/home/pi/compe496/Spring/Test_Codes/OpenCV/TestData"
-        file_name = "DistanceVector_"+now.strftime("%Y")+"_"+now.strftime("%m")+"_"+now.strftime("%d")+"_"+now.strftime("%H")+"_"+now.strftime("%M")+".txt"
+        file_name = "DistanceVectorb_"+now.strftime("%Y")+"_"+now.strftime("%m")+"_"+now.strftime("%d")+"_"+now.strftime("%H")+"_"+now.strftime("%M")+".txt"
         complete_filename = os.path.join(save_path,file_name)
     
         try:
@@ -152,8 +150,6 @@ def main():
         error_level_0_cnt = 2
         zmin = -5000
         counter_slowitdown = 20
-
-
 
         #--- Define Tag
         id_to_find  = 325
@@ -223,7 +219,7 @@ def main():
                 distance_vector_x = (pos_camera[0]-tvec[0])
                 distance_vector_y = (pos_camera[1]-tvec[1])
                 distance_vector_z = (pos_camera[2]-tvec[2])
-                #myfile.write(np.array2string(distance_vector_x)+","+np.array2string(distance_vector_y)+","+np.array2string(distance_vector_z)+"\n")
+                myfile.write(np.array2string(distance_vector_x)+","+np.array2string(distance_vector_y)+","+np.array2string(distance_vector_z)+"\n")
             
                 #distance_vector_disp = "Raw Drone Travel Values: x=%4.0f  y=%4.0f  z=%4.0f"%(distance_vector_x, distance_vector_y, distance_vector_z)
                 #cv2.putText(frame, distance_vector_disp, (0, 100), font, 1, (0, 255, 0), 2, cv2.LINE_AA)
@@ -252,16 +248,18 @@ def main():
 
                 #print(average_vector[0] ,"is of type ",type(average_vector[0]))
 
+
                 #distance_vector_disp = "Drone must travel: x=%4.0f  y=%4.0f  z=%4.0f"%(average_vector[0],average_vector[1],average_vector[2])
                 #cv2.putText(frame, distance_vector_disp, (0, 150), font, 1, (0, 255, 0), 2, cv2.LINE_AA)
                 if average_vector[2] != 0:
                     print("Precission: ", precission, end=" :")
-                    if average_vector[2] > TARGET_Z or vehicle.mode.name == "LAND":
+                    if average_vector[2] > TARGET_Z: # or vehicle.mode.name == "LAND":
                         print("Close enough to target for landing")
-                        land_now(vehicle)
+                        #land_now(vehicle)
                         cap.release()
                         cv2.destroyAllWindows()
                         myfile.close()
+                        quit()
                     else:
                         if average_vector[0] > TARGET_X + precission:
                             velocityy = VELOCITY
@@ -293,7 +291,7 @@ def main():
                             velocityz = 0
 
                         if counter_slowitdown < 1:
-                            fly_go(vehicle,velocityx,velocityy,velocityz,0)
+                            #fly_go(vehicle,velocityx,velocityy,velocityz,0)
                             #fly_go(vehicle,0,0,0,1)
                             counter_slowitdown = 20
                         else:
@@ -326,37 +324,8 @@ def main():
 
             else:
                 print("LOST ARUCO ERROR")
-                #if average_vector[2] != 0:
-                    ###IF WE CANNOT FIND THE ARUCO WE SHOULD GO BACK THE LAST DIRECTION FOR 2s
-                    #if error_level == 0:
-                        #print("LOST ARUCO ERROR")# LEVEL: ",error_level," cnt: ", error_level_0_cnt,end=" ")
-                        #fly_go(vehicle,velocityx*-1,velocityy*-1,0,1)
-                        #fly_go(vehicle,0,0,0,1)
-                    
-                        #if error_level_0_cnt >= 2:
-                        #    fly_go(vehicle,velocityx*-1,velocityy*-1,0,1)
-                        #    error_level_0_cnt = 1
-                        #elif error_level_0_cnt == 1:
-                        #    fly_go(vehicle,velocityx*-1,velocityy*-1,0,1)
-                        #    error_level_0_cnt = 0
-                        #else:
-                        #    fly_go(vehicle,velocityx,velocityy,velocityz,2)
-                        #    error_level = 1
-                        #    print("LOST FOREVER")
-                        #    land_now(vehicle)
-                    #elif error_level == 1:
-                    #    fly_go(vehicle,0,0,0,1)
-                    #    if error_level_0_cnt < 2:
-                    #        error_cnt += 1
-                    #    else: 
-                    #        error_level = 2
-                    #elif error_level == 2:
-                    #    print("REALLY LOST...")
-                    #    fly_go(vehicle,0,0,VELOCITY,1)
-                    #    time.sleep(2)
-                    #elif error_level == 3:
-                    #    print("SEARCHING FOR MARKER")
-                    #    fly_go(vehicle,0,VELOCITY,0,1)
+                myfile.write("Lost Aruco")
+              
 
 
             #--- Display the frame
@@ -375,6 +344,7 @@ def main():
     except KeyboardInterrupt:
         land_now(vehicle)
         myfile.close()
+        cap.release()
         quit()
 
     
