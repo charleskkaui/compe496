@@ -1,0 +1,32 @@
+mkdir -p dev_nameofworkspace_ws/src #make a workspace and source directories
+cd dev_nameofworkspace_ws/
+colcon build --symlink-intall
+
+#letsmake the package
+cd src
+ros2 pkg create --build-type ament_cmake NameofPackage #for C or ament_python for python
+#inside the package crete a new folder named: launch
+#inside launch create a listeneer.py and a talker.py refer to the python scripts in the folder for template
+
+#update the cmaklist.txt file -> at the bottom of the page above ament_package
+type : install(DIRECTORY launch DESTINATION share/${PROJECT_NAME})
+
+#now update the package.XML
+
+#above export type:
+#<exec_depend>demo_nodes_cpp</exec_depend>
+#<exec_depend>demo_nodes_py</exec_depend>
+
+#Update the nameversion description with whatever u want
+
+#go to the workspace directory then type:
+colcon build --symlink-install
+
+#now your packagae with speaker and listener is ready to be used on any device it is installed to device :)
+
+#to run the listener or talker, 
+source install/setup.bash
+
+ros2 launch NameofPackage talker.launch.py
+or
+ros2 launch NameofPackage listener.launch.py
