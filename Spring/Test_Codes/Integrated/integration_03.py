@@ -121,10 +121,12 @@ def main():
     precission = 20
     corrector = 0
 
+    DDflaf = false
+
     try:
         vehicle = connect_drone(CONNECTION_STRING,CONNECTION_BAUDRATE)
-        arm(vehicle)
-        take_off_now(vehicle,ALTITUDE_TAKEOFF)
+        #arm(vehicle)
+        #take_off_now(vehicle,ALTITUDE_TAKEOFF)
 
         #creating file for data
         now = datetime.now()
@@ -156,7 +158,7 @@ def main():
 
 
         #--- Define Tag
-        id_to_find  = 325
+        id_to_find  = 100#325
         marker_size  = 8 #- [cm]
 
         #--- Get the camera calibration path
@@ -256,7 +258,7 @@ def main():
                 #cv2.putText(frame, distance_vector_disp, (0, 150), font, 1, (0, 255, 0), 2, cv2.LINE_AA)
                 if average_vector[2] != 0:
                     print("Precission: ", precission, end=" :")
-                    if average_vector[2] > TARGET_Z or vehicle.mode.name == "LAND":
+                    if  DDflag:#average_vector[2] > TARGET_Z or vehicle.mode.name == "LAND":
                         print("Close enough to target for landing")
                         land_now(vehicle)
                         cap.release()
@@ -288,12 +290,12 @@ def main():
                             print("GO DOWN")
                         elif average_vector[2] > zmin-precission-5:
                             velocityz = 1
-                            print("GO DOWN CUZ UP")
+                            print("GO DOWN CUZ ITS GOING UP")
                         else:
                             velocityz = 0
 
                         if counter_slowitdown < 1:
-                            fly_go(vehicle,velocityx,velocityy,velocityz,0)
+                            #fly_go(vehicle,velocityx,velocityy,velocityz,0)
                             #fly_go(vehicle,0,0,0,1)
                             counter_slowitdown = 20
                         else:
@@ -304,19 +306,19 @@ def main():
                 
                     if  average_vector[2] < -500:
                         precission = 20
-                        VELOCITY = 0.2
+                        #VELOCITY = 0.2
                     elif average_vector[2] < -400:
                         precission = 15
-                        VELOCITY = 0.2
+                        #VELOCITY = 0.2
                     elif average_vector[2] < -300:
                         precission = 10
-                        VELOCITY = 0.2
+                        #VELOCITY = 0.2
                     elif average_vector[2] < -200:
                         precission = 5
-                        VELOCITY = 0.1
+                        #VELOCITY = 0.1
                     else:
                         precission = 5
-                        VELOCITY = 0.1
+                        #VELOCITY = 0.1
 
                     if zmin > average_vector[2] and average_vector[2] > -150:
                         zmin = average_vector[2]

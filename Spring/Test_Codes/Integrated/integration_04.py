@@ -2,6 +2,7 @@
 #Alterations were made to make the OpenCV visual data collection compatible with OpenCV 4.5.5 as the source code was outdated and from a previous version.
 #The slightly altered compoenents from Tizianos OpenCV is used to obtain the camera position relative to an Aruco Marker.
 #From the location data collected, Charles Kaui extracts the XYZ distances of the camera relative to the marker.
+#
 #The camera running at 30fps supplies 30 distance vectors every second.
 #From the OpenCV data, a sample is taken every 15 frames or 0.5s.
 #The X and Y components of the sample is then fed into their own PID controllers.

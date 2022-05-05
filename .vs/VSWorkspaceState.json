@@ -5,8 +5,10 @@
     "\\Spring\\Test_Codes",
     "\\Spring\\Test_Codes\\Base",
     "\\Spring\\Test_Codes\\Base\\Testfiles",
+    "\\Spring\\Test_Codes\\Drone",
+    "\\Spring\\Test_Codes\\Integrated",
     "\\Spring\\Test_Codes\\OpenCV"
   ],
-  "SelectedNode": "\\Spring\\Test_Codes\\OpenCV\\getFPS.py",
+  "SelectedNode": "\\Spring\\Test_Codes\\Integrated\\integration_03.py",
   "PreviewInSolutionExplorer": false
 }
